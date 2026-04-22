@@ -1158,6 +1158,80 @@ footer {
 }
 
 /* ─── RESPONSIVE ─── */
+@media (max-width: 1200px) {
+  .videos-grid { grid-template-columns: repeat(2, 1fr); }
+  .thesis-layout { gap: 2.5rem; }
+  .about-layout { gap: 3rem; }
+}
+
+@media (max-width: 900px) {
+  body { cursor: auto; }
+  #cur-dot, #cur-trail { display: none; }
+
+  nav {
+    padding: 0.85rem 4%;
+    gap: 0.75rem;
+  }
+  .nav-brand {
+    letter-spacing: 1.6px;
+    font-size: 0.86rem;
+  }
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-pill {
+    padding: 0.46rem 0.95rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.6px;
+  }
+
+  section,
+  #about,
+  #problems,
+  #modules,
+  #howitworks,
+  #demo,
+  #research,
+  #thesis,
+  #diagram,
+  #videos,
+  #tech,
+  #team,
+  #contact {
+    padding-top: 5.5rem !important;
+    padding-bottom: 5.5rem !important;
+  }
+
+  #hero {
+    min-height: auto;
+    padding-top: 8.5rem;
+    padding-bottom: 4rem;
+  }
+  .hero-actions { margin-bottom: 2.6rem; }
+  .hero-sub { font-size: 1rem; max-width: 92%; }
+
+  .probs-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr !important; }
+  .videos-grid { grid-template-columns: 1fr !important; }
+  .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  .diagram-content { padding: 1rem; }
+  .arch-svg { min-width: 100%; }
+  .arch-svg-wrap { overflow-x: visible; padding: 0.25rem 0; }
+
+  .footer-links {
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 1024px) {
   .probs-grid { grid-template-columns: repeat(2, 1fr); }
   .mods-grid { grid-template-columns: 1fr; }
@@ -1169,13 +1243,52 @@ footer {
   .research-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .nav-links { display: none; }
+  .nav-pill { display: none; }
+  .nav-brand { font-size: 0.78rem; }
+  .brand-mark { width: 30px; height: 30px; }
+
   .probs-grid { grid-template-columns: 1fr; }
   .steps-grid { grid-template-columns: 1fr; }
   .videos-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+
+  .hero-title { letter-spacing: -1.4px; }
+  .hero-badges { gap: 0.6rem; }
+  .h-badge { font-size: 0.6rem; padding: 0.48rem 0.85rem; }
+
+  .mod-card,
+  .step-card,
+  .research-card,
+  .team-card,
+  .contact-card {
+    padding: 1.6rem 1.2rem;
+    border-radius: 22px;
+  }
+
+  .result-row {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+  .result-mod {
+    min-width: 0;
+    font-size: 0.62rem;
+  }
+  .demo-body { padding: 1.2rem; }
+  .demo-topbar { padding: 0.9rem 1rem; }
+
   .contact-card { padding: 2rem 1.5rem; }
+  .footer-brand, .footer-copy { width: 100%; text-align: center; }
+}
+
+@media (max-width: 420px) {
+  nav { padding: 0.75rem 0.9rem; }
+  .hero-eyebrow { font-size: 0.56rem; letter-spacing: 1px; padding: 0.35rem 0.72rem; }
+  .btn-dark, .btn-ghost { width: 100%; justify-content: center; }
+  .s-label { font-size: 0.58rem; letter-spacing: 1.4px; }
+  .s-desc { font-size: 0.9rem; }
+  .marquee-item { font-size: 0.62rem; letter-spacing: 1px; }
+  .tech-pill { font-size: 0.63rem; padding: 0.55rem 0.95rem; }
 }
 </style>
 </head>
@@ -1557,9 +1670,6 @@ footer {
       <div class="arch-svg-wrap">
         <img src="images/system.jpeg" alt="The Guardian system diagram" class="arch-diagram-img" />
       </div>
-      <p style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(196,181,253,0.3);letter-spacing:1px;text-align:center;margin-top:1rem;">
-        Uploaded system diagram displayed from project directory.
-      </p>
     </div>
   </div>
 </section>
