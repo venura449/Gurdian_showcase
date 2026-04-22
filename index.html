@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Guardian — AI Cybersecurity Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #020508;
+    --surface: #080d12;
+    --border: rgba(0,200,255,0.1);
+    --cyan: #00c8ff;
+    --cyan-dim: rgba(0,200,255,0.15);
+    --red: #ff3b5c;
+    --amber: #ffb340;
+    --green: #00ff8c;
+    --text: #e8eef4;
+    --muted: #5a7080;
+    --card: rgba(8,20,30,0.8);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(0,200,255,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.18s ease;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  /* GRID BACKGROUND */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(2,5,8,0.85);
+    backdrop-filter: blur(20px);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-tag {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 2px;
+  }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    overflow: hidden;
+  }
+
+  .hero-orb {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,255,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hero-orb-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,59,92,0.05) 0%, transparent 70%);
+    top: 30%; left: 60%;
+    animation: pulse 8s ease-in-out infinite reverse;
+    pointer-events: none;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(4rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: #fff;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,200,255,0.5);
+  }
+
+  .hero-subtitle {
+    margin-top: 32px;
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 2px;
+    color: var(--muted);
+    background: rgba(0,200,255,0.03);
+  }
+  .badge.active { border-color: rgba(0,200,255,0.4); color: var(--cyan); background: var(--cyan-dim); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* FLOATING THREAT ICONS */
+  .threat-float {
+    position: absolute;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 8px 14px;
+    border-radius: 2px;
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .tf-1 { top: 20%; left: 8%; animation-delay: 0s; border-color: rgba(255,59,92,0.3); color: var(--red); }
+  .tf-2 { top: 35%; right: 6%; animation-delay: 1.5s; border-color: rgba(255,179,64,0.3); color: var(--amber); }
+  .tf-3 { bottom: 28%; left: 5%; animation-delay: 3s; border-color: rgba(0,200,255,0.3); color: var(--cyan); }
+  .tf-4 { bottom: 20%; right: 8%; animation-delay: 2s; border-color: rgba(0,255,140,0.3); color: var(--green); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 48px;
+    margin: 0 auto;
+    max-width: 1200px;
+    opacity: 0.3;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); }
+
+  /* PROBLEM SECTION */
+  .problem {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--cyan);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 32px;
+  }
+  .section-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--cyan);
+  }
+
+  .threat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+    border: 1px solid var(--border);
+  }
+  .threat-card {
+    padding: 40px;
+    background: var(--card);
+    border: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .threat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--card-accent, var(--cyan));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .threat-card:hover { background: rgba(0,200,255,0.03); border-color: var(--border); }
+  .threat-card:hover::before { opacity: 1; }
+  .threat-card.hate { --card-accent: var(--red); }
+  .threat-card.misinfo { --card-accent: var(--amber); }
+  .threat-card.phish { --card-accent: var(--cyan); }
+  .threat-card.pii { --card-accent: var(--green); }
+
+  .threat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .threat-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .threat-desc {
+    font-size: 0.75rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .threat-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: rgba(255,59,92,0.1);
+    color: var(--red);
+    border: 1px solid rgba(255,59,92,0.2);
+  }
+  .threat-tag.amber { background: rgba(255,179,64,0.1); color: var(--amber); border-color: rgba(255,179,64,0.2); }
+  .threat-tag.cyan { background: var(--cyan-dim); color: var(--cyan); border-color: rgba(0,200,255,0.2); }
+  .threat-tag.green { background: rgba(0,255,140,0.08); color: var(--green); border-color: rgba(0,255,140,0.2); }
+
+  /* ARCHITECTURE SECTION */
+  .architecture {
+    padding: 120px 48px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .arch-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .arch-diagram {
+    margin-top: 64px;
+    display: flex;
+    gap: 2px;
+    align-items: stretch;
+  }
+  .arch-layer {
+    flex: 1;
+    padding: 32px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .arch-layer:hover { transform: translateY(-4px); border-color: rgba(0,200,255,0.25); }
+  .arch-layer-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+  }
+  .arch-item {
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 8px 12px;
+    background: rgba(0,200,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .arch-item:hover { color: var(--text); border-color: var(--border); }
+  .arch-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: var(--muted);
+    font-size: 1.2rem;
+  }
+
+  /* METHODOLOGY TIMELINE */
+  .methodology {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .timeline {
+    margin-top: 64px;
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cyan), rgba(0,200,255,0.1));
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 64px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateX(0); }
+  .timeline-dot {
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+  }
+  .timeline-num {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .timeline-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .timeline-text {
+    font-size: 0.75rem;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 600px;
+  }
+  .timeline-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .chip {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+  }
+
+  /* METRICS */
+  .metrics {
+    padding: 120px 48px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .metrics-inner { max-width: 1200px; margin: 0 auto; }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+  .metric-card {
+    padding: 48px 40px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .metric-card:hover { border-color: rgba(0,200,255,0.25); }
+  .metric-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .metric-card:hover::after { opacity: 1; }
+  .metric-value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .metric-value span { color: var(--cyan); }
+  .metric-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .metric-bar {
+    margin-top: 20px;
+    height: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .metric-fill.animated { transform: scaleX(1); }
+
+  /* TECH STACK */
+  .tech {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .tech-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    background: var(--card);
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .tech-pill:hover {
+    border-color: rgba(0,200,255,0.4);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    transform: translateY(-2px);
+  }
+  .tech-pill .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    flex-shrink: 0;
+  }
+
+  /* USER FLOW */
+  .userflow {
+    padding: 120px 48px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .flow-inner { max-width: 1200px; margin: 0 auto; }
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+  .flow-step {
+    padding: 36px 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .flow-step:hover { border-color: rgba(0,200,255,0.2); background: rgba(0,200,255,0.02); }
+  .flow-step-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: rgba(0,200,255,0.08);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .flow-step-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .flow-step-text {
+    font-size: 0.7rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .flow-step-icon {
+    position: absolute;
+    top: 24px; right: 24px;
+    font-size: 1.2rem;
+    opacity: 0.4;
+  }
+
+  /* TOOLTIP DEMO */
+  .demo {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .demo-window {
+    margin-top: 64px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0a0f14;
+    text-align: left;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,200,255,0.05);
+  }
+  .demo-bar {
+    padding: 12px 20px;
+    background: #080d12;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .demo-url {
+    flex: 1;
+    margin-left: 12px;
+    background: rgba(0,200,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .demo-content {
+    padding: 32px;
+  }
+  .demo-post {
+    background: #10181f;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+  }
+  .demo-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a3040, #0a1820);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+  .demo-post-text { font-size: 0.78rem; line-height: 1.7; color: var(--text); }
+  .demo-post-text .highlight { background: rgba(255,59,92,0.15); border-bottom: 1px solid var(--red); color: var(--red); padding: 0 3px; }
+  .demo-indicator {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.65rem;
+    color: var(--red);
+    background: rgba(255,59,92,0.08);
+    border: 1px solid rgba(255,59,92,0.25);
+    padding: 6px 10px;
+    border-radius: 4px;
+    animation: indicatorPulse 2.5s infinite;
+  }
+  @keyframes indicatorPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,92,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(255,59,92,0); }
+  }
+  .indicator-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: blink 1.2s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  .demo-tooltip {
+    background: #0d1822;
+    border: 1px solid rgba(255,59,92,0.3);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 8px;
+    margin-left: 56px;
+    font-size: 0.72rem;
+    color: var(--text);
+    line-height: 1.7;
+    position: relative;
+    display: inline-block;
+    max-width: 420px;
+  }
+  .demo-tooltip::before {
+    content: '⚠ GUARDIAN ALERT';
+    display: block;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .demo-tooltip .kw {
+    display: inline-block;
+    background: rgba(255,59,92,0.1);
+    color: var(--red);
+    border: 1px solid rgba(255,59,92,0.2);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-size: 0.65rem;
+    margin: 2px;
+  }
+
+  /* TEAM / ABOUT */
+  .about {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 64px;
+    align-items: start;
+  }
+  .about-info { }
+  .about-info p {
+    font-size: 0.78rem;
+    line-height: 2;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .info-rows { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+  .info-row {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    font-size: 0.7rem;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .info-row-key {
+    width: 130px;
+    flex-shrink: 0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    color: var(--cyan);
+  }
+  .info-row-val { color: var(--text); line-height: 1.6; }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-block {
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .stat-block:hover { border-color: rgba(0,200,255,0.2); }
+  .stat-n {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #fff;
+    letter-spacing: -0.03em;
+  }
+  .stat-n span { color: var(--cyan); }
+  .stat-l { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    background: var(--surface);
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+  }
+  .footer-text {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+  .footer-tag {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .threat-grid { grid-template-columns: 1fr; }
+    .arch-diagram { flex-direction: column; }
+    .arch-arrow { transform: rotate(90deg); }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .flow-steps { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The Guardian</div>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#methodology">Methodology</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-tag">Project 25-26J-041</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-orb"></div>
+  <div class="hero-orb-2"></div>
+
+  <div class="threat-float tf-1">⚠ HATE SPEECH DETECTED</div>
+  <div class="threat-float tf-2">⚡ SCAM ALERT</div>
+  <div class="threat-float tf-3">🛡 PII RISK</div>
+  <div class="threat-float tf-4">✓ MISINFORMATION FLAGGED</div>
+
+  <div class="hero-eyebrow">Modular AI · Human-Layer Cybersecurity · Social Media</div>
+  <h1 class="hero-title">
+    THE
+    <span>GUARDIAN</span>
+  </h1>
+  <p class="hero-subtitle">
+    A proactive AI-powered browser extension that detects and explains hate speech, misinformation, scams, and privacy risks — in real time, without censorship.
+  </p>
+  <div class="hero-badges">
+    <span class="badge active">NLP</span>
+    <span class="badge active">Transformers</span>
+    <span class="badge">FastAPI</span>
+    <span class="badge">BERT / DistilBERT</span>
+    <span class="badge">Browser Extension</span>
+    <span class="badge active">Cybersecurity</span>
+    <span class="badge">HateXplain</span>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">The Problem</div><div class="divider-line"></div></div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="section-label">01 — Research Context</div>
+  <h2 class="section-title reveal">Social media has become<br>a vector for <em>human-layer</em> attacks.</h2>
+  <p class="reveal" style="font-size:0.8rem;line-height:2;color:var(--muted);max-width:700px;margin-top:-8px;">
+    Conventional defenses — reactive platform moderation, traditional antivirus tools — fail to address the linguistic nuances of modern threats. The Guardian fills this gap with proactive, explainable, non-intrusive AI.
+  </p>
+
+  <div class="threat-grid reveal">
+    <div class="threat-card hate">
+      <span class="threat-icon">🔥</span>
+      <div class="threat-name">Hate Speech</div>
+      <div class="threat-desc">Detection of explicit and implicit toxicity including coded "dog whistles," slang variants, and context-dependent language using fine-tuned Transformer models.</div>
+      <span class="threat-tag">Primary Focus</span>
+    </div>
+    <div class="threat-card misinfo">
+      <span class="threat-icon">📰</span>
+      <div class="threat-name">Misinformation</div>
+      <div class="threat-desc">Coordinated false narratives that erode societal trust. Real-time classification of unverified claims and deceptive framing before user engagement.</div>
+      <span class="threat-tag amber">High Priority</span>
+    </div>
+    <div class="threat-card phish">
+      <span class="threat-icon">🎣</span>
+      <div class="threat-name">Phishing & Scams</div>
+      <div class="threat-desc">Sophisticated social engineering exploiting trust, urgency, and cognitive biases. NLP-based identification of fraudulent language patterns.</div>
+      <span class="threat-tag cyan">Active Module</span>
+    </div>
+    <div class="threat-card pii">
+      <span class="threat-icon">🔐</span>
+      <div class="threat-name">PII / OpSec Risks</div>
+      <div class="threat-desc">Inadvertent exposure of Personally Identifiable Information leading to identity risks. Entity recognition to flag dangerous disclosures.</div>
+      <span class="threat-tag green">Privacy Guard</span>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="architecture" id="architecture">
+  <div class="arch-inner">
+    <div class="section-label reveal">02 — System Design</div>
+    <h2 class="section-title reveal">Modular architecture.<br>Real-time intelligence.</h2>
+
+    <div class="arch-diagram reveal">
+      <div class="arch-layer">
+        <div class="arch-layer-title">Frontend Layer</div>
+        <div class="arch-item">JavaScript Browser Extension</div>
+        <div class="arch-item">Real-time Text Scraper</div>
+        <div class="arch-item">Color-coded Icon Overlay</div>
+        <div class="arch-item">Tooltip Renderer</div>
+        <div class="arch-item">User Consent Manager</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">API Gateway</div>
+        <div class="arch-item">FastAPI (Python)</div>
+        <div class="arch-item">HTTPS Encryption</div>
+        <div class="arch-item">Rate Limiting</div>
+        <div class="arch-item">Request Authentication</div>
+        <div class="arch-item">JSON Response Builder</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">NLP Modules</div>
+        <div class="arch-item" style="border-color:rgba(255,59,92,0.2);color:var(--red)">Hate Speech Module ★</div>
+        <div class="arch-item">Misinformation Module</div>
+        <div class="arch-item">Phishing / Scam Module</div>
+        <div class="arch-item">PII / OpSec Module</div>
+        <div class="arch-item">Concurrent Analyzer</div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">ML Core</div>
+        <div class="arch-item">BERT / DistilBERT</div>
+        <div class="arch-item">Keyword Trigger Matcher</div>
+        <div class="arch-item">Confidence Scorer</div>
+        <div class="arch-item">Bias Fairness Analyzer</div>
+        <div class="arch-item">spaCy Preprocessor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY TIMELINE -->
+<section class="methodology" id="methodology">
+  <div class="section-label reveal">03 — Project Journey</div>
+  <h2 class="section-title reveal">How The Guardian<br>was built.</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-num">Phase 01</div>
+      <div class="timeline-title">Literature Survey & Research Gap</div>
+      <div class="timeline-text">Surveyed 20+ papers on hate speech detection, NLP pipelines, and human-centric social media threats. Identified critical gap: existing models excel at explicit hate but fail on implicit, context-dependent toxicity including coded slang and "dog whistles."</div>
+      <div class="timeline-chips">
+        <span class="chip">Davidson et al. 2017</span>
+        <span class="chip">HateXplain 2021</span>
+        <span class="chip">ToxiGen 2022</span>
+        <span class="chip">20+ Papers Reviewed</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-num">Phase 02</div>
+      <div class="timeline-title">Data Acquisition & Preprocessing</div>
+      <div class="timeline-text">Primary datasets include the Davidson Twitter corpus for hate vs. offensive classification, and HateXplain for explainable toxic-span annotations. Custom-labeled samples created for nuanced edge cases including coded language and multilingual slang. Preprocessing via spaCy and NLTK.</div>
+      <div class="timeline-chips">
+        <span class="chip">spaCy</span>
+        <span class="chip">NLTK</span>
+        <span class="chip">Data Augmentation</span>
+        <span class="chip">Back-Translation</span>
+        <span class="chip">Hugging Face</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-num">Phase 03</div>
+      <div class="timeline-title">Model Training & Fine-Tuning</div>
+      <div class="timeline-text">Fine-tuned BERT and DistilBERT models on multiclass classification (Hate / Offensive / Neutral). Incorporated attention mechanisms for toxic span highlighting, multi-task learning for rationale generation, and adversarial training for bias mitigation across demographic subgroups.</div>
+      <div class="timeline-chips">
+        <span class="chip">BERT</span>
+        <span class="chip">DistilBERT</span>
+        <span class="chip">Transfer Learning</span>
+        <span class="chip">Bias Mitigation</span>
+        <span class="chip">Demographic Parity</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-num">Phase 04</div>
+      <div class="timeline-title">Backend & API Development</div>
+      <div class="timeline-text">Python FastAPI backend hosting four independent NLP modules. Each module processes text concurrently and returns structured JSON with label, confidence score, triggered keywords, and a brief rationale. Supports 100 concurrent analyses with sub-2-second response times.</div>
+      <div class="timeline-chips">
+        <span class="chip">FastAPI</span>
+        <span class="chip">Python</span>
+        <span class="chip">JSON API</span>
+        <span class="chip">Cloud GPU (AWS/Colab)</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-num">Phase 05</div>
+      <div class="timeline-title">Browser Extension & UI</div>
+      <div class="timeline-text">Lightweight JavaScript/HTML/CSS extension that scrapes visible text on scroll, packages it into HTTPS requests, and renders color-coded overlay icons with explainable tooltips. Red for high-risk hate speech, orange for subtle toxicity. Non-intrusive by design — informs without blocking.</div>
+      <div class="timeline-chips">
+        <span class="chip">JavaScript</span>
+        <span class="chip">HTML/CSS</span>
+        <span class="chip">Chrome / Firefox / Edge</span>
+        <span class="chip">HTTPS</span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-num">Phase 06</div>
+      <div class="timeline-title">Evaluation & Fairness Analysis</div>
+      <div class="timeline-text">Targeting >90% accuracy on explicit hate, >80% recall on implicit toxicity, <5% false positives on legitimate critiques. Fairness evaluation using demographic parity and equal opportunity metrics across gender and race subgroups, targeting <10% disparity.</div>
+      <div class="timeline-chips">
+        <span class="chip">Precision / Recall</span>
+        <span class="chip">ROC Curves</span>
+        <span class="chip">Fairness Metrics</span>
+        <span class="chip">Postman</span>
+        <span class="chip">Jupyter Notebooks</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" id="metrics">
+  <div class="metrics-inner">
+    <div class="section-label reveal">04 — Target Performance</div>
+    <h2 class="section-title reveal">Precision. Fairness.<br>Trust.</h2>
+    <div class="metrics-grid reveal">
+      <div class="metric-card">
+        <div class="metric-value"><span>90</span>%+</div>
+        <div class="metric-label">Accuracy — Explicit Hate Speech</div>
+        <div class="metric-bar"><div class="metric-fill" data-width="0.9"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value"><span>80</span>%+</div>
+        <div class="metric-label">Recall — Implicit Toxicity</div>
+        <div class="metric-bar"><div class="metric-fill" data-width="0.8"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">&lt;<span>5</span>%</div>
+        <div class="metric-label">False Positives on Legitimate Critiques</div>
+        <div class="metric-bar"><div class="metric-fill" data-width="0.95"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">&lt;<span>2</span>s</div>
+        <div class="metric-label">API Response Time (100 concurrent)</div>
+        <div class="metric-bar"><div class="metric-fill" data-width="0.88"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">&lt;<span>10</span>%</div>
+        <div class="metric-label">Demographic Bias Disparity</div>
+        <div class="metric-bar"><div class="metric-fill" data-width="0.9"></div></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value"><span>75</span>%+</div>
+        <div class="metric-label">Multilingual Detection Accuracy</div>
+        <div class="metric-bar"><div class="metric-fill" data-width="0.75"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO WINDOW -->
+<section class="demo" id="demo">
+  <div class="section-label reveal" style="justify-content:center">05 — Live Interface Preview</div>
+  <h2 class="section-title reveal">See The Guardian<br>in action.</h2>
+
+  <div class="demo-window reveal">
+    <div class="demo-bar">
+      <div class="demo-dot" style="background:#ff5f56"></div>
+      <div class="demo-dot" style="background:#ffbd2e"></div>
+      <div class="demo-dot" style="background:#27c93f"></div>
+      <div class="demo-url">x.com/home — The Guardian Active ●</div>
+    </div>
+    <div class="demo-content">
+      <div class="demo-post">
+        <div class="demo-avatar">👤</div>
+        <div>
+          <div class="demo-post-text">
+            This is genuinely one of the worst things I've ever read — these people are <span class="highlight">subhuman</span> and shouldn't be allowed to exist in civil society. Total disgrace.
+          </div>
+        </div>
+        <div class="demo-indicator">
+          <div class="indicator-dot"></div>
+          HIGH RISK
+        </div>
+      </div>
+      <div class="demo-tooltip">
+        This post contains <strong>explicit hate speech</strong>. Dehumanizing language was detected that targets a group of people based on identity characteristics.
+        <br><br>
+        <strong>Triggered signals:</strong>
+        <span class="kw">subhuman</span>
+        <span class="kw">shouldn't be allowed to exist</span>
+        <br><br>
+        <span style="color:var(--muted);font-size:0.62rem;">Confidence: 94% · Model: DistilBERT-hate-v2 · Label: HATE</span>
+      </div>
+
+      <div class="demo-post" style="margin-top:24px;border-color:rgba(255,179,64,0.15)">
+        <div class="demo-avatar">👤</div>
+        <div>
+          <div class="demo-post-text">
+            The great replacement is happening right here in our city. Wake up before it's too late. Send this to everyone you know. 🐸
+          </div>
+        </div>
+        <div class="demo-indicator" style="color:var(--amber);background:rgba(255,179,64,0.08);border-color:rgba(255,179,64,0.25)">
+          <div class="indicator-dot" style="background:var(--amber)"></div>
+          IMPLICIT
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech" id="tech">
+  <div class="section-label reveal">06 — Technology Stack</div>
+  <h2 class="section-title reveal">Built on open source.<br>Designed for scale.</h2>
+
+  <div class="tech-row reveal">
+    <div class="tech-pill"><div class="dot"></div>Python 3.11</div>
+    <div class="tech-pill"><div class="dot"></div>FastAPI</div>
+    <div class="tech-pill"><div class="dot"></div>Hugging Face Transformers</div>
+    <div class="tech-pill"><div class="dot"></div>BERT</div>
+    <div class="tech-pill"><div class="dot"></div>DistilBERT</div>
+    <div class="tech-pill"><div class="dot"></div>spaCy</div>
+    <div class="tech-pill"><div class="dot"></div>NLTK</div>
+    <div class="tech-pill"><div class="dot"></div>Scikit-learn</div>
+    <div class="tech-pill"><div class="dot"></div>JavaScript ES2023</div>
+    <div class="tech-pill"><div class="dot"></div>Chrome Extensions API</div>
+    <div class="tech-pill"><div class="dot"></div>Jupyter Notebooks</div>
+    <div class="tech-pill"><div class="dot"></div>Postman</div>
+    <div class="tech-pill"><div class="dot"></div>AWS / Google Colab GPU</div>
+    <div class="tech-pill"><div class="dot"></div>GitHub CI/CD</div>
+    <div class="tech-pill"><div class="dot"></div>Davidson Dataset</div>
+    <div class="tech-pill"><div class="dot"></div>HateXplain</div>
+    <div class="tech-pill"><div class="dot"></div>ToxiGen</div>
+  </div>
+</section>
+
+<!-- USER FLOW -->
+<section class="userflow" id="flow">
+  <div class="flow-inner">
+    <div class="section-label reveal">07 — User Experience</div>
+    <h2 class="section-title reveal">Seven steps from<br>scroll to insight.</h2>
+    <div class="flow-steps reveal">
+      <div class="flow-step">
+        <div class="flow-step-icon">📱</div>
+        <div class="flow-step-num">01</div>
+        <div class="flow-step-title">User Browses</div>
+        <div class="flow-step-text">Extension reads visible post text as user scrolls. Only the text needed — no long-term local storage without opt-in.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">📡</div>
+        <div class="flow-step-num">02</div>
+        <div class="flow-step-title">Request Sent</div>
+        <div class="flow-step-text">JSON payload (text + platform + post ID) sent over HTTPS to FastAPI gateway. Anonymized for privacy.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">🧠</div>
+        <div class="flow-step-num">03</div>
+        <div class="flow-step-title">NLP Analysis</div>
+        <div class="flow-step-text">Fine-tuned Transformer processes text: classification label + confidence score + toxic span detection.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">🔑</div>
+        <div class="flow-step-num">04</div>
+        <div class="flow-step-title">Keyword Match</div>
+        <div class="flow-step-text">Keyword matcher scans for hateful tokens, coded phrases, slang variants. Builds ranked trigger list.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">📦</div>
+        <div class="flow-step-num">05</div>
+        <div class="flow-step-title">JSON Response</div>
+        <div class="flow-step-text">Formatter packages label, confidence, triggered_keywords[], and explanation into a single response object.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">🎨</div>
+        <div class="flow-step-num">06</div>
+        <div class="flow-step-title">Icon Overlay</div>
+        <div class="flow-step-text">Extension maps result to color-coded icon. Red = high-risk, orange = subtle, green = clear. Appears next to content.</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-icon">💡</div>
+        <div class="flow-step-num">07</div>
+        <div class="flow-step-title">User Informed</div>
+        <div class="flow-step-text">Hover opens tooltip explaining why content was flagged and listing triggered keywords. Never censors. Always educates.</div>
+      </div>
+      <div class="flow-step" style="border-color:rgba(0,200,255,0.15);background:rgba(0,200,255,0.02)">
+        <div class="flow-step-icon">🔁</div>
+        <div class="flow-step-num">∞</div>
+        <div class="flow-step-title">Continuous Learning</div>
+        <div class="flow-step-text">Optional feedback loop. User reports refine thresholds. Models retrained on evolving slang and emerging contexts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label reveal">08 — Project Details</div>
+  <h2 class="section-title reveal">The research behind<br>The Guardian.</h2>
+
+  <div class="about-grid">
+    <div class="about-info reveal">
+      <p>
+        "The Guardian" is an undergraduate dissertation project in the B.Sc. (Hons) Information Technology (Cyber Security) program at the Sri Lanka Institute of Information Technology. It addresses the critical gap between reactive platform moderation and proactive, user-centric cybersecurity.
+      </p>
+      <p>
+        The system's key contribution lies in its hate speech module — going beyond keyword matching to detect subtle, context-dependent toxicity including dog whistles, coded slang, and implicit bias, while ensuring fairness across demographic subgroups.
+      </p>
+
+      <div class="info-rows">
+        <div class="info-row">
+          <div class="info-row-key">Researcher</div>
+          <div class="info-row-val">Fernando M R I (IT22366054)</div>
+        </div>
+        <div class="info-row">
+          <div class="info-row-key">Supervisor</div>
+          <div class="info-row-val">Kavinga Yapa Abeywardena</div>
+        </div>
+        <div class="info-row">
+          <div class="info-row-key">Co-Supervisor</div>
+          <div class="info-row-val">Deemantha Siriwardana</div>
+        </div>
+        <div class="info-row">
+          <div class="info-row-key">Institution</div>
+          <div class="info-row-val">Sri Lanka Institute of Information Technology</div>
+        </div>
+        <div class="info-row">
+          <div class="info-row-key">Project ID</div>
+          <div class="info-row-val">25-26J-041</div>
+        </div>
+        <div class="info-row">
+          <div class="info-row-key">Timeline</div>
+          <div class="info-row-val">8 months · July 2025 – March 2026</div>
+        </div>
+        <div class="info-row">
+          <div class="info-row-key">Keywords</div>
+          <div class="info-row-val">Cybersecurity · NLP · Human-layer security · Hate speech detection</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-stats reveal">
+      <div class="stat-block">
+        <div class="stat-n"><span>20</span>+</div>
+        <div class="stat-l">Academic Papers Surveyed</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-n"><span>4</span></div>
+        <div class="stat-l">Independent NLP Modules</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-n"><span>3</span></div>
+        <div class="stat-l">Primary Datasets (Davidson, HateXplain, ToxiGen)</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-n"><span>1000</span></div>
+        <div class="stat-l">Concurrent Users Supported</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">THE GUARDIAN</div>
+  <div class="footer-text">
+    B.Sc. (Hons) Information Technology (Cyber Security)<br>
+    Sri Lanka Institute of Information Technology · August 2025
+  </div>
+  <div class="footer-tag">Project 25-26J-041</div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx - 5 + 'px';
+    cursor.style.top = my - 5 + 'px';
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx - 18 + 'px';
+    ring.style.top = ry - 18 + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button, .tech-pill, .threat-card, .arch-layer, .flow-step').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'scale(1.8)'; ring.style.borderColor = 'rgba(0,200,255,0.8)'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'scale(1)'; ring.style.borderColor = 'rgba(0,200,255,0.5)'; });
+  });
+
+  // SCROLL REVEAL
+  const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  // METRIC BAR ANIMATION
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target.querySelector('.metric-fill');
+        if (fill) { fill.style.width = (parseFloat(fill.dataset.width) * 100) + '%'; fill.classList.add('animated'); }
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.metric-card').forEach(c => barObs.observe(c));
+
+  // TIMELINE stagger
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.style.transitionDelay = (i * 0.1) + 's';
+  });
+</script>
+</body>
+</html>
