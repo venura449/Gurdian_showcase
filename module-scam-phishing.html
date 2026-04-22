@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scam & Phishing Detection | The Guardian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f3ff;
+        --panel: rgba(255, 255, 255, 0.82);
+        --text: #1a1720;
+        --text2: #6b6475;
+        --line: rgba(139, 92, 246, 0.14);
+        --accent: #f43f5e;
+        --accent2: #fb923c;
+        --dark: #232124;
+        --r: 24px;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(244, 63, 94, 0.12), transparent 25%),
+          radial-gradient(circle at bottom left, rgba(251, 146, 60, 0.12), transparent 24%),
+          var(--bg);
+      }
+      a { color: inherit; }
+      .wrap { max-width: 1180px; margin: 0 auto; padding: 1.2rem 5% 4rem; }
+      .topbar {
+        display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+        padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 999px;
+        background: rgba(255,255,255,0.7); backdrop-filter: blur(18px);
+      }
+      .brand { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+      .back { font-family: "JetBrains Mono", monospace; font-size: 0.72rem; text-decoration: none; color: var(--text2); }
+      .hero { padding: 4.5rem 0 2rem; }
+      .eyebrow {
+        display: inline-flex; padding: 0.4rem 0.85rem; border-radius: 999px;
+        border: 1px solid var(--line); background: rgba(255,255,255,0.7);
+        font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+      }
+      h1 { font-family: "Playfair Display", serif; font-size: clamp(2.5rem, 7vw, 4.8rem); line-height: 0.98; margin: 1rem 0 1rem; }
+      .sub { max-width: 760px; font-size: 1.05rem; line-height: 1.8; color: var(--text2); margin: 0 0 1.5rem; }
+      .chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+      .chip {
+        padding: 0.55rem 0.95rem; border-radius: 999px; background: rgba(255,255,255,0.8);
+        border: 1px solid var(--line); font-family: "JetBrains Mono", monospace; font-size: 0.68rem;
+      }
+      .grid { display: grid; gap: 1.2rem; grid-template-columns: 1.2fr 0.8fr; }
+      .panel {
+        background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
+        padding: 1.5rem; backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(35,33,36,0.08);
+      }
+      .panel h2 { font-family: "Playfair Display", serif; margin: 0 0 0.75rem; font-size: 1.4rem; }
+      .panel p { color: var(--text2); line-height: 1.75; margin: 0; }
+      ul { margin: 1rem 0 0; padding-left: 1.2rem; color: var(--text2); line-height: 1.7; }
+      .video {
+        aspect-ratio: 16 / 9; border-radius: 20px; background:
+          linear-gradient(135deg, rgba(35,33,36,0.96), rgba(35,33,36,0.84)),
+          radial-gradient(circle at center, rgba(244,63,94,0.15), transparent 60%);
+        border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; text-align: center;
+      }
+      .video strong { display: block; font-family: "JetBrains Mono", monospace; letter-spacing: 1.5px; color: #fff; margin-bottom: 0.4rem; }
+      .video span { color: rgba(255,255,255,0.6); max-width: 320px; }
+      .report-box {
+        display: grid; gap: 0.85rem; padding: 1rem; border-radius: 18px;
+        background: rgba(35,33,36,0.96); color: white;
+      }
+      .report-row { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.88rem; color: rgba(255,255,255,0.78); }
+      .report-row strong { color: white; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        padding: 0.95rem 1.2rem; border-radius: 999px; border: 0; text-decoration: none;
+        background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white;
+        font-family: "JetBrains Mono", monospace; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+      }
+      footer { padding: 2rem 0 0; color: var(--text2); font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; }
+      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .topbar { border-radius: 24px; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <a class="brand" href="index.html">The Guardian</a>
+        <a class="back" href="index.html#modules">Back to Modules</a>
+      </div>
+      <section class="hero">
+        <div class="eyebrow">Module 01</div>
+        <h1>Scam & Phishing Detection</h1>
+        <p class="sub">
+          Dual-path detection engine for suspicious links and deceptive text. This
+          module combines URL heuristics, blacklist checks, and DistilBERT-based
+          language understanding to surface fraud signals before the user clicks.
+        </p>
+        <div class="chips">
+          <span class="chip">DistilBERT</span>
+          <span class="chip">URL Analysis</span>
+          <span class="chip">PhishTank</span>
+          <span class="chip">Hybrid Fusion</span>
+        </div>
+      </section>
+      <div class="grid">
+        <article class="panel">
+          <h2>Description</h2>
+          <p>
+            This module inspects links, sender intent, and urgent phrasing to
+            identify scam attempts, impersonation patterns, and phishing language.
+            It is designed to work as a fast, explainable safety layer for social
+            media content.
+          </p>
+          <ul>
+            <li>Detects urgency, reward bait, and account-lock threats</li>
+            <li>Combines text signals with URL and domain checks</li>
+            <li>Shows a safe preview before any risky action</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>Quick Facts</h2>
+          <div class="report-box">
+            <div class="report-row"><strong>Owner</strong><span>Vishwa Rathnayaka</span></div>
+            <div class="report-row"><strong>Status</strong><span>Demo build</span></div>
+            <div class="report-row"><strong>Risk Types</strong><span>Scam, phishing, impersonation</span></div>
+          </div>
+        </article>
+      </div>
+      <section class="panel" style="margin-top: 1.2rem;">
+        <h2>Demo Video</h2>
+        <div class="video">
+          <div>
+            <strong>VIDEO PLACEHOLDER</strong>
+            <span>Insert a YouTube or Vimeo embed here for the scam and phishing demo.</span>
+          </div>
+        </div>
+      </section>
+      <section class="panel" style="margin-top: 1.2rem;">
+        <h2>Report</h2>
+        <p>
+          Add the final report PDF, screenshots, benchmark results, or a download
+          link here.
+        </p>
+        <div style="margin-top: 1rem;">
+          <a class="btn" href="#">Open Report Placeholder</a>
+        </div>
+      </section>
+      <footer>Scam & Phishing Detection • The Guardian</footer>
+    </div>
+  </body>
+</html>
