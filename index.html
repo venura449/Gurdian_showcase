@@ -43,6 +43,13 @@ body {
   overflow-x: hidden;
   cursor: none;
 }
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+img, svg, video, canvas {
+  max-width: 100%;
+}
 
 /* ─── CUSTOM CURSOR ─── */
 #cur-dot, #cur-trail {
@@ -476,6 +483,7 @@ section { position: relative; z-index: 2; }
 }
 .about-visual {
   position: relative;
+  overflow: clip;
 }
 .arch-box {
   background: var(--purple);
