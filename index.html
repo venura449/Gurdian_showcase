@@ -1,1970 +1,3807 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Guardian – Project Showcase</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --white: #f7f3ff;
-  --off: #f5f3f7;
-  --off2: #ede9f2;
-  --purple: #232124;
-  --purple2: #2d2930;
-  --purple3: #3a3640;
-  --accent: #8b5cf6;
-  --accent2: #a78bfa;
-  --accent3: #c4b5fd;
-  --pink: #e879f9;
-  --rose: #fb7185;
-  --text: #1a1720;
-  --text2: #6b6475;
-  --text3: #9c93a8;
-  --border: rgba(139,92,246,0.15);
-  --border2: rgba(139,92,246,0.08);
-  --r: 16px;
-  --r2: 24px;
-  --r3: 36px;
-  --r4: 48px;
-  --soft-purple-1: rgba(139,92,246,0.14);
-  --soft-purple-2: rgba(196,181,253,0.26);
-  --soft-purple-3: rgba(245,243,255,0.9);
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Guardian – Project Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --white: #f7f3ff;
+        --off: #f5f3f7;
+        --off2: #ede9f2;
+        --purple: #232124;
+        --purple2: #2d2930;
+        --purple3: #3a3640;
+        --accent: #8b5cf6;
+        --accent2: #a78bfa;
+        --accent3: #c4b5fd;
+        --pink: #e879f9;
+        --rose: #fb7185;
+        --text: #1a1720;
+        --text2: #6b6475;
+        --text3: #9c93a8;
+        --border: rgba(139, 92, 246, 0.15);
+        --border2: rgba(139, 92, 246, 0.08);
+        --r: 16px;
+        --r2: 24px;
+        --r3: 36px;
+        --r4: 48px;
+        --soft-purple-1: rgba(139, 92, 246, 0.14);
+        --soft-purple-2: rgba(196, 181, 253, 0.26);
+        --soft-purple-3: rgba(245, 243, 255, 0.9);
+      }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
 
-body {
-  background: var(--white);
-  color: var(--text);
-  font-family: 'Instrument Sans', sans-serif;
-  overflow-x: hidden;
-  cursor: none;
-}
-html, body {
-  max-width: 100%;
-  overflow-x: clip;
-}
-img, svg, video, canvas {
-  max-width: 100%;
-}
+      body {
+        background: var(--white);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        cursor: none;
+      }
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: clip;
+      }
+      img,
+      svg,
+      video,
+      canvas {
+        max-width: 100%;
+      }
 
-/* ─── CUSTOM CURSOR ─── */
-#cur-dot, #cur-trail {
-  position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-#cur-dot {
-  width: 10px; height: 10px;
-  background: var(--accent);
-  transition: transform 0.1s, width 0.2s, height 0.2s;
-  mix-blend-mode: multiply;
-}
-#cur-trail {
-  width: 40px; height: 40px;
-  border: 1.5px solid rgba(139,92,246,0.4);
-  transition: transform 0.18s ease, left 0.12s ease, top 0.12s ease;
-}
-body:has(a:hover) #cur-dot,
-body:has(button:hover) #cur-dot { transform: translate(-50%,-50%) scale(2); }
+      /* ─── CUSTOM SCROLLBAR ─── */
+      ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
 
-/* ─── ANIMATED BG ─── */
-.bg-canvas {
-  position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
-}
-.bg-orb {
-  position: absolute; border-radius: 50%; filter: blur(80px);
-  animation: orbFloat linear infinite;
-}
-.orb1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(139,92,246,0.08), transparent 70%); top: -200px; right: -100px; animation-duration: 18s; }
-.orb2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(232,121,249,0.06), transparent 70%); bottom: -100px; left: -100px; animation-duration: 22s; animation-direction: reverse; }
-.orb3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(196,181,253,0.07), transparent 70%); top: 40%; left: 30%; animation-duration: 28s; animation-delay: -8s; }
+      ::-webkit-scrollbar-track {
+        background: var(--off);
+      }
 
-/* React-bits style floating particles */
-.react-bits {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-.react-bit {
-  position: absolute;
-  width: var(--bit-size, 8px);
-  height: var(--bit-size, 8px);
-  left: var(--bit-left, 50%);
-  top: var(--bit-top, 100%);
-  border-radius: 2px;
-  background: linear-gradient(135deg, rgba(139,92,246,0.5), rgba(196,181,253,0.2));
-  box-shadow: 0 0 14px rgba(139,92,246,0.24);
-  opacity: var(--bit-opacity, 0.5);
-  transform: rotate(var(--bit-rot, 0deg));
-  animation: bitFloat var(--bit-dur, 16s) linear infinite;
-  animation-delay: var(--bit-delay, 0s);
-}
-@keyframes bitFloat {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9);
-    opacity: 0;
-  }
-  12% { opacity: var(--bit-opacity, 0.5); }
-  50% { transform: translate3d(14px, -45vh, 0) rotate(180deg) scale(1); }
-  100% {
-    transform: translate3d(-10px, -105vh, 0) rotate(360deg) scale(0.85);
-    opacity: 0;
-  }
-}
-@keyframes orbFloat {
-  0%   { transform: translate(0,0) rotate(0deg) scale(1); }
-  33%  { transform: translate(40px,-50px) rotate(120deg) scale(1.05); }
-  66%  { transform: translate(-30px,30px) rotate(240deg) scale(0.97); }
-  100% { transform: translate(0,0) rotate(360deg) scale(1); }
-}
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 6px;
+        border: 2px solid var(--off);
+        transition: background 0.3s ease;
+      }
 
-/* Subtle dot grid */
-.bg-canvas::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle, rgba(139,92,246,0.12) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.5;
-  animation: gridDrift 28s linear infinite;
-}
-.bg-canvas::before {
-  content: '';
-  position: absolute;
-  inset: -15%;
-  background: conic-gradient(from 180deg at 50% 50%, rgba(139,92,246,0.1), rgba(232,121,249,0.08), rgba(196,181,253,0.08), rgba(139,92,246,0.1));
-  filter: blur(90px);
-  opacity: 0.45;
-  animation: auroraShift 24s ease-in-out infinite alternate;
-}
-@keyframes gridDrift {
-  0% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(-18px, -14px, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-@keyframes auroraShift {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(14deg) scale(1.08); }
-}
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent2);
+      }
 
-/* ─── NOISE TEXTURE ─── */
-body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  animation: noiseDrift 12s steps(6) infinite;
-}
-@keyframes noiseDrift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-1%, 1%); }
-  50% { transform: translate(1%, -1%); }
-  75% { transform: translate(-1%, -1%); }
-  100% { transform: translate(0, 0); }
-}
+      /* Firefox scrollbar */
+      * {
+        scrollbar-color: var(--accent) var(--off);
+        scrollbar-width: thin;
+      }
 
-/* ─── NAV ─── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 1rem 5%;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(139,92,246,0.1);
-  transition: all 0.3s;
-}
-.nav-brand {
-  display: flex; align-items: center; gap: 10px;
-  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-  color: var(--purple); letter-spacing: 3px; text-decoration: none;
-  text-transform: uppercase;
-}
-.brand-mark {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.brand-mark img { width: 100%; height: 100%; object-fit: contain; }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a {
-  font-family: 'Space Mono', monospace; font-size: 0.7rem;
-  color: var(--text2); text-decoration: none;
-  letter-spacing: 1px; text-transform: uppercase;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--accent); }
-.nav-pill {
-  background: linear-gradient(135deg, var(--soft-purple-3), rgba(237,233,254,0.92));
-  color: #3a2e56;
-  border: 1px solid var(--soft-purple-2);
-  padding: 0.5rem 1.4rem; border-radius: 100px;
-  font-family: 'Syne', sans-serif; font-weight: 700;
-  font-size: 0.72rem; letter-spacing: 1px;
-  text-decoration: none; text-transform: uppercase;
-  transition: all 0.25s; cursor: none;
-}
-.nav-pill:hover {
-  background: linear-gradient(135deg, #ffffff, #ede9fe);
-  transform: translateY(-1px);
-}
+      /* ─── CUSTOM CURSOR ─── */
+      #cur-dot,
+      #cur-trail {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #cur-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        transition:
+          transform 0.1s,
+          width 0.2s,
+          height 0.2s;
+        mix-blend-mode: multiply;
+      }
+      #cur-trail {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid rgba(139, 92, 246, 0.4);
+        transition:
+          transform 0.18s ease,
+          left 0.12s ease,
+          top 0.12s ease;
+      }
+      body:has(a:hover) #cur-dot,
+      body:has(button:hover) #cur-dot {
+        transform: translate(-50%, -50%) scale(2);
+      }
 
-/* ─── SECTIONS ─── */
-section { position: relative; z-index: 2; }
+      /* ─── ANIMATED BG ─── */
+      .bg-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .bg-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: orbFloat linear infinite;
+      }
+      .orb1 {
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.08),
+          transparent 70%
+        );
+        top: -200px;
+        right: -100px;
+        animation-duration: 18s;
+      }
+      .orb2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(232, 121, 249, 0.06),
+          transparent 70%
+        );
+        bottom: -100px;
+        left: -100px;
+        animation-duration: 22s;
+        animation-direction: reverse;
+      }
+      .orb3 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(196, 181, 253, 0.07),
+          transparent 70%
+        );
+        top: 40%;
+        left: 30%;
+        animation-duration: 28s;
+        animation-delay: -8s;
+      }
 
-/* ─── HERO ─── */
-#hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 10rem 5% 6rem;
-  overflow: hidden;
-}
+      /* React-bits style floating particles */
+      .react-bits {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .react-bit {
+        position: absolute;
+        width: var(--bit-size, 8px);
+        height: var(--bit-size, 8px);
+        left: var(--bit-left, 50%);
+        top: var(--bit-top, 100%);
+        border-radius: 2px;
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.5),
+          rgba(196, 181, 253, 0.2)
+        );
+        box-shadow: 0 0 14px rgba(139, 92, 246, 0.24);
+        opacity: var(--bit-opacity, 0.5);
+        transform: rotate(var(--bit-rot, 0deg));
+        animation: bitFloat var(--bit-dur, 16s) linear infinite;
+        animation-delay: var(--bit-delay, 0s);
+      }
+      @keyframes bitFloat {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9);
+          opacity: 0;
+        }
+        12% {
+          opacity: var(--bit-opacity, 0.5);
+        }
+        50% {
+          transform: translate3d(14px, -45vh, 0) rotate(180deg) scale(1);
+        }
+        100% {
+          transform: translate3d(-10px, -105vh, 0) rotate(360deg) scale(0.85);
+          opacity: 0;
+        }
+      }
+      @keyframes orbFloat {
+        0% {
+          transform: translate(0, 0) rotate(0deg) scale(1);
+        }
+        33% {
+          transform: translate(40px, -50px) rotate(120deg) scale(1.05);
+        }
+        66% {
+          transform: translate(-30px, 30px) rotate(240deg) scale(0.97);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg) scale(1);
+        }
+      }
 
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, rgba(245,243,255,0.96), rgba(237,233,254,0.92));
-  color: #4c3f6f;
-  border: 1px solid var(--soft-purple-2);
-  padding: 0.4rem 1.2rem;
-  border-radius: 100px;
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 2.5rem;
-  animation: popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-.hero-eyebrow .live-dot {
-  width: 6px; height: 6px; background: #4ade80;
-  border-radius: 50%; animation: livePulse 1.5s infinite;
-}
-@keyframes livePulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
-  50% { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
-}
+      /* Subtle dot grid */
+      .bg-canvas::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.12) 1px,
+          transparent 1px
+        );
+        background-size: 40px 40px;
+        opacity: 0.5;
+        animation: gridDrift 28s linear infinite;
+      }
+      .bg-canvas::before {
+        content: "";
+        position: absolute;
+        inset: -15%;
+        background: conic-gradient(
+          from 180deg at 50% 50%,
+          rgba(139, 92, 246, 0.1),
+          rgba(232, 121, 249, 0.08),
+          rgba(196, 181, 253, 0.08),
+          rgba(139, 92, 246, 0.1)
+        );
+        filter: blur(90px);
+        opacity: 0.45;
+        animation: auroraShift 24s ease-in-out infinite alternate;
+      }
+      @keyframes gridDrift {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        50% {
+          transform: translate3d(-18px, -14px, 0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes auroraShift {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        100% {
+          transform: rotate(14deg) scale(1.08);
+        }
+      }
 
-.hero-title {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  line-height: 0.95; letter-spacing: -3px;
-  margin-bottom: 2rem;
-  animation: popIn 0.7s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-.hero-title .t-white { color: var(--text); display: block; }
-.hero-title .t-outline {
-  -webkit-text-stroke: 2px var(--purple);
-  color: transparent;
-  display: block;
-  animation: textWave 7s ease-in-out infinite;
-}
-.hero-title .t-accent {
-  background: linear-gradient(135deg, var(--accent), var(--pink));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; display: block;
-  background-size: 200% 200%;
-  animation: accentFlow 6s ease-in-out infinite;
-}
-@keyframes textWave {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(10px); }
-}
-@keyframes accentFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+      /* ─── NOISE TEXTURE ─── */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 200px 200px;
+        animation: noiseDrift 12s steps(6) infinite;
+      }
+      @keyframes noiseDrift {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-1%, 1%);
+        }
+        50% {
+          transform: translate(1%, -1%);
+        }
+        75% {
+          transform: translate(-1%, -1%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
 
-.hero-sub {
-  font-size: 1.1rem; color: var(--text2); max-width: 560px;
-  line-height: 1.75; margin: 0 auto 3rem;
-  animation: fadeUp 0.7s 0.2s ease both;
-  position: relative;
-}
-.hero-sub::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(139,92,246,0), rgba(139,92,246,0.9), rgba(232,121,249,0));
-  animation: sublineSlide 3.2s ease-in-out infinite;
-}
-@keyframes sublineSlide {
-  0% { transform: translateX(-12px); opacity: 0.35; }
-  50% { transform: translateX(30px); opacity: 1; }
-  100% { transform: translateX(-12px); opacity: 0.35; }
-}
+      /* ─── NAV ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        transition: all 0.3s;
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 1rem;
+        color: var(--purple);
+        letter-spacing: 3px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      .brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--text2);
+        text-decoration: none;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      .nav-pill {
+        background: linear-gradient(
+          135deg,
+          var(--soft-purple-3),
+          rgba(237, 233, 254, 0.92)
+        );
+        color: #3a2e56;
+        border: 1px solid var(--soft-purple-2);
+        padding: 0.5rem 1.4rem;
+        border-radius: 100px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: all 0.25s;
+        cursor: none;
+      }
+      .nav-pill:hover {
+        background: linear-gradient(135deg, #ffffff, #ede9fe);
+        transform: translateY(-1px);
+      }
 
-.hero-actions {
-  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 5rem;
-  animation: fadeUp 0.7s 0.3s ease both;
-}
-.btn-dark {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, rgba(245,243,255,0.98), rgba(233,225,255,0.94));
-  color: #2d2347;
-  border: 1px solid var(--soft-purple-2);
-  padding: 0.9rem 2.2rem; border-radius: 100px;
-  font-family: 'Syne', sans-serif; font-weight: 700;
-  font-size: 0.82rem; letter-spacing: 1px;
-  text-decoration: none; cursor: none;
-  transition: all 0.25s;
-  box-shadow: 0 8px 30px rgba(139,92,246,0.2);
-}
-.btn-dark:hover {
-  background: linear-gradient(135deg, #ffffff, #e9ddff);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(139,92,246,0.28);
-}
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: transparent; color: var(--text);
-  padding: 0.9rem 2.2rem; border-radius: 100px;
-  border: 1.5px solid rgba(35,33,36,0.15);
-  font-family: 'Syne', sans-serif; font-weight: 600;
-  font-size: 0.82rem; letter-spacing: 1px;
-  text-decoration: none; cursor: none;
-  transition: all 0.25s;
-}
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+      /* ─── SECTIONS ─── */
+      section {
+        position: relative;
+        z-index: 2;
+      }
 
-/* Big hero badge grid */
-.hero-badges {
-  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  animation: fadeUp 0.7s 0.4s ease both;
-}
-.h-badge {
-  display: flex; align-items: center; gap: 8px;
-  padding: 0.6rem 1.2rem;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  color: var(--text2); letter-spacing: 0.5px;
-  box-shadow: 0 2px 12px rgba(139,92,246,0.07);
-  transition: all 0.2s;
-}
-.h-badge:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-.h-badge-icon { font-size: 0.9rem; }
+      /* ─── HERO ─── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10rem 5% 6rem;
+        overflow: hidden;
+      }
 
-/* ─── SCROLL MARQUEE STRIP ─── */
-.marquee-strip {
-  overflow: hidden;
-  background: var(--purple);
-  padding: 1rem 0;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  position: relative; z-index: 2;
-}
-.marquee-track {
-  display: flex; gap: 3rem;
-  animation: marquee 18s linear infinite;
-  white-space: nowrap; width: max-content;
-}
-.marquee-strip:hover .marquee-track { animation-play-state: paused; }
-.marquee-item {
-  font-family: 'Space Mono', monospace; font-size: 0.72rem;
-  color: rgba(196,181,253,0.6); letter-spacing: 2px; text-transform: uppercase;
-  display: flex; align-items: center; gap: 12px;
-}
-.marquee-item::before { content: '◆'; color: var(--accent); font-size: 0.5rem; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(245, 243, 255, 0.96),
+          rgba(237, 233, 254, 0.92)
+        );
+        color: #4c3f6f;
+        border: 1px solid var(--soft-purple-2);
+        padding: 0.4rem 1.2rem;
+        border-radius: 100px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 2.5rem;
+        animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      .hero-eyebrow .live-dot {
+        width: 6px;
+        height: 6px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: livePulse 1.5s infinite;
+      }
+      @keyframes livePulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 0 5px rgba(74, 222, 128, 0);
+        }
+      }
 
-/* ─── SECTION HELPERS ─── */
-.s-label {
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  color: var(--accent); letter-spacing: 3px; text-transform: uppercase;
-  display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem;
-}
-.s-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.4; }
-.s-title {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.05;
-  letter-spacing: -1.5px; color: var(--text); margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-}
-.s-title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -8px;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(139,92,246,0), rgba(139,92,246,0.9), rgba(139,92,246,0));
-  transform-origin: left;
-  animation: titleScanner 4.5s ease-in-out infinite;
-}
-@keyframes titleScanner {
-  0%, 100% { transform: scaleX(0.2); opacity: 0.35; }
-  50% { transform: scaleX(1); opacity: 0.9; }
-}
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: clamp(3rem, 7vw, 6.5rem);
+        line-height: 0.95;
+        letter-spacing: -3px;
+        margin-bottom: 2rem;
+        animation: popIn 0.7s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      .hero-title .t-white {
+        color: var(--text);
+        display: block;
+      }
+      .hero-title .t-outline {
+        -webkit-text-stroke: 2px var(--purple);
+        color: transparent;
+        display: block;
+        animation: textWave 7s ease-in-out infinite;
+      }
+      .hero-title .t-accent {
+        background: linear-gradient(135deg, var(--accent), var(--pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        background-size: 200% 200%;
+        animation: accentFlow 6s ease-in-out infinite;
+      }
+      @keyframes textWave {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(10px);
+        }
+      }
+      @keyframes accentFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-@media (prefers-reduced-motion: reduce) {
-  .bg-canvas::before,
-  .bg-canvas::after,
-  body::after,
-  .hero-title .t-outline,
-  .hero-title .t-accent,
-  .hero-sub::after,
-  .s-title::after,
-  .marquee-track,
-  .react-bit {
-    animation: none !important;
-  }
-}
-.s-desc { font-size: 1rem; color: var(--text2); line-height: 1.75; max-width: 540px; }
+      .hero-sub {
+        font-size: 1.1rem;
+        color: var(--text2);
+        max-width: 560px;
+        line-height: 1.75;
+        margin: 0 auto 3rem;
+        animation: fadeUp 0.7s 0.2s ease both;
+        position: relative;
+      }
+      .hero-sub::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 120px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          rgba(139, 92, 246, 0),
+          rgba(139, 92, 246, 0.9),
+          rgba(232, 121, 249, 0)
+        );
+        animation: sublineSlide 3.2s ease-in-out infinite;
+      }
+      @keyframes sublineSlide {
+        0% {
+          transform: translateX(-12px);
+          opacity: 0.35;
+        }
+        50% {
+          transform: translateX(30px);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(-12px);
+          opacity: 0.35;
+        }
+      }
 
-/* ─── GLOBAL HEADING + TEXT ANIMATIONS ─── */
-.heading-anim {
-  position: relative;
-  overflow: hidden;
-}
-.heading-anim::before {
-  content: '';
-  position: absolute;
-  left: -120%;
-  top: 0;
-  width: 70%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.16), transparent);
-  animation: headingSweep 6.5s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes headingSweep {
-  0%, 30% { left: -120%; }
-  55% { left: 130%; }
-  100% { left: 130%; }
-}
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 5rem;
+        animation: fadeUp 0.7s 0.3s ease both;
+      }
+      .btn-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(245, 243, 255, 0.98),
+          rgba(233, 225, 255, 0.94)
+        );
+        color: #2d2347;
+        border: 1px solid var(--soft-purple-2);
+        padding: 0.9rem 2.2rem;
+        border-radius: 100px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 1px;
+        text-decoration: none;
+        cursor: none;
+        transition: all 0.25s;
+        box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+      }
+      .btn-dark:hover {
+        background: linear-gradient(135deg, #ffffff, #e9ddff);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(139, 92, 246, 0.28);
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--text);
+        padding: 0.9rem 2.2rem;
+        border-radius: 100px;
+        border: 1.5px solid rgba(35, 33, 36, 0.15);
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        font-size: 0.82rem;
+        letter-spacing: 1px;
+        text-decoration: none;
+        cursor: none;
+        transition: all 0.25s;
+      }
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
 
-.text-anim {
-  background-image: linear-gradient(90deg, var(--text2), var(--text), var(--text2));
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: textFlow 9s linear infinite;
-}
-@keyframes textFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+      /* Big hero badge grid */
+      .hero-badges {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeUp 0.7s 0.4s ease both;
+      }
+      .h-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.6rem 1.2rem;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text2);
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 12px rgba(139, 92, 246, 0.07);
+        transition: all 0.2s;
+      }
+      .h-badge:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .h-badge-icon {
+        font-size: 0.9rem;
+      }
 
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+      /* ─── SCROLL MARQUEE STRIP ─── */
+      .marquee-strip {
+        overflow: hidden;
+        background: var(--purple);
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 2;
+      }
+      .marquee-track {
+        display: flex;
+        gap: 3rem;
+        animation: marquee 18s linear infinite;
+        white-space: nowrap;
+        width: max-content;
+      }
+      .marquee-strip:hover .marquee-track {
+        animation-play-state: paused;
+      }
+      .marquee-item {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: rgba(196, 181, 253, 0.6);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .marquee-item::before {
+        content: "◆";
+        color: var(--accent);
+        font-size: 0.5rem;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
 
-@media (prefers-reduced-motion: reduce) {
-  .heading-anim::before,
-  .text-anim {
-    animation: none !important;
-  }
-}
+      /* ─── SECTION HELPERS ─── */
+      .s-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--accent);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.8rem;
+      }
+      .s-label::after {
+        content: "";
+        flex: 1;
+        max-width: 60px;
+        height: 1px;
+        background: var(--accent);
+        opacity: 0.4;
+      }
+      .s-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+        color: var(--text);
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+      .s-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -8px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          rgba(139, 92, 246, 0),
+          rgba(139, 92, 246, 0.9),
+          rgba(139, 92, 246, 0)
+        );
+        transform-origin: left;
+        animation: titleScanner 4.5s ease-in-out infinite;
+      }
+      @keyframes titleScanner {
+        0%,
+        100% {
+          transform: scaleX(0.2);
+          opacity: 0.35;
+        }
+        50% {
+          transform: scaleX(1);
+          opacity: 0.9;
+        }
+      }
 
-/* ─── ABOUT SECTION ─── */
-#about {
-  padding: 8rem 5%;
-  max-width: 1300px; margin: 0 auto;
-}
-.about-layout {
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center;
-}
-.about-visual {
-  position: relative;
-  overflow: clip;
-}
-.arch-box {
-  background: var(--purple);
-  border-radius: var(--r3); padding: 2.5rem;
-  color: white; position: relative; overflow: hidden;
-}
-.arch-box::before {
-  content: '';
-  position: absolute; top: -60px; right: -60px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(139,92,246,0.3), transparent 70%);
-  border-radius: 50%;
-}
-.arch-title {
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: var(--accent3); letter-spacing: 3px; text-transform: uppercase;
-  margin-bottom: 2rem; opacity: 0.7;
-}
-.arch-flow { display: flex; flex-direction: column; gap: 0; }
-.arch-node {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: all 0.2s;
-  cursor: default;
-}
-.arch-node:last-child { border-bottom: none; }
-.arch-node:hover .arch-node-icon { background: rgba(139,92,246,0.4); transform: scale(1.1); }
-.arch-node-icon {
-  width: 38px; height: 38px; border-radius: 12px;
-  background: rgba(255,255,255,0.07);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0;
-  transition: all 0.2s;
-}
-.arch-node-label strong {
-  display: block; font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.9);
-}
-.arch-node-label span {
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: rgba(196,181,253,0.5); letter-spacing: 0.5px;
-}
-.arch-connector {
-  width: 1px; height: 16px; background: rgba(139,92,246,0.3);
-  margin-left: 18px;
-}
+      @media (prefers-reduced-motion: reduce) {
+        .bg-canvas::before,
+        .bg-canvas::after,
+        body::after,
+        .hero-title .t-outline,
+        .hero-title .t-accent,
+        .hero-sub::after,
+        .s-title::after,
+        .marquee-track,
+        .react-bit {
+          animation: none !important;
+        }
+      }
+      .s-desc {
+        font-size: 1rem;
+        color: var(--text2);
+        line-height: 1.75;
+        max-width: 540px;
+      }
 
-/* Float cards */
-.float-card {
-  position: absolute;
-  background: #f7f2ff; border-radius: var(--r2);
-  padding: 1rem 1.4rem;
-  box-shadow: 0 20px 60px rgba(35,33,36,0.12);
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  color: var(--text2); letter-spacing: 0.5px;
-  display: flex; align-items: center; gap: 8px;
-  animation: cardFloat 4s ease-in-out infinite;
-  border: 1px solid rgba(139,92,246,0.1);
-}
-.float-card.fc1 { bottom: -1rem; right: -2rem; animation-delay: 0s; }
-.float-card.fc2 { top: -1rem; left: -2rem; animation-delay: 2s; }
-@keyframes cardFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.fc-dot { width: 8px; height: 8px; border-radius: 50%; }
-.fc-dot.green { background: #4ade80; }
-.fc-dot.purple { background: var(--accent); }
+      /* ─── GLOBAL HEADING + TEXT ANIMATIONS ─── */
+      .heading-anim {
+        position: relative;
+        overflow: hidden;
+      }
+      .heading-anim::before {
+        content: "";
+        position: absolute;
+        left: -120%;
+        top: 0;
+        width: 70%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(139, 92, 246, 0.16),
+          transparent
+        );
+        animation: headingSweep 6.5s ease-in-out infinite;
+        pointer-events: none;
+      }
+      @keyframes headingSweep {
+        0%,
+        30% {
+          left: -120%;
+        }
+        55% {
+          left: 130%;
+        }
+        100% {
+          left: 130%;
+        }
+      }
 
-/* ─── PROBLEMS ─── */
-#problems {
-  padding: 6rem 5%;
-  background: var(--off);
-}
-.problems-inner { max-width: 1300px; margin: 0 auto; }
-.problems-header { text-align: center; margin-bottom: 4rem; }
-.problems-header .s-label { justify-content: center; }
-.problems-header .s-label::after { display: none; }
-.problems-header .s-desc { margin: 0 auto; }
-.probs-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
-}
-.prob-card {
-  background: #f8f4ff; border-radius: var(--r3); padding: 2.5rem 2rem;
-  border: 1px solid rgba(139,92,246,0.1);
-  transition: all 0.35s; position: relative; overflow: hidden;
-}
-.prob-card::after {
-  content: '';
-  position: absolute; inset: 0; border-radius: var(--r3);
-  background: linear-gradient(135deg, rgba(139,92,246,0.04), transparent);
-  opacity: 0; transition: opacity 0.3s;
-}
-.prob-card:hover::after { opacity: 1; }
-.prob-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.25); }
-.prob-num {
-  font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
-  color: rgba(139,92,246,0.08); line-height: 1; margin-bottom: 1rem;
-  letter-spacing: -2px;
-}
-.prob-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
-.prob-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
-  color: var(--text); margin-bottom: 0.6rem; letter-spacing: -0.3px;
-}
-.prob-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.7; }
+      .text-anim {
+        background-image: linear-gradient(
+          90deg,
+          var(--text2),
+          var(--text),
+          var(--text2)
+        );
+        background-size: 220% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: textFlow 9s linear infinite;
+      }
+      @keyframes textFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-/* ─── MODULES ─── */
-#modules { padding: 8rem 5%; max-width: 1300px; margin: 0 auto; }
-.modules-header { margin-bottom: 5rem; }
-.mods-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
-}
-.mod-card {
-  background: var(--white); border: 1px solid rgba(139,92,246,0.12);
-  border-radius: var(--r3); padding: 3rem;
-  position: relative; overflow: hidden;
-  transition: all 0.35s;
-}
-.mod-card::before {
-  content: attr(data-num);
-  position: absolute; top: 2rem; right: 2.5rem;
-  font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800;
-  color: rgba(139,92,246,0.05); line-height: 1; letter-spacing: -4px;
-  pointer-events: none;
-}
-.mod-card:hover { transform: translateY(-6px); box-shadow: 0 40px 80px rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.3); }
-.mod-color-bar { height: 4px; border-radius: 100px; margin-bottom: 2.5rem; }
-.mc1 .mod-color-bar { background: linear-gradient(90deg, #f43f5e, #fb923c); }
-.mc2 .mod-color-bar { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.mc3 .mod-color-bar { background: linear-gradient(90deg, #3b82f6, #6366f1); }
-.mc4 .mod-color-bar { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
-.mod-icon {
-  width: 52px; height: 52px; border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 1.5rem;
-}
-.mc1 .mod-icon { background: rgba(244,63,94,0.08); }
-.mc2 .mod-icon { background: rgba(245,158,11,0.08); }
-.mc3 .mod-icon { background: rgba(59,130,246,0.1); }
-.mc4 .mod-icon { background: rgba(139,92,246,0.08); }
-.mod-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
-  color: var(--text); margin-bottom: 0.4rem; letter-spacing: -0.5px;
-}
-.mod-dev {
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  color: var(--accent); letter-spacing: 1px; margin-bottom: 1.2rem; display: block;
-}
-.mod-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.75; margin-bottom: 2rem; }
-.mod-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag {
-  padding: 0.3rem 0.85rem; border-radius: 100px;
-  font-family: 'Space Mono', monospace; font-size: 0.62rem;
-  letter-spacing: 0.5px; border: 1px solid;
-}
-.mc1 .tag { background: rgba(244,63,94,0.05); border-color: rgba(244,63,94,0.2); color: #f43f5e; }
-.mc2 .tag { background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.25); color: #d97706; }
-.mc3 .tag { background: rgba(59,130,246,0.05); border-color: rgba(59,130,246,0.2); color: #3b82f6; }
-.mc4 .tag { background: rgba(139,92,246,0.06); border-color: rgba(139,92,246,0.2); color: var(--accent); }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
 
-/* ─── HOW IT WORKS ─── */
-#howitworks {
-  padding: 8rem 5%;
-  background: var(--purple);
-}
-.how-inner { max-width: 1200px; margin: 0 auto; }
-.how-header { text-align: center; margin-bottom: 5rem; }
-.how-header .s-label { justify-content: center; color: var(--accent3); }
-.how-header .s-label::after { background: var(--accent3); }
-.how-header .s-title { color: white; }
-.how-header .s-desc { color: rgba(255,255,255,0.45); margin: 0 auto; }
-.steps-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-}
-.step-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--r3); padding: 2.5rem;
-  transition: all 0.3s; position: relative; overflow: hidden;
-}
-.step-card:hover { background: rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.3); transform: translateY(-4px); }
-.step-num-big {
-  font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800;
-  color: rgba(139,92,246,0.2); line-height: 1; margin-bottom: 1.5rem;
-  letter-spacing: -3px;
-}
-.step-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
-  color: white; margin-bottom: 0.6rem;
-}
-.step-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+      @media (prefers-reduced-motion: reduce) {
+        .heading-anim::before,
+        .text-anim {
+          animation: none !important;
+        }
+      }
 
-/* ─── DEMO ─── */
-#demo { padding: 8rem 5%; max-width: 1000px; margin: 0 auto; }
-.demo-header { text-align: center; margin-bottom: 4rem; }
-.demo-header .s-label { justify-content: center; }
-.demo-header .s-label::after { display: none; }
-.demo-header .s-desc { margin: 0 auto; }
-.demo-shell {
-  background: var(--purple);
-  border-radius: var(--r3); overflow: hidden;
-  box-shadow: 0 60px 120px rgba(35,33,36,0.2);
-}
-.demo-topbar {
-  display: flex; align-items: center; gap: 8px;
-  padding: 1.2rem 2rem; background: rgba(0,0,0,0.2);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.win-btn { width: 12px; height: 12px; border-radius: 50%; }
-.win-btn.r { background: #ff5f57; }
-.win-btn.y { background: #febc2e; }
-.win-btn.g { background: #28c840; }
-.demo-title {
-  margin-left: auto;
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: rgba(196,181,253,0.4); letter-spacing: 2px;
-}
-.demo-body { padding: 2.5rem; }
-.demo-label {
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: rgba(196,181,253,0.4); letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 0.8rem;
-}
-.demo-textarea {
-  width: 100%; background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--r2); padding: 1.2rem 1.5rem;
-  color: white; font-family: 'Space Mono', monospace; font-size: 0.82rem;
-  resize: none; height: 80px; outline: none; cursor: none;
-  transition: border-color 0.2s;
-}
-.demo-textarea:focus { border-color: rgba(139,92,246,0.5); }
-.demo-textarea::placeholder { color: rgba(255,255,255,0.2); }
-.demo-run {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: #f7f2ff; color: var(--purple);
-  border: none; padding: 0.8rem 2rem; border-radius: 100px;
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.75rem;
-  letter-spacing: 1px; cursor: none; margin-top: 1rem;
-  transition: all 0.25s;
-}
-.demo-run:hover { background: var(--accent3); transform: translateY(-1px); }
-.demo-results { margin-top: 2rem; display: none; }
-.demo-results.show { display: block; }
-.demo-loading { display: none; text-align: center; padding: 2rem; }
-.demo-loading.show { display: block; }
-.loading-text {
-  font-family: 'Space Mono', monospace; font-size: 0.75rem;
-  color: var(--accent3); letter-spacing: 2px;
-}
-.loading-bar {
-  height: 2px; background: rgba(255,255,255,0.08);
-  border-radius: 10px; margin-top: 1rem; overflow: hidden;
-}
-.loading-fill {
-  height: 100%; width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--pink));
-  border-radius: 10px;
-  animation: loadAnim 1.8s ease forwards;
-}
-@keyframes loadAnim { to { width: 100%; } }
-.result-row {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--r2); padding: 1.3rem 1.5rem;
-  display: flex; align-items: flex-start; gap: 1.2rem;
-  margin-bottom: 0.8rem; position: relative; overflow: hidden;
-}
-.result-row.risk-high { border-left: 3px solid #f43f5e; }
-.result-row.risk-medium { border-left: 3px solid #f59e0b; }
-.result-row.risk-low { border-left: 3px solid #4ade80; }
-.result-mod {
-  font-family: 'Space Mono', monospace; font-size: 0.6rem;
-  color: rgba(196,181,253,0.4); letter-spacing: 1px; min-width: 100px; padding-top: 2px;
-}
-.result-body { flex: 1; }
-.result-badges { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.rbadge {
-  padding: 0.18rem 0.7rem; border-radius: 100px;
-  font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700;
-  letter-spacing: 0.5px; text-transform: uppercase;
-}
-.rbadge.high { background: rgba(244,63,94,0.15); color: #f43f5e; border: 1px solid rgba(244,63,94,0.3); }
-.rbadge.medium { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
-.rbadge.safe { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
-.result-title { font-size: 0.88rem; color: white; font-weight: 500; }
-.result-reason { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 2px; }
-.conf-bar { height: 2px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-top: 8px; overflow: hidden; }
-.conf-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--pink)); border-radius: 10px; transition: width 0.8s ease; }
-.conf-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.25); margin-top: 3px; }
+      /* ─── ABOUT SECTION ─── */
+      #about {
+        padding: 8rem 5%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .about-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 6rem;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+        overflow: clip;
+      }
+      .arch-box {
+        background: var(--purple);
+        border-radius: var(--r3);
+        padding: 2.5rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+      .arch-box::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.3),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .arch-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--accent3);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        opacity: 0.7;
+      }
+      .arch-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .arch-node {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.2s;
+        cursor: default;
+      }
+      .arch-node:last-child {
+        border-bottom: none;
+      }
+      .arch-node:hover .arch-node-icon {
+        background: rgba(139, 92, 246, 0.4);
+        transform: scale(1.1);
+      }
+      .arch-node-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+      .arch-node-label strong {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .arch-node-label span {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: rgba(196, 181, 253, 0.5);
+        letter-spacing: 0.5px;
+      }
+      .arch-connector {
+        width: 1px;
+        height: 16px;
+        background: rgba(139, 92, 246, 0.3);
+        margin-left: 18px;
+      }
 
-/* ─── RESEARCH PAPERS ─── */
-#research { padding: 8rem 5%; max-width: 1300px; margin: 0 auto; }
-.research-header { margin-bottom: 4rem; }
-.research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-.paper-card {
-  background: #f8f4ff; border: 1px solid rgba(139,92,246,0.12);
-  border-radius: var(--r3); padding: 2.5rem;
-  transition: all 0.3s; display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
-}
-.paper-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 4px;
-}
-.paper-card.p1::before { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
-.paper-card.p2::before { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
-.paper-card.p3::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
-.paper-card.p4::before { background: linear-gradient(90deg, #10b981, #3b82f6); }
-.paper-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.25); }
-.paper-type {
-  font-family: 'Space Mono', monospace; font-size: 0.62rem;
-  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem;
-  display: inline-flex; align-items: center; gap: 6px;
-}
-.paper-type.thesis { color: var(--accent); }
-.paper-type.paper { color: #3b82f6; }
-.paper-type.report { color: #f59e0b; }
-.paper-icon { font-size: 1rem; }
-.paper-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700;
-  color: var(--text); line-height: 1.3; margin-bottom: 0.5rem; letter-spacing: -0.3px;
-}
-.paper-authors {
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  color: var(--text3); letter-spacing: 0.5px; margin-bottom: 1rem;
-}
-.paper-abstract {
-  font-size: 0.85rem; color: var(--text2); line-height: 1.7;
-  flex: 1; margin-bottom: 2rem;
-}
-.paper-meta {
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;
-}
-.paper-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.paper-tag {
-  padding: 0.25rem 0.75rem; border-radius: 100px;
-  background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.15);
-  font-family: 'Space Mono', monospace; font-size: 0.6rem;
-  color: var(--accent); letter-spacing: 0.5px;
-}
-.paper-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--purple); color: white;
-  padding: 0.5rem 1.2rem; border-radius: 100px;
-  font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.72rem;
-  text-decoration: none; cursor: none; transition: all 0.2s;
-}
-.paper-btn:hover { background: var(--accent); }
-.paper-placeholder {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 3rem; gap: 1rem;
-  border: 2px dashed rgba(139,92,246,0.2); border-radius: var(--r2);
-  color: var(--text3); font-family: 'Space Mono', monospace; font-size: 0.72rem;
-  letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
-  transition: all 0.2s;
-}
-.paper-placeholder:hover { border-color: rgba(139,92,246,0.4); color: var(--accent); }
-.paper-placeholder .ph-icon { font-size: 2rem; opacity: 0.4; }
+      /* Float cards */
+      .float-card {
+        position: absolute;
+        background: #f7f2ff;
+        border-radius: var(--r2);
+        padding: 1rem 1.4rem;
+        box-shadow: 0 20px 60px rgba(35, 33, 36, 0.12);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text2);
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        animation: cardFloat 4s ease-in-out infinite;
+        border: 1px solid rgba(139, 92, 246, 0.1);
+      }
+      .float-card.fc1 {
+        bottom: -1rem;
+        right: -2rem;
+        animation-delay: 0s;
+      }
+      .float-card.fc2 {
+        top: -1rem;
+        left: -2rem;
+        animation-delay: 2s;
+      }
+      @keyframes cardFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .fc-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .fc-dot.green {
+        background: #4ade80;
+      }
+      .fc-dot.purple {
+        background: var(--accent);
+      }
 
-/* ─── THESIS ─── */
-#thesis { padding: 6rem 5%; background: var(--off); }
-.thesis-inner { max-width: 1300px; margin: 0 auto; }
-.thesis-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
-.thesis-book {
-  background: var(--purple);
-  border-radius: var(--r3); padding: 3rem 2.5rem;
-  color: white; text-align: center; position: relative;
-  overflow: hidden; aspect-ratio: 3/4;
-  display: flex; flex-direction: column; justify-content: space-between;
-  box-shadow: 20px 20px 60px rgba(35,33,36,0.3);
-}
-.thesis-book::before {
-  content: '';
-  position: absolute; top: 0; left: 0; bottom: 0; width: 8px;
-  background: linear-gradient(180deg, var(--accent), var(--pink));
-  border-radius: var(--r3) 0 0 var(--r3);
-}
-.thesis-book::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(139,92,246,0.15), transparent 70%);
-}
-.thesis-book-top { position: relative; z-index: 1; }
-.thesis-badge {
-  display: inline-block; background: rgba(139,92,246,0.3);
-  padding: 0.3rem 1rem; border-radius: 100px;
-  font-family: 'Space Mono', monospace; font-size: 0.6rem;
-  color: var(--accent3); letter-spacing: 2px; margin-bottom: 2rem;
-}
-.thesis-book h2 {
-  font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800;
-  line-height: 1.3; letter-spacing: -0.5px;
-}
-.thesis-book-bottom { position: relative; z-index: 1; }
-.thesis-year {
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: rgba(196,181,253,0.5); letter-spacing: 2px;
-}
-.thesis-details { display: flex; flex-direction: column; gap: 2rem; }
-.thesis-meta-item {
-  border-bottom: 1px solid rgba(139,92,246,0.1); padding-bottom: 1.5rem;
-}
-.thesis-meta-item:last-child { border-bottom: none; }
-.thesis-meta-label {
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: var(--accent); letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-.thesis-meta-value {
-  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600;
-  color: var(--text);
-}
-.thesis-meta-sub { font-size: 0.85rem; color: var(--text2); line-height: 1.6; margin-top: 0.3rem; }
-.thesis-download-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--purple); color: white;
-  padding: 1rem 2rem; border-radius: 100px;
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem;
-  text-decoration: none; cursor: none; transition: all 0.25s;
-  margin-top: 1rem;
-}
-.thesis-download-btn:hover { background: var(--accent); transform: translateY(-2px); }
+      /* ─── PROBLEMS ─── */
+      #problems {
+        padding: 6rem 5%;
+        background: var(--off);
+      }
+      .problems-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .problems-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .problems-header .s-label {
+        justify-content: center;
+      }
+      .problems-header .s-label::after {
+        display: none;
+      }
+      .problems-header .s-desc {
+        margin: 0 auto;
+      }
+      .probs-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+      .prob-card {
+        background: #f8f4ff;
+        border-radius: var(--r3);
+        padding: 2.5rem 2rem;
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        transition: all 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .prob-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: var(--r3);
+        background: linear-gradient(
+          135deg,
+          rgba(139, 92, 246, 0.04),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .prob-card:hover::after {
+        opacity: 1;
+      }
+      .prob-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 60px rgba(139, 92, 246, 0.12);
+        border-color: rgba(139, 92, 246, 0.25);
+      }
+      .prob-num {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: rgba(139, 92, 246, 0.08);
+        line-height: 1;
+        margin-bottom: 1rem;
+        letter-spacing: -2px;
+      }
+      .prob-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .prob-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.3px;
+      }
+      .prob-card p {
+        font-size: 0.85rem;
+        color: var(--text2);
+        line-height: 1.7;
+      }
 
-/* ─── SYSTEM DIAGRAM ─── */
-#diagram { padding: 8rem 5%; max-width: 1300px; margin: 0 auto; }
-.diagram-header { text-align: center; margin-bottom: 4rem; }
-.diagram-header .s-label { justify-content: center; }
-.diagram-header .s-label::after { display: none; }
-.diagram-frame {
-  background: var(--purple);
-  border-radius: var(--r3); overflow: hidden;
-  box-shadow: 0 60px 120px rgba(35,33,36,0.15);
-}
-.diagram-bar {
-  background: rgba(0,0,0,0.2); padding: 1rem 1.5rem;
-  display: flex; align-items: center; gap: 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.diagram-title-text {
-  margin-left: 1rem;
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: rgba(196,181,253,0.4); letter-spacing: 2px;
-}
-.diagram-content {
-  padding: 3rem;
-  min-height: 500px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-.diagram-placeholder {
-  width: 100%; max-width: 700px;
-  border: 2px dashed rgba(139,92,246,0.3);
-  border-radius: var(--r2);
-  padding: 5rem 3rem;
-  text-align: center;
-  color: rgba(196,181,253,0.35);
-  font-family: 'Space Mono', monospace;
-  cursor: pointer; transition: all 0.25s;
-}
-.diagram-placeholder:hover { border-color: rgba(139,92,246,0.6); color: var(--accent3); }
-.diagram-placeholder .d-icon { font-size: 3rem; display: block; margin-bottom: 1rem; opacity: 0.4; }
-.diagram-placeholder p { font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; }
-.diagram-placeholder small { font-size: 0.62rem; opacity: 0.5; display: block; margin-top: 0.5rem; }
+      /* ─── MODULES ─── */
+      #modules {
+        padding: 8rem 5%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .modules-header {
+        margin-bottom: 5rem;
+      }
+      .mods-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+      .mod-card {
+        background: var(--white);
+        border: 1px solid rgba(139, 92, 246, 0.12);
+        border-radius: var(--r3);
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.35s;
+      }
+      .mod-card::before {
+        content: attr(data-num);
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        font-family: "Playfair Display", serif;
+        font-size: 5rem;
+        font-weight: 800;
+        color: rgba(139, 92, 246, 0.05);
+        line-height: 1;
+        letter-spacing: -4px;
+        pointer-events: none;
+      }
+      .mod-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 40px 80px rgba(139, 92, 246, 0.1);
+        border-color: rgba(139, 92, 246, 0.3);
+      }
+      .mod-color-bar {
+        height: 4px;
+        border-radius: 100px;
+        margin-bottom: 2.5rem;
+      }
+      .mc1 .mod-color-bar {
+        background: linear-gradient(90deg, #f43f5e, #fb923c);
+      }
+      .mc2 .mod-color-bar {
+        background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      }
+      .mc3 .mod-color-bar {
+        background: linear-gradient(90deg, #3b82f6, #6366f1);
+      }
+      .mc4 .mod-color-bar {
+        background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      }
+      .mod-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .mc1 .mod-icon {
+        background: rgba(244, 63, 94, 0.08);
+      }
+      .mc2 .mod-icon {
+        background: rgba(245, 158, 11, 0.08);
+      }
+      .mc3 .mod-icon {
+        background: rgba(59, 130, 246, 0.1);
+      }
+      .mc4 .mod-icon {
+        background: rgba(139, 92, 246, 0.08);
+      }
+      .mod-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.5px;
+      }
+      .mod-dev {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--accent);
+        letter-spacing: 1px;
+        margin-bottom: 1.2rem;
+        display: block;
+      }
+      .mod-card p {
+        font-size: 0.9rem;
+        color: var(--text2);
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+      .mod-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        padding: 0.3rem 0.85rem;
+        border-radius: 100px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.5px;
+        border: 1px solid;
+      }
+      .mc1 .tag {
+        background: rgba(244, 63, 94, 0.05);
+        border-color: rgba(244, 63, 94, 0.2);
+        color: #f43f5e;
+      }
+      .mc2 .tag {
+        background: rgba(245, 158, 11, 0.05);
+        border-color: rgba(245, 158, 11, 0.25);
+        color: #d97706;
+      }
+      .mc3 .tag {
+        background: rgba(59, 130, 246, 0.05);
+        border-color: rgba(59, 130, 246, 0.2);
+        color: #3b82f6;
+      }
+      .mc4 .tag {
+        background: rgba(139, 92, 246, 0.06);
+        border-color: rgba(139, 92, 246, 0.2);
+        color: var(--accent);
+      }
 
-/* LIVE ARCHITECTURE DIAGRAM (SVG inside) */
-.arch-svg-wrap {
-  width: 100%; overflow-x: auto; padding: 1rem 0;
-}
-.arch-svg {
-  min-width: 700px; width: 100%;
-}
-.arch-diagram-img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  border: 1px solid rgba(139,92,246,0.18);
-  box-shadow: 0 20px 45px rgba(139,92,246,0.12);
-}
+      /* ─── HOW IT WORKS ─── */
+      #howitworks {
+        padding: 8rem 5%;
+        background: var(--purple);
+      }
+      .how-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .how-header {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+      .how-header .s-label {
+        justify-content: center;
+        color: var(--accent3);
+      }
+      .how-header .s-label::after {
+        background: var(--accent3);
+      }
+      .how-header .s-title {
+        color: white;
+      }
+      .how-header .s-desc {
+        color: rgba(255, 255, 255, 0.45);
+        margin: 0 auto;
+      }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .step-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--r3);
+        padding: 2.5rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .step-card:hover {
+        background: rgba(139, 92, 246, 0.12);
+        border-color: rgba(139, 92, 246, 0.3);
+        transform: translateY(-4px);
+      }
+      .step-num-big {
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 800;
+        color: rgba(139, 92, 246, 0.2);
+        line-height: 1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -3px;
+      }
+      .step-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.6rem;
+      }
+      .step-card p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.45);
+        line-height: 1.7;
+      }
 
-/* ─── COMMERCIALIZATION / VIDEOS ─── */
-#videos { padding: 8rem 5%; background: var(--off); }
-.videos-inner { max-width: 1300px; margin: 0 auto; }
-.videos-header { margin-bottom: 4rem; }
-.videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.video-card {
-  background: #f8f4ff; border-radius: var(--r3); overflow: hidden;
-  border: 1px solid rgba(139,92,246,0.1);
-  transition: all 0.3s; cursor: pointer;
-}
-.video-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(139,92,246,0.12); }
-.video-thumb {
-  aspect-ratio: 16/9; background: var(--purple);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.video-thumb-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--purple2), rgba(139,92,246,0.3));
-}
-.video-play-btn {
-  position: relative; z-index: 1;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: #f7f2ff; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  transition: all 0.25s;
-}
-.video-card:hover .video-play-btn { transform: scale(1.1); background: var(--accent3); }
-.video-play-btn svg { width: 18px; height: 18px; margin-left: 3px; }
-.video-thumb-label {
-  position: absolute; bottom: 1rem; left: 1rem;
-  font-family: 'Space Mono', monospace; font-size: 0.62rem;
-  color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase;
-  background: rgba(0,0,0,0.4); padding: 0.25rem 0.75rem; border-radius: 100px;
-}
-.video-info { padding: 1.5rem; }
-.video-type {
-  font-family: 'Space Mono', monospace; font-size: 0.6rem;
-  color: var(--accent); letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-.video-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
-  color: var(--text); margin-bottom: 0.4rem;
-}
-.video-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
-.video-placeholder-card {
-  background: #f8f4ff; border-radius: var(--r3); overflow: hidden;
-  border: 2px dashed rgba(139,92,246,0.2);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 3rem 2rem; gap: 1rem;
-  cursor: pointer; transition: all 0.2s; min-height: 260px;
-}
-.video-placeholder-card:hover { border-color: rgba(139,92,246,0.4); }
-.vph-icon { font-size: 2.5rem; opacity: 0.3; }
-.vph-text { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+      /* ─── DEMO ─── */
+      #demo {
+        padding: 8rem 5%;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .demo-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .demo-header .s-label {
+        justify-content: center;
+      }
+      .demo-header .s-label::after {
+        display: none;
+      }
+      .demo-header .s-desc {
+        margin: 0 auto;
+      }
+      .demo-shell {
+        background: var(--purple);
+        border-radius: var(--r3);
+        overflow: hidden;
+        box-shadow: 0 60px 120px rgba(35, 33, 36, 0.2);
+      }
+      .demo-topbar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 1.2rem 2rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .win-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .win-btn.r {
+        background: #ff5f57;
+      }
+      .win-btn.y {
+        background: #febc2e;
+      }
+      .win-btn.g {
+        background: #28c840;
+      }
+      .demo-title {
+        margin-left: auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: rgba(196, 181, 253, 0.4);
+        letter-spacing: 2px;
+      }
+      .demo-body {
+        padding: 2.5rem;
+      }
+      .demo-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: rgba(196, 181, 253, 0.4);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+      }
+      .demo-textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--r2);
+        padding: 1.2rem 1.5rem;
+        color: white;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.82rem;
+        resize: none;
+        height: 80px;
+        outline: none;
+        cursor: none;
+        transition: border-color 0.2s;
+      }
+      .demo-textarea:focus {
+        border-color: rgba(139, 92, 246, 0.5);
+      }
+      .demo-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
+      .demo-run {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f7f2ff;
+        color: var(--purple);
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 100px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        cursor: none;
+        margin-top: 1rem;
+        transition: all 0.25s;
+      }
+      .demo-run:hover {
+        background: var(--accent3);
+        transform: translateY(-1px);
+      }
+      .demo-results {
+        margin-top: 2rem;
+        display: none;
+      }
+      .demo-results.show {
+        display: block;
+      }
+      .demo-loading {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+      }
+      .demo-loading.show {
+        display: block;
+      }
+      .loading-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--accent3);
+        letter-spacing: 2px;
+      }
+      .loading-bar {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        margin-top: 1rem;
+        overflow: hidden;
+      }
+      .loading-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent), var(--pink));
+        border-radius: 10px;
+        animation: loadAnim 1.8s ease forwards;
+      }
+      @keyframes loadAnim {
+        to {
+          width: 100%;
+        }
+      }
+      .result-row {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--r2);
+        padding: 1.3rem 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.2rem;
+        margin-bottom: 0.8rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .result-row.risk-high {
+        border-left: 3px solid #f43f5e;
+      }
+      .result-row.risk-medium {
+        border-left: 3px solid #f59e0b;
+      }
+      .result-row.risk-low {
+        border-left: 3px solid #4ade80;
+      }
+      .result-mod {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        color: rgba(196, 181, 253, 0.4);
+        letter-spacing: 1px;
+        min-width: 100px;
+        padding-top: 2px;
+      }
+      .result-body {
+        flex: 1;
+      }
+      .result-badges {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .rbadge {
+        padding: 0.18rem 0.7rem;
+        border-radius: 100px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .rbadge.high {
+        background: rgba(244, 63, 94, 0.15);
+        color: #f43f5e;
+        border: 1px solid rgba(244, 63, 94, 0.3);
+      }
+      .rbadge.medium {
+        background: rgba(245, 158, 11, 0.12);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+      }
+      .rbadge.safe {
+        background: rgba(74, 222, 128, 0.1);
+        color: #4ade80;
+        border: 1px solid rgba(74, 222, 128, 0.25);
+      }
+      .result-title {
+        font-size: 0.88rem;
+        color: white;
+        font-weight: 500;
+      }
+      .result-reason {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.35);
+        margin-top: 2px;
+      }
+      .conf-bar {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        margin-top: 8px;
+        overflow: hidden;
+      }
+      .conf-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--pink));
+        border-radius: 10px;
+        transition: width 0.8s ease;
+      }
+      .conf-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.25);
+        margin-top: 3px;
+      }
 
-/* ─── TECH STACK ─── */
-#tech { padding: 6rem 5%; max-width: 1300px; margin: 0 auto; }
-.tech-header { text-align: center; margin-bottom: 4rem; }
-.tech-header .s-label { justify-content: center; }
-.tech-header .s-label::after { display: none; }
-.tech-pills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-.tech-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: #f8f4ff; border: 1px solid rgba(139,92,246,0.12);
-  border-radius: 100px; padding: 0.65rem 1.4rem;
-  font-family: 'Space Mono', monospace; font-size: 0.72rem;
-  color: var(--text2); letter-spacing: 0.5px;
-  transition: all 0.2s; cursor: default;
-  box-shadow: 0 2px 8px rgba(139,92,246,0.05);
-}
-.tech-pill:hover { border-color: rgba(139,92,246,0.35); color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(139,92,246,0.1); }
+      /* ─── RESEARCH PAPERS ─── */
+      #research {
+        padding: 8rem 5%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .research-header {
+        margin-bottom: 4rem;
+      }
+      .research-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .paper-card {
+        background: #f8f4ff;
+        border: 1px solid rgba(139, 92, 246, 0.12);
+        border-radius: var(--r3);
+        padding: 2.5rem;
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+      .paper-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+      }
+      .paper-card.p1::before {
+        background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      }
+      .paper-card.p2::before {
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      }
+      .paper-card.p3::before {
+        background: linear-gradient(90deg, #f59e0b, #ef4444);
+      }
+      .paper-card.p4::before {
+        background: linear-gradient(90deg, #10b981, #3b82f6);
+      }
+      .paper-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 60px rgba(139, 92, 246, 0.1);
+        border-color: rgba(139, 92, 246, 0.25);
+      }
+      .paper-type {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .paper-type.thesis {
+        color: var(--accent);
+      }
+      .paper-type.paper {
+        color: #3b82f6;
+      }
+      .paper-type.report {
+        color: #f59e0b;
+      }
+      .paper-icon {
+        font-size: 1rem;
+      }
+      .paper-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.3px;
+      }
+      .paper-authors {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text3);
+        letter-spacing: 0.5px;
+        margin-bottom: 1rem;
+      }
+      .paper-abstract {
+        font-size: 0.85rem;
+        color: var(--text2);
+        line-height: 1.7;
+        flex: 1;
+        margin-bottom: 2rem;
+      }
+      .paper-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .paper-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .paper-tag {
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        background: rgba(139, 92, 246, 0.06);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        color: var(--accent);
+        letter-spacing: 0.5px;
+      }
+      .paper-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--purple);
+        color: white;
+        padding: 0.5rem 1.2rem;
+        border-radius: 100px;
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        font-size: 0.72rem;
+        text-decoration: none;
+        cursor: none;
+        transition: all 0.2s;
+      }
+      .paper-btn:hover {
+        background: var(--accent);
+      }
+      .paper-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 3rem;
+        gap: 1rem;
+        border: 2px dashed rgba(139, 92, 246, 0.2);
+        border-radius: var(--r2);
+        color: var(--text3);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .paper-placeholder:hover {
+        border-color: rgba(139, 92, 246, 0.4);
+        color: var(--accent);
+      }
+      .paper-placeholder .ph-icon {
+        font-size: 2rem;
+        opacity: 0.4;
+      }
 
-/* ─── TEAM ─── */
-#team { padding: 8rem 5%; background: var(--purple); }
-.team-inner { max-width: 1300px; margin: 0 auto; }
-.team-header { text-align: center; margin-bottom: 4rem; }
-.team-header .s-label { justify-content: center; color: var(--accent3); }
-.team-header .s-label::after { background: var(--accent3); }
-.team-header .s-title { color: white; }
-.team-header .s-desc { color: rgba(255,255,255,0.4); margin: 0 auto; }
-.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-.team-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--r3); padding: 2.5rem 2rem; text-align: center;
-  transition: all 0.3s; position: relative; overflow: hidden;
-}
-.team-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--pink));
-  transform: scaleX(0); transition: transform 0.3s;
-}
-.team-card:hover::before { transform: scaleX(1); }
-.team-card:hover { background: rgba(139,92,246,0.08); border-color: rgba(139,92,246,0.25); transform: translateY(-5px); }
-.team-av {
-  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1.5rem;
-  background: rgba(139,92,246,0.2); border: 2px solid rgba(139,92,246,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800;
-  color: var(--accent3);
-  overflow: hidden;
-}
-.team-av img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.team-card h3 {
-  font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
-  color: white; margin-bottom: 0.4rem;
-}
-.team-role {
-  font-family: 'Space Mono', monospace; font-size: 0.62rem;
-  color: var(--accent3); opacity: 0.6; letter-spacing: 0.5px;
-  display: block; margin-bottom: 1.5rem;
-}
-.team-socials { display: flex; justify-content: center; gap: 8px; }
-.team-social {
-  width: 32px; height: 32px; border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.75rem;
-  transition: all 0.2s;
-}
-.team-social:hover { border-color: var(--accent); color: var(--accent3); background: rgba(139,92,246,0.15); }
+      /* ─── THESIS ─── */
+      #thesis {
+        padding: 6rem 5%;
+        background: var(--off);
+      }
+      .thesis-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .thesis-layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .thesis-book {
+        background: var(--purple);
+        border-radius: var(--r3);
+        padding: 3rem 2.5rem;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 20px 20px 60px rgba(35, 33, 36, 0.3);
+      }
+      .thesis-book::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 8px;
+        background: linear-gradient(180deg, var(--accent), var(--pink));
+        border-radius: var(--r3) 0 0 var(--r3);
+      }
+      .thesis-book::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(139, 92, 246, 0.15),
+          transparent 70%
+        );
+      }
+      .thesis-book-top {
+        position: relative;
+        z-index: 1;
+      }
+      .thesis-badge {
+        display: inline-block;
+        background: rgba(139, 92, 246, 0.3);
+        padding: 0.3rem 1rem;
+        border-radius: 100px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        color: var(--accent3);
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+      }
+      .thesis-book h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        line-height: 1.3;
+        letter-spacing: -0.5px;
+      }
+      .thesis-book-bottom {
+        position: relative;
+        z-index: 1;
+      }
+      .thesis-year {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: rgba(196, 181, 253, 0.5);
+        letter-spacing: 2px;
+      }
+      .thesis-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .thesis-meta-item {
+        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        padding-bottom: 1.5rem;
+      }
+      .thesis-meta-item:last-child {
+        border-bottom: none;
+      }
+      .thesis-meta-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+      .thesis-meta-value {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .thesis-meta-sub {
+        font-size: 0.85rem;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-top: 0.3rem;
+      }
+      .thesis-download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--purple);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 100px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        text-decoration: none;
+        cursor: none;
+        transition: all 0.25s;
+        margin-top: 1rem;
+      }
+      .thesis-download-btn:hover {
+        background: var(--accent);
+        transform: translateY(-2px);
+      }
 
-/* ─── CONTACT ─── */
-#contact { padding: 8rem 5%; max-width: 800px; margin: 0 auto; }
-.contact-header { text-align: center; margin-bottom: 4rem; }
-.contact-header .s-label { justify-content: center; }
-.contact-header .s-label::after { display: none; }
-.contact-card {
-  background: var(--purple); border-radius: var(--r3); padding: 3.5rem;
-  position: relative; overflow: hidden;
-}
-.contact-card::before {
-  content: '';
-  position: absolute; bottom: -100px; right: -100px;
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);
-}
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
-.form-g { margin-bottom: 1.2rem; }
-.form-g label {
-  display: block; font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  color: rgba(196,181,253,0.5); letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 0.6rem;
-}
-.form-inp {
-  width: 100%; background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--r2); padding: 0.9rem 1.3rem;
-  color: white; font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem;
-  outline: none; cursor: none; transition: border-color 0.2s;
-}
-.form-inp:focus { border-color: rgba(139,92,246,0.5); }
-.form-inp::placeholder { color: rgba(255,255,255,0.2); }
-textarea.form-inp { height: 130px; resize: none; }
-.form-submit {
-  width: 100%; background: #f7f2ff; color: var(--purple);
-  border: none; padding: 1rem; border-radius: var(--r2);
-  font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase; cursor: none;
-  transition: all 0.25s; margin-top: 0.5rem;
-}
-.form-submit:hover { background: var(--accent3); transform: translateY(-1px); }
+      /* ─── SYSTEM DIAGRAM ─── */
+      #diagram {
+        padding: 8rem 5%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .diagram-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .diagram-header .s-label {
+        justify-content: center;
+      }
+      .diagram-header .s-label::after {
+        display: none;
+      }
+      .diagram-frame {
+        background: var(--purple);
+        border-radius: var(--r3);
+        overflow: hidden;
+        box-shadow: 0 60px 120px rgba(35, 33, 36, 0.15);
+      }
+      .diagram-bar {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .diagram-title-text {
+        margin-left: 1rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: rgba(196, 181, 253, 0.4);
+        letter-spacing: 2px;
+      }
+      .diagram-content {
+        padding: 3rem;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .diagram-placeholder {
+        width: 100%;
+        max-width: 700px;
+        border: 2px dashed rgba(139, 92, 246, 0.3);
+        border-radius: var(--r2);
+        padding: 5rem 3rem;
+        text-align: center;
+        color: rgba(196, 181, 253, 0.35);
+        font-family: "JetBrains Mono", monospace;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .diagram-placeholder:hover {
+        border-color: rgba(139, 92, 246, 0.6);
+        color: var(--accent3);
+      }
+      .diagram-placeholder .d-icon {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 1rem;
+        opacity: 0.4;
+      }
+      .diagram-placeholder p {
+        font-size: 0.72rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .diagram-placeholder small {
+        font-size: 0.62rem;
+        opacity: 0.5;
+        display: block;
+        margin-top: 0.5rem;
+      }
 
-/* ─── FOOTER ─── */
-footer {
-  background: var(--purple); border-top: 1px solid rgba(255,255,255,0.05);
-  padding: 3rem 5%; display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
-}
-.footer-brand {
-  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-  color: white; letter-spacing: 3px;
-}
-.footer-links { display: flex; gap: 2rem; list-style: none; }
-.footer-links a {
-  font-family: 'Space Mono', monospace; font-size: 0.68rem;
-  color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 1px;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--accent3); }
-.footer-copy {
-  font-family: 'Space Mono', monospace; font-size: 0.62rem;
-  color: rgba(255,255,255,0.2); letter-spacing: 1px;
-}
+      /* LIVE ARCHITECTURE DIAGRAM (SVG inside) */
+      .arch-svg-wrap {
+        width: 100%;
+        overflow-x: auto;
+        padding: 1rem 0;
+      }
+      .arch-svg {
+        min-width: 700px;
+        width: 100%;
+      }
+      .arch-diagram-img {
+        width: 100%;
+        height: auto;
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid rgba(139, 92, 246, 0.18);
+        box-shadow: 0 20px 45px rgba(139, 92, 246, 0.12);
+      }
 
-/* ─── ANIMATIONS ─── */
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.85) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+      /* ─── COMMERCIALIZATION / VIDEOS ─── */
+      #videos {
+        padding: 8rem 5%;
+        background: var(--off);
+      }
+      .videos-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .videos-header {
+        margin-bottom: 4rem;
+      }
+      .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .video-card {
+        background: #f8f4ff;
+        border-radius: var(--r3);
+        overflow: hidden;
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+      .video-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 60px rgba(139, 92, 246, 0.12);
+      }
+      .video-thumb {
+        aspect-ratio: 16/9;
+        background: var(--purple);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .video-thumb-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          var(--purple2),
+          rgba(139, 92, 246, 0.3)
+        );
+      }
+      .video-play-btn {
+        position: relative;
+        z-index: 1;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #f7f2ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.25s;
+      }
+      .video-card:hover .video-play-btn {
+        transform: scale(1.1);
+        background: var(--accent3);
+      }
+      .video-play-btn svg {
+        width: 18px;
+        height: 18px;
+        margin-left: 3px;
+      }
+      .video-thumb-label {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.4);
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+      }
+      .video-info {
+        padding: 1.5rem;
+      }
+      .video-type {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+      .video-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+      }
+      .video-card p {
+        font-size: 0.8rem;
+        color: var(--text2);
+        line-height: 1.6;
+      }
+      .video-placeholder-card {
+        background: #f8f4ff;
+        border-radius: var(--r3);
+        overflow: hidden;
+        border: 2px dashed rgba(139, 92, 246, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 3rem 2rem;
+        gap: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        min-height: 260px;
+      }
+      .video-placeholder-card:hover {
+        border-color: rgba(139, 92, 246, 0.4);
+      }
+      .vph-icon {
+        font-size: 2.5rem;
+        opacity: 0.3;
+      }
+      .vph-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--text3);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1200px) {
-  .videos-grid { grid-template-columns: repeat(2, 1fr); }
-  .thesis-layout { gap: 2.5rem; }
-  .about-layout { gap: 3rem; }
-}
+      /* ─── TECH STACK ─── */
+      #tech {
+        padding: 6rem 5%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .tech-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .tech-header .s-label {
+        justify-content: center;
+      }
+      .tech-header .s-label::after {
+        display: none;
+      }
+      .tech-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+      .tech-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f8f4ff;
+        border: 1px solid rgba(139, 92, 246, 0.12);
+        border-radius: 100px;
+        padding: 0.65rem 1.4rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--text2);
+        letter-spacing: 0.5px;
+        transition: all 0.2s;
+        cursor: default;
+        box-shadow: 0 2px 8px rgba(139, 92, 246, 0.05);
+      }
+      .tech-pill:hover {
+        border-color: rgba(139, 92, 246, 0.35);
+        color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(139, 92, 246, 0.1);
+      }
 
-@media (max-width: 900px) {
-  body { cursor: auto; }
-  #cur-dot, #cur-trail { display: none; }
+      /* ─── TEAM ─── */
+      #team {
+        padding: 8rem 5%;
+        background: var(--purple);
+      }
+      .team-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .team-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .team-header .s-label {
+        justify-content: center;
+        color: var(--accent3);
+      }
+      .team-header .s-label::after {
+        background: var(--accent3);
+      }
+      .team-header .s-title {
+        color: white;
+      }
+      .team-header .s-desc {
+        color: rgba(255, 255, 255, 0.4);
+        margin: 0 auto;
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+      .team-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--r3);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .team-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--pink));
+        transform: scaleX(0);
+        transition: transform 0.3s;
+      }
+      .team-card:hover::before {
+        transform: scaleX(1);
+      }
+      .team-card:hover {
+        background: rgba(139, 92, 246, 0.08);
+        border-color: rgba(139, 92, 246, 0.25);
+        transform: translateY(-5px);
+      }
+      .team-av {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        background: #ffffff;
+        border: 2px solid rgba(139, 92, 246, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--accent3);
+        overflow: hidden;
+      }
+      .team-av img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: #ffffff;
+      }
+      .team-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.4rem;
+      }
+      .team-role {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        color: var(--accent3);
+        opacity: 0.6;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 1.5rem;
+      }
+      .team-socials {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+      .team-social {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        font-size: 0.75rem;
+        transition: all 0.2s;
+      }
+      .team-social:hover {
+        border-color: var(--accent);
+        color: var(--accent3);
+        background: rgba(139, 92, 246, 0.15);
+      }
 
-  nav {
-    padding: 0.85rem 4%;
-    gap: 0.75rem;
-  }
-  .nav-brand {
-    letter-spacing: 1.6px;
-    font-size: 0.86rem;
-  }
-  .brand-mark {
-    width: 34px;
-    height: 34px;
-  }
-  .nav-links {
-    display: none;
-  }
-  .nav-pill {
-    padding: 0.46rem 0.95rem;
-    font-size: 0.64rem;
-    letter-spacing: 0.6px;
-  }
+      /* ─── CONTACT ─── */
+      #contact {
+        padding: 8rem 5%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .contact-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .contact-header .s-label {
+        justify-content: center;
+      }
+      .contact-header .s-label::after {
+        display: none;
+      }
+      .contact-card {
+        background: var(--purple);
+        border-radius: var(--r3);
+        padding: 3.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-card::before {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.2),
+          transparent 70%
+        );
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+      .form-g {
+        margin-bottom: 1.2rem;
+      }
+      .form-g label {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: rgba(196, 181, 253, 0.5);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .form-inp {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--r2);
+        padding: 0.9rem 1.3rem;
+        color: white;
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        outline: none;
+        cursor: none;
+        transition: border-color 0.2s;
+      }
+      .form-inp:focus {
+        border-color: rgba(139, 92, 246, 0.5);
+      }
+      .form-inp::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
+      textarea.form-inp {
+        height: 130px;
+        resize: none;
+      }
+      .form-submit {
+        width: 100%;
+        background: #f7f2ff;
+        color: var(--purple);
+        border: none;
+        padding: 1rem;
+        border-radius: var(--r2);
+        font-family: "Playfair Display", serif;
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: none;
+        transition: all 0.25s;
+        margin-top: 0.5rem;
+      }
+      .form-submit:hover {
+        background: var(--accent3);
+        transform: translateY(-1px);
+      }
 
-  section,
-  #about,
-  #problems,
-  #modules,
-  #howitworks,
-  #demo,
-  #research,
-  #thesis,
-  #diagram,
-  #videos,
-  #tech,
-  #team,
-  #contact {
-    padding-top: 5.5rem !important;
-    padding-bottom: 5.5rem !important;
-  }
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--purple);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 3rem 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .footer-brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        font-size: 1rem;
+        color: white;
+        letter-spacing: 3px;
+      }
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .footer-links a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--accent3);
+      }
+      .footer-copy {
+        font-family: "Space Mono", monospace;
+        font-size: 0.62rem;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 1px;
+      }
 
-  #hero {
-    min-height: auto;
-    padding-top: 8.5rem;
-    padding-bottom: 4rem;
-  }
-  .hero-actions { margin-bottom: 2.6rem; }
-  .hero-sub { font-size: 1rem; max-width: 92%; }
+      /* ─── ANIMATIONS ─── */
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.85) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-  .probs-grid { grid-template-columns: repeat(2, 1fr); }
-  .steps-grid { grid-template-columns: 1fr !important; }
-  .videos-grid { grid-template-columns: 1fr !important; }
-  .team-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .form-row { grid-template-columns: 1fr !important; }
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1200px) {
+        .videos-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .thesis-layout {
+          gap: 2.5rem;
+        }
+        .about-layout {
+          gap: 3rem;
+        }
+      }
 
-  .diagram-content { padding: 1rem; }
-  .arch-svg { min-width: 100%; }
-  .arch-svg-wrap { overflow-x: visible; padding: 0.25rem 0; }
+      @media (max-width: 900px) {
+        body {
+          cursor: auto;
+        }
+        #cur-dot,
+        #cur-trail {
+          display: none;
+        }
 
-  .footer-links {
-    gap: 1rem;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-}
+        nav {
+          padding: 0.85rem 4%;
+          gap: 0.75rem;
+        }
+        .nav-brand {
+          letter-spacing: 1.6px;
+          font-size: 0.86rem;
+        }
+        .brand-mark {
+          width: 34px;
+          height: 34px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-pill {
+          padding: 0.46rem 0.95rem;
+          font-size: 0.64rem;
+          letter-spacing: 0.6px;
+        }
 
-@media (max-width: 1024px) {
-  .probs-grid { grid-template-columns: repeat(2, 1fr); }
-  .mods-grid { grid-template-columns: 1fr; }
-  .steps-grid { grid-template-columns: 1fr 1fr; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-layout { grid-template-columns: 1fr; }
-  .thesis-layout { grid-template-columns: 1fr; }
-  .thesis-book { aspect-ratio: auto; }
-  .research-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-  .nav-pill { display: none; }
-  .nav-brand { font-size: 0.78rem; }
-  .brand-mark { width: 30px; height: 30px; }
+        section,
+        #about,
+        #problems,
+        #modules,
+        #howitworks,
+        #demo,
+        #research,
+        #thesis,
+        #diagram,
+        #videos,
+        #tech,
+        #team,
+        #contact {
+          padding-top: 5.5rem !important;
+          padding-bottom: 5.5rem !important;
+        }
 
-  .probs-grid { grid-template-columns: 1fr; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .videos-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
+        #hero {
+          min-height: auto;
+          padding-top: 8.5rem;
+          padding-bottom: 4rem;
+        }
+        .hero-actions {
+          margin-bottom: 2.6rem;
+        }
+        .hero-sub {
+          font-size: 1rem;
+          max-width: 92%;
+        }
 
-  .hero-title { letter-spacing: -1.4px; }
-  .hero-badges { gap: 0.6rem; }
-  .h-badge { font-size: 0.6rem; padding: 0.48rem 0.85rem; }
+        .probs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .steps-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .videos-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .form-row {
+          grid-template-columns: 1fr !important;
+        }
 
-  .mod-card,
-  .step-card,
-  .research-card,
-  .team-card,
-  .contact-card {
-    padding: 1.6rem 1.2rem;
-    border-radius: 22px;
-  }
+        .diagram-content {
+          padding: 1rem;
+        }
+        .arch-svg {
+          min-width: 100%;
+        }
+        .arch-svg-wrap {
+          overflow-x: visible;
+          padding: 0.25rem 0;
+        }
 
-  .result-row {
-    grid-template-columns: 1fr;
-    gap: 0.45rem;
-  }
-  .result-mod {
-    min-width: 0;
-    font-size: 0.62rem;
-  }
-  .demo-body { padding: 1.2rem; }
-  .demo-topbar { padding: 0.9rem 1rem; }
+        .footer-links {
+          gap: 1rem;
+          justify-content: center;
+          width: 100%;
+          flex-wrap: wrap;
+        }
+      }
 
-  .contact-card { padding: 2rem 1.5rem; }
-  .footer-brand, .footer-copy { width: 100%; text-align: center; }
-}
+      @media (max-width: 1024px) {
+        .probs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .mods-grid {
+          grid-template-columns: 1fr;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .about-layout {
+          grid-template-columns: 1fr;
+        }
+        .thesis-layout {
+          grid-template-columns: 1fr;
+        }
+        .thesis-book {
+          aspect-ratio: auto;
+        }
+        .research-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .nav-pill {
+          display: none;
+        }
+        .nav-brand {
+          font-size: 0.78rem;
+        }
+        .brand-mark {
+          width: 30px;
+          height: 30px;
+        }
 
-@media (max-width: 420px) {
-  nav { padding: 0.75rem 0.9rem; }
-  .hero-eyebrow { font-size: 0.56rem; letter-spacing: 1px; padding: 0.35rem 0.72rem; }
-  .btn-dark, .btn-ghost { width: 100%; justify-content: center; }
-  .s-label { font-size: 0.58rem; letter-spacing: 1.4px; }
-  .s-desc { font-size: 0.9rem; }
-  .marquee-item { font-size: 0.62rem; letter-spacing: 1px; }
-  .tech-pill { font-size: 0.63rem; padding: 0.55rem 0.95rem; }
-}
-</style>
-</head>
-<body>
+        .probs-grid {
+          grid-template-columns: 1fr;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        .videos-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
 
-<!-- CURSOR -->
-<div id="cur-dot"></div>
-<div id="cur-trail"></div>
+        .hero-title {
+          letter-spacing: -1.4px;
+        }
+        .hero-badges {
+          gap: 0.6rem;
+        }
+        .h-badge {
+          font-size: 0.6rem;
+          padding: 0.48rem 0.85rem;
+        }
 
-<!-- ANIMATED BACKGROUND -->
-<div class="bg-canvas">
-  <div class="bg-orb orb1"></div>
-  <div class="bg-orb orb2"></div>
-  <div class="bg-orb orb3"></div>
-  <div class="react-bits" id="reactBits"></div>
-</div>
+        .mod-card,
+        .step-card,
+        .research-card,
+        .team-card,
+        .contact-card {
+          padding: 1.6rem 1.2rem;
+          border-radius: 22px;
+        }
 
-<!-- NAV -->
-<nav id="mainNav">
-  <a href="#hero" class="nav-brand">
-    <div class="brand-mark">
-      <img src="images/logo.png" alt="The Guardian Logo">
+        .result-row {
+          grid-template-columns: 1fr;
+          gap: 0.45rem;
+        }
+        .result-mod {
+          min-width: 0;
+          font-size: 0.62rem;
+        }
+        .demo-body {
+          padding: 1.2rem;
+        }
+        .demo-topbar {
+          padding: 0.9rem 1rem;
+        }
+
+        .contact-card {
+          padding: 2rem 1.5rem;
+        }
+        .footer-brand,
+        .footer-copy {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 420px) {
+        nav {
+          padding: 0.75rem 0.9rem;
+        }
+        .hero-eyebrow {
+          font-size: 0.56rem;
+          letter-spacing: 1px;
+          padding: 0.35rem 0.72rem;
+        }
+        .btn-dark,
+        .btn-ghost {
+          width: 100%;
+          justify-content: center;
+        }
+        .s-label {
+          font-size: 0.58rem;
+          letter-spacing: 1.4px;
+        }
+        .s-desc {
+          font-size: 0.9rem;
+        }
+        .marquee-item {
+          font-size: 0.62rem;
+          letter-spacing: 1px;
+        }
+        .tech-pill {
+          font-size: 0.63rem;
+          padding: 0.55rem 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CURSOR -->
+    <div id="cur-dot"></div>
+    <div id="cur-trail"></div>
+
+    <!-- ANIMATED BACKGROUND -->
+    <div class="bg-canvas">
+      <div class="bg-orb orb1"></div>
+      <div class="bg-orb orb2"></div>
+      <div class="bg-orb orb3"></div>
+      <div class="react-bits" id="reactBits"></div>
     </div>
-    The Guardian
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#modules">Modules</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#diagram">Diagram</a></li>
-    <li><a href="#videos">Demo</a></li>
-    <li><a href="#team">Team</a></li>
-  </ul>
-  <a href="#contact" class="nav-pill">Contact Us</a>
-</nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-eyebrow">
-    <span class="live-dot"></span>
-    AI-Powered Cybersecurity Shield — 2025/2026
-  </div>
-  <h1 class="hero-title">
-    <span class="t-white">Protect Yourself</span>
-    <span class="t-outline">From Digital</span>
-    <span class="t-accent">Threats</span>
-  </h1>
-  <p class="hero-sub">A modular AI browser extension detecting misinformation, scams, phishing, hate speech, and privacy risks in real time — keeping you safe without disrupting your browsing.</p>
-  <div class="hero-actions">
-    <a href="#demo" class="btn-dark">
-      <svg width="14" height="14" viewBox="0 0 14 14"><polygon points="3,1 13,7 3,13" fill="currentColor"/></svg>
-      Try Demo
-    </a>
-    <a href="#research" class="btn-ghost">
-      View Research →
-    </a>
-  </div>
-  <div class="hero-badges">
-    <div class="h-badge"><span class="h-badge-icon">🧠</span> 4 AI Modules</div>
-    <div class="h-badge"><span class="h-badge-icon">⚡</span> Real-Time Analysis</div>
-    <div class="h-badge"><span class="h-badge-icon">🔒</span> Zero Data Stored</div>
-    <div class="h-badge"><span class="h-badge-icon">🤗</span> DistilBERT Engine</div>
-    <div class="h-badge"><span class="h-badge-icon">🌐</span> Browser Extension</div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item">Scam Detection</span>
-    <span class="marquee-item">Phishing Analysis</span>
-    <span class="marquee-item">Misinformation Detection</span>
-    <span class="marquee-item">Hate Speech Classifier</span>
-    <span class="marquee-item">PII & OpSec Protection</span>
-    <span class="marquee-item">Real-Time AI Analysis</span>
-    <span class="marquee-item">FastAPI Backend</span>
-    <span class="marquee-item">DistilBERT NLP</span>
-    <span class="marquee-item">Privacy-First Design</span>
-    <span class="marquee-item">Scam Detection</span>
-    <span class="marquee-item">Phishing Analysis</span>
-    <span class="marquee-item">Misinformation Detection</span>
-    <span class="marquee-item">Hate Speech Classifier</span>
-    <span class="marquee-item">PII & OpSec Protection</span>
-    <span class="marquee-item">Real-Time AI Analysis</span>
-    <span class="marquee-item">FastAPI Backend</span>
-    <span class="marquee-item">DistilBERT NLP</span>
-    <span class="marquee-item">Privacy-First Design</span>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-layout reveal">
-    <div>
-      <div class="s-label">About The Project</div>
-      <h2 class="s-title">Built for a Safer Digital World</h2>
-      <p class="s-desc" style="margin-bottom:1.5rem;">The Guardian is a modular AI-powered cybersecurity system designed to protect users from human-layer threats on social media. It combines multiple intelligent detection modules into a single browser extension.</p>
-      <p class="s-desc" style="margin-bottom:2.5rem;">The system extracts visible text from web pages and routes it to a FastAPI backend, where specialized AI models evaluate content and return structured risk insights. Unlike traditional security tools, The Guardian focuses on user awareness and education.</p>
-      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-        <span style="padding:0.6rem 1.2rem;border:1px solid rgba(139,92,246,0.2);border-radius:100px;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:1px;">Privacy-First</span>
-        <span style="padding:0.6rem 1.2rem;border:1px solid rgba(139,92,246,0.2);border-radius:100px;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text2);letter-spacing:1px;">Education Over Censorship</span>
-        <span style="padding:0.6rem 1.2rem;border:1px solid rgba(139,92,246,0.2);border-radius:100px;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--text2);letter-spacing:1px;">Modular & Scalable</span>
-      </div>
-    </div>
-    <div class="about-visual">
-      <div class="arch-box">
-        <div class="arch-title">// System Architecture Flow</div>
-        <div class="arch-flow">
-          <div class="arch-node"><div class="arch-node-icon">🌐</div><div class="arch-node-label"><strong>Browser Extension</strong><span>Extracts visible page text</span></div></div>
-          <div class="arch-node"><div class="arch-node-icon">🔒</div><div class="arch-node-label"><strong>Encrypted Transmission</strong><span>Secure API calls to backend</span></div></div>
-          <div class="arch-node"><div class="arch-node-icon">⚡</div><div class="arch-node-label"><strong>FastAPI Backend</strong><span>Routes to AI modules</span></div></div>
-          <div class="arch-node"><div class="arch-node-icon">🤖</div><div class="arch-node-label"><strong>AI Analysis Engine</strong><span>BERT / DistilBERT inference</span></div></div>
-          <div class="arch-node"><div class="arch-node-icon">📊</div><div class="arch-node-label"><strong>Risk Report → JSON</strong><span>Structured threat insights</span></div></div>
-          <div class="arch-node"><div class="arch-node-icon">🛡️</div><div class="arch-node-label"><strong>User Alert Overlay</strong><span>Non-intrusive tooltip warning</span></div></div>
+    <!-- NAV -->
+    <nav id="mainNav">
+      <a href="#hero" class="nav-brand">
+        <div class="brand-mark">
+          <img src="images/logo.png" alt="The Guardian Logo" />
         </div>
-      </div>
-      <div class="float-card fc1"><span class="fc-dot green"></span>All modules active</div>
-      <div class="float-card fc2"><span class="fc-dot purple"></span>0 data stored</div>
-    </div>
-  </div>
-</section>
+        The Guardian
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#modules">Modules</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#diagram">Diagram</a></li>
+        <li><a href="#videos">Demo</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+      <a href="#contact" class="nav-pill">Contact Us</a>
+    </nav>
 
-<!-- PROBLEMS -->
-<section id="problems">
-  <div class="problems-inner">
-    <div class="problems-header reveal">
-      <div class="s-label">The Challenge</div>
-      <h2 class="s-title">The Hidden Risks of Social Media</h2>
-      <p class="s-desc">Most existing tools are reactive — they act after damage occurs. The Guardian provides proactive real-time protection at the user level.</p>
-    </div>
-    <div class="probs-grid reveal">
-      <div class="prob-card">
-        <div class="prob-num">01</div>
-        <span class="prob-icon">🎭</span>
-        <h3>Misinformation</h3>
-        <p>Emotionally manipulative fake news spreading rapidly across platforms, eroding public trust and distorting reality.</p>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-eyebrow">
+        <span class="live-dot"></span>
+        AI-Powered Cybersecurity Shield — 2025/2026
       </div>
-      <div class="prob-card">
-        <div class="prob-num">02</div>
-        <span class="prob-icon">🎣</span>
-        <h3>Phishing & Scams</h3>
-        <p>Sophisticated phishing using urgency and impersonation to steal credentials and money from unsuspecting users.</p>
-      </div>
-      <div class="prob-card">
-        <div class="prob-num">03</div>
-        <span class="prob-icon">☠️</span>
-        <h3>Hate Speech</h3>
-        <p>Toxic and abusive content — from explicit to implicit — creating hostile environments and causing real harm.</p>
-      </div>
-      <div class="prob-card">
-        <div class="prob-num">04</div>
-        <span class="prob-icon">🔓</span>
-        <h3>Privacy Leaks</h3>
-        <p>Oversharing personal data, travel plans, and sensitive information that enables identity theft and surveillance.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MODULES -->
-<section id="modules">
-  <div class="modules-header reveal">
-    <div class="s-label">Core AI Modules</div>
-    <h2 class="s-title">Four Layers of Intelligence</h2>
-    <p class="s-desc">Each module independently trained on specialized datasets, working in parallel for comprehensive protection.</p>
-  </div>
-  <div class="mods-grid reveal">
-    <div class="mod-card mc1" data-num="01">
-      <div class="mod-color-bar"></div>
-      <div class="mod-icon">🎣</div>
-      <h3>Scam & Phishing Detection</h3>
-      <span class="mod-dev">// Vishwa Rathnayaka</span>
-      <p>Dual-path detection engine combining URL heuristics and blacklist analysis with DistilBERT-powered text understanding. Detects urgency patterns, impersonation attempts, and fraud signals. Includes Safe Preview and Safe Mode features.</p>
-      <div class="mod-tags">
-        <span class="tag">DistilBERT</span><span class="tag">URL Analysis</span><span class="tag">PhishTank</span><span class="tag">Hybrid Fusion</span>
-      </div>
-    </div>
-    <div class="mod-card mc2" data-num="02">
-      <div class="mod-color-bar"></div>
-      <div class="mod-icon">📰</div>
-      <h3>Misinformation Detection</h3>
-      <span class="mod-dev">// Hiruni De Alwis</span>
-      <p>Transformer-based NLP detection of misleading and manipulative content. Trained on LIAR and CoAID datasets. Detects emotional manipulation, provides evidence-based explanations, and adapts to user digital literacy level.</p>
-      <div class="mod-tags">
-        <span class="tag">BERT</span><span class="tag">LIAR Dataset</span><span class="tag">CoAID</span><span class="tag">Evidence-Based</span>
-      </div>
-    </div>
-    <div class="mod-card mc3" data-num="03">
-      <div class="mod-color-bar"></div>
-      <div class="mod-icon">🗣️</div>
-      <h3>Hate Speech Detection</h3>
-      <span class="mod-dev">// Randinu Fernando</span>
-      <p>Real-time identification of harmful toxic content, classifying into Hate, Offensive, and Neutral categories. Detects both explicit and context-based toxicity, with confidence scores and color-coded awareness alerts.</p>
-      <div class="mod-tags">
-        <span class="tag">3-Class Model</span><span class="tag">Context-Aware</span><span class="tag">Confidence Score</span><span class="tag">Color Alerts</span>
-      </div>
-    </div>
-    <div class="mod-card mc4" data-num="04">
-      <div class="mod-color-bar"></div>
-      <div class="mod-icon">🔏</div>
-      <h3>PII & OpSec Detection</h3>
-      <span class="mod-dev">// Herath H.M.G.D.K</span>
-      <p>Hybrid privacy protection using NER (AI-based) and regex pattern matching. Detects phone, email, NIC, and risky behaviors like travel plan disclosure. Actively prevents identity theft before it occurs.</p>
-      <div class="mod-tags">
-        <span class="tag">NER Model</span><span class="tag">Regex Engine</span><span class="tag">PII Detection</span><span class="tag">OpSec</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="howitworks">
-  <div class="how-inner">
-    <div class="how-header reveal">
-      <div class="s-label">Workflow</div>
-      <h2 class="s-title">How It Works</h2>
-      <p class="s-desc">Six steps from browsing to protection — all happening invisibly in under a second.</p>
-    </div>
-    <div class="steps-grid reveal">
-      <div class="step-card"><div class="step-num-big">01</div><h3>Browse</h3><p>User browses social media normally. The extension runs silently in the background without disruption.</p></div>
-      <div class="step-card"><div class="step-num-big">02</div><h3>Extract</h3><p>Visible page text is extracted and preprocessed by the content script for analysis.</p></div>
-      <div class="step-card"><div class="step-num-big">03</div><h3>Transmit</h3><p>Data is securely sent to the FastAPI backend over encrypted channels in milliseconds.</p></div>
-      <div class="step-card"><div class="step-num-big">04</div><h3>Analyze</h3><p>All four AI modules run in parallel, simultaneously evaluating for different threat types.</p></div>
-      <div class="step-card"><div class="step-num-big">05</div><h3>Classify</h3><p>Threats are risk-scored, classified by severity, and structured into a JSON response object.</p></div>
-      <div class="step-card"><div class="step-num-big">06</div><h3>Alert</h3><p>Non-intrusive tooltip alerts inform the user with clear, human-readable explanations and context.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section id="demo">
-  <div class="demo-header reveal">
-    <div class="s-label">Live Demo</div>
-    <h2 class="s-title">Try The Guardian</h2>
-    <p class="s-desc">Enter any text and watch the AI modules detect threats in real time.</p>
-  </div>
-  <div class="demo-shell reveal">
-    <div class="demo-topbar">
-      <div class="win-btn r"></div>
-      <div class="win-btn y"></div>
-      <div class="win-btn g"></div>
-      <div class="demo-title">GUARDIAN_ANALYSIS_ENGINE v1.0</div>
-    </div>
-    <div class="demo-body">
-      <div class="demo-label">// Input text for analysis</div>
-      <textarea class="demo-textarea" id="demoInput" placeholder="Enter text to analyze... e.g. 'URGENT: Your bank account will be locked! Click here now!'"></textarea>
-      <button class="demo-run" onclick="runAnalysis()">
-        <svg width="12" height="12" viewBox="0 0 12 12"><polygon points="2,1 11,6 2,11" fill="currentColor"/></svg>
-        ANALYZE THREAT
-      </button>
-      <div class="demo-loading" id="demoLoad">
-        <div class="loading-text">SCANNING<span id="scanDots"></span></div>
-        <div class="loading-bar"><div class="loading-fill" id="loadFill"></div></div>
-      </div>
-      <div class="demo-results" id="demoRes">
-        <div class="demo-label" style="margin-bottom:1rem;">// Analysis results</div>
-        <div id="resContainer"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESEARCH PAPERS -->
-<section id="research">
-  <div class="research-header reveal">
-    <div class="s-label">Academic Research</div>
-    <h2 class="s-title">Research Papers & Publications</h2>
-    <p class="s-desc">The academic foundation and published work behind The Guardian system.</p>
-  </div>
-  <div class="research-grid reveal">
-    <div class="paper-card p1">
-      <div class="paper-type thesis"><span class="paper-icon">📘</span>Thesis / Dissertation</div>
-      <h3>AI-Powered Real-Time Detection of Human-Layer Cybersecurity Threats on Social Media</h3>
-      <div class="paper-authors">Rathnayaka, V. · De Alwis, H. · Fernando, R. · Herath, H.M.G.D.K — 2025</div>
-      <p class="paper-abstract">This dissertation presents a comprehensive modular AI framework for detecting and mitigating human-layer cybersecurity threats in real-time browser environments. The system integrates four specialized deep learning modules — scam/phishing detection, misinformation classification, hate speech analysis, and PII/OpSec protection — into a unified browser extension architecture powered by transformer-based models.</p>
-      <div class="paper-meta">
-        <div class="paper-tags">
-          <span class="paper-tag">NLP</span><span class="paper-tag">Cybersecurity</span><span class="paper-tag">BERT</span>
-        </div>
-        <a href="#" class="paper-btn">↓ PDF</a>
-      </div>
-    </div>
-    <div class="paper-card p2">
-      <div class="paper-type paper"><span class="paper-icon">📄</span>Research Paper</div>
-      <h3>Dual-Path Scam and Phishing Detection Using URL Heuristics and DistilBERT Text Classification</h3>
-      <div class="paper-authors">Rathnayaka, V. — Module 01 Technical Paper · 2025</div>
-      <p class="paper-abstract">A hybrid approach combining URL-based heuristic analysis with DistilBERT natural language processing for detecting phishing and scam content across social media platforms. The dual-path architecture achieves superior detection rates by fusing link-inspection signals with contextual text understanding.</p>
-      <div class="paper-meta">
-        <div class="paper-tags"><span class="paper-tag">DistilBERT</span><span class="paper-tag">Phishing</span></div>
-        <a href="#" class="paper-btn">↓ PDF</a>
-      </div>
-    </div>
-    <div class="paper-card p3">
-      <div class="paper-type paper"><span class="paper-icon">📄</span>Research Paper</div>
-      <h3>Transformer-Based Misinformation Detection with Adaptive User Feedback on Social Platforms</h3>
-      <div class="paper-authors">De Alwis, H. — Module 02 Technical Paper · 2025</div>
-      <p class="paper-abstract">This paper introduces an evidence-backed misinformation detection system using BERT fine-tuned on the LIAR and CoAID datasets. A novel contribution is the adaptive feedback mechanism that adjusts explanations based on inferred user digital literacy level, improving comprehension and behavioral change.</p>
-      <div class="paper-meta">
-        <div class="paper-tags"><span class="paper-tag">BERT</span><span class="paper-tag">Misinformation</span></div>
-        <a href="#" class="paper-btn">↓ PDF</a>
-      </div>
-    </div>
-    <div class="paper-card p4">
-      <div class="paper-type report"><span class="paper-icon">📋</span>Technical Report</div>
-      <h3>Add Your Paper or Report</h3>
-      <div class="paper-authors">Author Name · Year</div>
-      <p class="paper-abstract">Upload your research paper, technical report, or academic publication here. Supports PDF, DOC, and link-based access. Add abstract, keywords, and author information for complete academic citation.</p>
-      <div class="paper-meta">
-        <div class="paper-tags"><span class="paper-tag">+ Add Tags</span></div>
-        <a href="#" class="paper-btn">+ Upload</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- THESIS -->
-<section id="thesis">
-  <div class="thesis-inner">
-    <div style="text-align:center;margin-bottom:4rem;" class="reveal">
-      <div class="s-label" style="justify-content:center;">
-        Full Thesis
-      </div>
-      <h2 class="s-title">Main Dissertation</h2>
-      <p class="s-desc" style="margin:0 auto;">The complete academic thesis documenting the full system design, methodology, experiments, and results.</p>
-    </div>
-    <div class="thesis-layout reveal">
-      <div class="thesis-book">
-        <div class="thesis-book-top">
-          <div class="thesis-badge">MSc THESIS · 2025</div>
-          <h2>AI-Powered Cybersecurity Shield: Multi-Module Real-Time Threat Detection for Social Media</h2>
-        </div>
-        <div class="thesis-book-bottom">
-          <p style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(196,181,253,0.4);letter-spacing:1px;margin-bottom:0.5rem;">Sri Lanka Institute of Information Technology</p>
-          <div class="thesis-year">© 2025 — All Rights Reserved</div>
-        </div>
-      </div>
-      <div class="thesis-details">
-        <div class="thesis-meta-item">
-          <div class="thesis-meta-label">Title</div>
-          <div class="thesis-meta-value">AI-Powered Real-Time Cybersecurity Threat Detection on Social Media</div>
-        </div>
-        <div class="thesis-meta-item">
-          <div class="thesis-meta-label">Authors</div>
-          <div class="thesis-meta-value">Rathnayaka V. · De Alwis H. · Fernando R. · Herath H.M.G.D.K</div>
-        </div>
-        <div class="thesis-meta-item">
-          <div class="thesis-meta-label">Abstract</div>
-          <div class="thesis-meta-sub">This thesis presents The Guardian — a browser extension integrating four AI modules (scam/phishing detection, misinformation classification, hate speech detection, and PII/OpSec protection) into a unified real-time cybersecurity system. Using transformer-based NLP models deployed via a FastAPI backend, the system achieves high accuracy detection with zero user data storage. The work contributes novel hybrid detection approaches and adaptive user education features.</div>
-        </div>
-        <div class="thesis-meta-item">
-          <div class="thesis-meta-label">Keywords</div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:0.5rem;">
-            <span class="paper-tag">Cybersecurity</span><span class="paper-tag">NLP</span><span class="paper-tag">BERT</span><span class="paper-tag">Browser Extension</span><span class="paper-tag">Misinformation</span><span class="paper-tag">Phishing</span><span class="paper-tag">PII</span>
-          </div>
-        </div>
-        <a href="#" class="thesis-download-btn">
-          ↓ Download Full Thesis (PDF)
+      <h1 class="hero-title">
+        <span class="t-white">Protect Yourself</span>
+        <span class="t-outline">From Digital</span>
+        <span class="t-accent">Threats</span>
+      </h1>
+      <p class="hero-sub">
+        A modular AI browser extension detecting misinformation, scams,
+        phishing, hate speech, and privacy risks in real time — keeping you safe
+        without disrupting your browsing.
+      </p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-dark">
+          <svg width="14" height="14" viewBox="0 0 14 14">
+            <polygon points="3,1 13,7 3,13" fill="currentColor" />
+          </svg>
+          Try Demo
         </a>
+        <a href="#research" class="btn-ghost"> View Research → </a>
+      </div>
+      <div class="hero-badges">
+        <div class="h-badge">
+          <span class="h-badge-icon">🧠</span> 4 AI Modules
+        </div>
+        <div class="h-badge">
+          <span class="h-badge-icon">⚡</span> Real-Time Analysis
+        </div>
+        <div class="h-badge">
+          <span class="h-badge-icon">🔒</span> Zero Data Stored
+        </div>
+        <div class="h-badge">
+          <span class="h-badge-icon">🤗</span> DistilBERT Engine
+        </div>
+        <div class="h-badge">
+          <span class="h-badge-icon">🌐</span> Browser Extension
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span class="marquee-item">Scam Detection</span>
+        <span class="marquee-item">Phishing Analysis</span>
+        <span class="marquee-item">Misinformation Detection</span>
+        <span class="marquee-item">Hate Speech Classifier</span>
+        <span class="marquee-item">PII & OpSec Protection</span>
+        <span class="marquee-item">Real-Time AI Analysis</span>
+        <span class="marquee-item">FastAPI Backend</span>
+        <span class="marquee-item">DistilBERT NLP</span>
+        <span class="marquee-item">Privacy-First Design</span>
+        <span class="marquee-item">Scam Detection</span>
+        <span class="marquee-item">Phishing Analysis</span>
+        <span class="marquee-item">Misinformation Detection</span>
+        <span class="marquee-item">Hate Speech Classifier</span>
+        <span class="marquee-item">PII & OpSec Protection</span>
+        <span class="marquee-item">Real-Time AI Analysis</span>
+        <span class="marquee-item">FastAPI Backend</span>
+        <span class="marquee-item">DistilBERT NLP</span>
+        <span class="marquee-item">Privacy-First Design</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- SYSTEM DIAGRAM -->
-<section id="diagram">
-  <div class="diagram-header reveal">
-    <div class="s-label">Architecture</div>
-    <h2 class="s-title">System Diagram</h2>
-    <p class="s-desc" style="margin:0 auto;">The complete technical architecture and data flow of The Guardian system.</p>
-  </div>
-  <div class="arch-svg-wrap">
-    <img src="images/system.jpeg" alt="The Guardian system diagram" class="arch-diagram-img" />
-  </div>
-</section>
-
-<!-- COMMERCIALIZATION VIDEOS -->
-<section id="videos">
-  <div class="videos-inner">
-    <div class="videos-header reveal">
-      <div class="s-label">Commercialization</div>
-      <h2 class="s-title">Demo & Pitch Videos</h2>
-      <p class="s-desc">Watch product demonstrations, commercialization pitches, and technical walkthroughs of The Guardian.</p>
-    </div>
-    <div class="videos-grid reveal">
-      <div class="video-card" onclick="openVideo(this, 'demo')">
-        <div class="video-thumb">
-          <div class="video-thumb-bg" style="background:linear-gradient(135deg,rgba(139,92,246,0.4),rgba(35,33,36,0.9))"></div>
-          <div class="video-play-btn">
-            <svg viewBox="0 0 18 18"><polygon points="4,2 16,9 4,16" fill="#232124"/></svg>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-layout reveal">
+        <div>
+          <div class="s-label">About The Project</div>
+          <h2 class="s-title">Built for a Safer Digital World</h2>
+          <p class="s-desc" style="margin-bottom: 1.5rem">
+            The Guardian is a modular AI-powered cybersecurity system designed
+            to protect users from human-layer threats on social media. It
+            combines multiple intelligent detection modules into a single
+            browser extension.
+          </p>
+          <p class="s-desc" style="margin-bottom: 2.5rem">
+            The system extracts visible text from web pages and routes it to a
+            FastAPI backend, where specialized AI models evaluate content and
+            return structured risk insights. Unlike traditional security tools,
+            The Guardian focuses on user awareness and education.
+          </p>
+          <div style="display: flex; gap: 0.8rem; flex-wrap: wrap">
+            <span
+              style="
+                padding: 0.6rem 1.2rem;
+                border: 1px solid rgba(139, 92, 246, 0.2);
+                border-radius: 100px;
+                font-family: &quot;Space Mono&quot;, monospace;
+                font-size: 0.65rem;
+                color: var(--accent);
+                letter-spacing: 1px;
+              "
+              >Privacy-First</span
+            >
+            <span
+              style="
+                padding: 0.6rem 1.2rem;
+                border: 1px solid rgba(139, 92, 246, 0.2);
+                border-radius: 100px;
+                font-family: &quot;Space Mono&quot;, monospace;
+                font-size: 0.65rem;
+                color: var(--text2);
+                letter-spacing: 1px;
+              "
+              >Education Over Censorship</span
+            >
+            <span
+              style="
+                padding: 0.6rem 1.2rem;
+                border: 1px solid rgba(139, 92, 246, 0.2);
+                border-radius: 100px;
+                font-family: &quot;Space Mono&quot;, monospace;
+                font-size: 0.65rem;
+                color: var(--text2);
+                letter-spacing: 1px;
+              "
+              >Modular & Scalable</span
+            >
           </div>
-          <div class="video-thumb-label">5:24</div>
         </div>
-        <div class="video-info">
-          <div class="video-type">Product Demo</div>
-          <h3>The Guardian — Live Demonstration</h3>
-          <p>Full walkthrough of the browser extension detecting real-world threats across social media platforms.</p>
-        </div>
-      </div>
-      <div class="video-card" onclick="openVideo(this, 'pitch')">
-        <div class="video-thumb">
-          <div class="video-thumb-bg" style="background:linear-gradient(135deg,rgba(236,72,153,0.3),rgba(35,33,36,0.9))"></div>
-          <div class="video-play-btn">
-            <svg viewBox="0 0 18 18"><polygon points="4,2 16,9 4,16" fill="#232124"/></svg>
+        <div class="about-visual">
+          <div class="arch-box">
+            <div class="arch-title">// System Architecture Flow</div>
+            <div class="arch-flow">
+              <div class="arch-node">
+                <div class="arch-node-icon">🌐</div>
+                <div class="arch-node-label">
+                  <strong>Browser Extension</strong
+                  ><span>Extracts visible page text</span>
+                </div>
+              </div>
+              <div class="arch-node">
+                <div class="arch-node-icon">🔒</div>
+                <div class="arch-node-label">
+                  <strong>Encrypted Transmission</strong
+                  ><span>Secure API calls to backend</span>
+                </div>
+              </div>
+              <div class="arch-node">
+                <div class="arch-node-icon">⚡</div>
+                <div class="arch-node-label">
+                  <strong>FastAPI Backend</strong
+                  ><span>Routes to AI modules</span>
+                </div>
+              </div>
+              <div class="arch-node">
+                <div class="arch-node-icon">🤖</div>
+                <div class="arch-node-label">
+                  <strong>AI Analysis Engine</strong
+                  ><span>BERT / DistilBERT inference</span>
+                </div>
+              </div>
+              <div class="arch-node">
+                <div class="arch-node-icon">📊</div>
+                <div class="arch-node-label">
+                  <strong>Risk Report → JSON</strong
+                  ><span>Structured threat insights</span>
+                </div>
+              </div>
+              <div class="arch-node">
+                <div class="arch-node-icon">🛡️</div>
+                <div class="arch-node-label">
+                  <strong>User Alert Overlay</strong
+                  ><span>Non-intrusive tooltip warning</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="video-thumb-label">3:12</div>
-        </div>
-        <div class="video-info">
-          <div class="video-type">Commercialization Pitch</div>
-          <h3>Market Opportunity & Business Model</h3>
-          <p>Investor pitch covering the market need, monetization strategy, and scalability roadmap.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Video embed placeholder -->
-    <div id="videoEmbed" style="display:none;margin-top:2rem;">
-      <div style="background:var(--purple);border-radius:var(--r3);overflow:hidden;">
-        <div style="padding:1rem 1.5rem;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(196,181,253,0.4);letter-spacing:2px;">NOW PLAYING</span>
-          <button onclick="document.getElementById('videoEmbed').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:1.2rem;">✕</button>
-        </div>
-        <div style="aspect-ratio:16/9;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
-          <div style="text-align:center;">
-            <div style="font-size:4rem;margin-bottom:1rem;opacity:0.3;">🎬</div>
-            <p style="font-family:'Space Mono',monospace;font-size:0.72rem;color:rgba(196,181,253,0.3);letter-spacing:1px;">EMBED YOUR VIDEO URL HERE</p>
-            <p style="font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(196,181,253,0.2);margin-top:0.5rem;">Replace the iframe src with your YouTube/Vimeo link</p>
+          <div class="float-card fc1">
+            <span class="fc-dot green"></span>All modules active
+          </div>
+          <div class="float-card fc2">
+            <span class="fc-dot purple"></span>0 data stored
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- TECH STACK -->
-<section id="tech">
-  <div class="tech-header reveal">
-    <div class="s-label">Technology</div>
-    <h2 class="s-title">Built With</h2>
-  </div>
-  <div class="tech-pills reveal">
-    <div class="tech-pill">🤗 HuggingFace Transformers</div>
-    <div class="tech-pill">🔥 PyTorch</div>
-    <div class="tech-pill">⚡ FastAPI</div>
-    <div class="tech-pill">🧠 DistilBERT</div>
-    <div class="tech-pill">🧠 BERT</div>
-    <div class="tech-pill">🌐 JavaScript Extension</div>
-    <div class="tech-pill">🐍 Python Backend</div>
-    <div class="tech-pill">📊 LIAR Dataset</div>
-    <div class="tech-pill">🏥 CoAID Dataset</div>
-    <div class="tech-pill">🎣 PhishTank</div>
-    <div class="tech-pill">📱 SMS Spam Dataset</div>
-    <div class="tech-pill">🔍 Named Entity Recognition</div>
-    <div class="tech-pill">🧬 Fine-Tuned Transformers</div>
-    <div class="tech-pill">🔐 HTTPS / TLS</div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="team-inner">
-    <div class="team-header reveal">
-      <div class="s-label">The Team</div>
-      <h2 class="s-title">Minds Behind The Guardian</h2>
-      <p class="s-desc">Four specialists, one unified mission — building a safer digital future.</p>
-    </div>
-    <div class="team-grid reveal">
-      <div class="team-card">
-        <div class="team-av"><img src="images/Vishwa.jpeg" alt="Vishwa Rathnayaka"></div>
-        <h3>Vishwa Rathnayaka</h3>
-        <span class="team-role">Scam & Phishing Module Lead</span>
-        <div class="team-socials">
-          <a href="mailto:vjr200124@gmail.com" class="team-social">✉</a>
-          <a href="https://www.linkedin.com/in/vishwa-rathnayaka-8327aa1a4/" class="team-social" target="_blank">in</a>
+    <!-- PROBLEMS -->
+    <section id="problems">
+      <div class="problems-inner">
+        <div class="problems-header reveal">
+          <div class="s-label">The Challenge</div>
+          <h2 class="s-title">The Hidden Risks of Social Media</h2>
+          <p class="s-desc">
+            Most existing tools are reactive — they act after damage occurs. The
+            Guardian provides proactive real-time protection at the user level.
+          </p>
+        </div>
+        <div class="probs-grid reveal">
+          <div class="prob-card">
+            <div class="prob-num">01</div>
+            <span class="prob-icon">🎭</span>
+            <h3>Misinformation</h3>
+            <p>
+              Emotionally manipulative fake news spreading rapidly across
+              platforms, eroding public trust and distorting reality.
+            </p>
+          </div>
+          <div class="prob-card">
+            <div class="prob-num">02</div>
+            <span class="prob-icon">🎣</span>
+            <h3>Phishing & Scams</h3>
+            <p>
+              Sophisticated phishing using urgency and impersonation to steal
+              credentials and money from unsuspecting users.
+            </p>
+          </div>
+          <div class="prob-card">
+            <div class="prob-num">03</div>
+            <span class="prob-icon">☠️</span>
+            <h3>Hate Speech</h3>
+            <p>
+              Toxic and abusive content — from explicit to implicit — creating
+              hostile environments and causing real harm.
+            </p>
+          </div>
+          <div class="prob-card">
+            <div class="prob-num">04</div>
+            <span class="prob-icon">🔓</span>
+            <h3>Privacy Leaks</h3>
+            <p>
+              Oversharing personal data, travel plans, and sensitive information
+              that enables identity theft and surveillance.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-av"><img src="images/Hiruni.jpeg" alt="Hiruni De Alwis"></div>
-        <h3>Hiruni De Alwis</h3>
-        <span class="team-role">Misinformation Module Lead</span>
-        <div class="team-socials">
-          <a href="mailto:hirunisathsaranidealwis@gmail.com" class="team-social">✉</a>
-          <a href="http://linkedin.com/in/hirunidealwis" class="team-social" target="_blank">in</a>
+    </section>
+
+    <!-- MODULES -->
+    <section id="modules">
+      <div class="modules-header reveal">
+        <div class="s-label">Core AI Modules</div>
+        <h2 class="s-title">Four Layers of Intelligence</h2>
+        <p class="s-desc">
+          Each module independently trained on specialized datasets, working in
+          parallel for comprehensive protection.
+        </p>
+      </div>
+      <div class="mods-grid reveal">
+        <div class="mod-card mc1" data-num="01">
+          <div class="mod-color-bar"></div>
+          <div class="mod-icon">🎣</div>
+          <h3>Scam & Phishing Detection</h3>
+          <span class="mod-dev">// Vishwa Rathnayaka</span>
+          <p>
+            Dual-path detection engine combining URL heuristics and blacklist
+            analysis with DistilBERT-powered text understanding. Detects urgency
+            patterns, impersonation attempts, and fraud signals. Includes Safe
+            Preview and Safe Mode features.
+          </p>
+          <div class="mod-tags">
+            <span class="tag">DistilBERT</span
+            ><span class="tag">URL Analysis</span
+            ><span class="tag">PhishTank</span
+            ><span class="tag">Hybrid Fusion</span>
+          </div>
+        </div>
+        <div class="mod-card mc2" data-num="02">
+          <div class="mod-color-bar"></div>
+          <div class="mod-icon">📰</div>
+          <h3>Misinformation Detection</h3>
+          <span class="mod-dev">// Hiruni De Alwis</span>
+          <p>
+            Transformer-based NLP detection of misleading and manipulative
+            content. Trained on LIAR and CoAID datasets. Detects emotional
+            manipulation, provides evidence-based explanations, and adapts to
+            user digital literacy level.
+          </p>
+          <div class="mod-tags">
+            <span class="tag">BERT</span><span class="tag">LIAR Dataset</span
+            ><span class="tag">CoAID</span
+            ><span class="tag">Evidence-Based</span>
+          </div>
+        </div>
+        <div class="mod-card mc3" data-num="03">
+          <div class="mod-color-bar"></div>
+          <div class="mod-icon">🗣️</div>
+          <h3>Hate Speech Detection</h3>
+          <span class="mod-dev">// Randinu Fernando</span>
+          <p>
+            Real-time identification of harmful toxic content, classifying into
+            Hate, Offensive, and Neutral categories. Detects both explicit and
+            context-based toxicity, with confidence scores and color-coded
+            awareness alerts.
+          </p>
+          <div class="mod-tags">
+            <span class="tag">3-Class Model</span
+            ><span class="tag">Context-Aware</span
+            ><span class="tag">Confidence Score</span
+            ><span class="tag">Color Alerts</span>
+          </div>
+        </div>
+        <div class="mod-card mc4" data-num="04">
+          <div class="mod-color-bar"></div>
+          <div class="mod-icon">🔏</div>
+          <h3>PII & OpSec Detection</h3>
+          <span class="mod-dev">// Herath H.M.G.D.K</span>
+          <p>
+            Hybrid privacy protection using NER (AI-based) and regex pattern
+            matching. Detects phone, email, NIC, and risky behaviors like travel
+            plan disclosure. Actively prevents identity theft before it occurs.
+          </p>
+          <div class="mod-tags">
+            <span class="tag">NER Model</span
+            ><span class="tag">Regex Engine</span
+            ><span class="tag">PII Detection</span
+            ><span class="tag">OpSec</span>
+          </div>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-av"><img src="images/Randinu.jpeg" alt="Randinu Fernando"></div>
-        <h3>Randinu Fernando</h3>
-        <span class="team-role">Hate Speech Module Lead</span>
-        <div class="team-socials">
-          <a href="mailto:randinu.fdo@gmail.com" class="team-social">✉</a>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="howitworks">
+      <div class="how-inner">
+        <div class="how-header reveal">
+          <div class="s-label">Workflow</div>
+          <h2 class="s-title">How It Works</h2>
+          <p class="s-desc">
+            Six steps from browsing to protection — all happening invisibly in
+            under a second.
+          </p>
+        </div>
+        <div class="steps-grid reveal">
+          <div class="step-card">
+            <div class="step-num-big">01</div>
+            <h3>Browse</h3>
+            <p>
+              User browses social media normally. The extension runs silently in
+              the background without disruption.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-big">02</div>
+            <h3>Extract</h3>
+            <p>
+              Visible page text is extracted and preprocessed by the content
+              script for analysis.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-big">03</div>
+            <h3>Transmit</h3>
+            <p>
+              Data is securely sent to the FastAPI backend over encrypted
+              channels in milliseconds.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-big">04</div>
+            <h3>Analyze</h3>
+            <p>
+              All four AI modules run in parallel, simultaneously evaluating for
+              different threat types.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-big">05</div>
+            <h3>Classify</h3>
+            <p>
+              Threats are risk-scored, classified by severity, and structured
+              into a JSON response object.
+            </p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-big">06</div>
+            <h3>Alert</h3>
+            <p>
+              Non-intrusive tooltip alerts inform the user with clear,
+              human-readable explanations and context.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-av">GH</div>
-        <h3>Herath H.M.G.D.K</h3>
-        <span class="team-role">PII & OpSec Module Lead</span>
-        <div class="team-socials">
-          <a href="#" class="team-social">✉</a>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo">
+      <div class="demo-header reveal">
+        <div class="s-label">Live Demo</div>
+        <h2 class="s-title">Try The Guardian</h2>
+        <p class="s-desc">
+          Enter any text and watch the AI modules detect threats in real time.
+        </p>
+      </div>
+      <div class="demo-shell reveal">
+        <div class="demo-topbar">
+          <div class="win-btn r"></div>
+          <div class="win-btn y"></div>
+          <div class="win-btn g"></div>
+          <div class="demo-title">GUARDIAN_ANALYSIS_ENGINE v1.0</div>
+        </div>
+        <div class="demo-body">
+          <div class="demo-label">// Input text for analysis</div>
+          <textarea
+            class="demo-textarea"
+            id="demoInput"
+            placeholder="Enter text to analyze... e.g. 'URGENT: Your bank account will be locked! Click here now!'"
+          ></textarea>
+          <button class="demo-run" onclick="runAnalysis()">
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <polygon points="2,1 11,6 2,11" fill="currentColor" />
+            </svg>
+            ANALYZE THREAT
+          </button>
+          <div class="demo-loading" id="demoLoad">
+            <div class="loading-text">SCANNING<span id="scanDots"></span></div>
+            <div class="loading-bar">
+              <div class="loading-fill" id="loadFill"></div>
+            </div>
+          </div>
+          <div class="demo-results" id="demoRes">
+            <div class="demo-label" style="margin-bottom: 1rem">
+              // Analysis results
+            </div>
+            <div id="resContainer"></div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-header reveal">
-    <div class="s-label">Get In Touch</div>
-    <h2 class="s-title">Let's Connect</h2>
-    <p class="s-desc" style="margin:0 auto;">Interested in collaboration, feedback, or learning more about The Guardian?</p>
-  </div>
-  <div class="contact-card reveal">
-    <div class="form-row">
-      <div class="form-g">
-        <label>Name</label>
-        <input type="text" class="form-inp" placeholder="Your full name">
+    <!-- RESEARCH PAPERS -->
+    <section id="research">
+      <div class="research-header reveal">
+        <div class="s-label">Academic Research</div>
+        <h2 class="s-title">Research Papers & Publications</h2>
+        <p class="s-desc">
+          The academic foundation and published work behind The Guardian system.
+        </p>
       </div>
-      <div class="form-g">
-        <label>Email</label>
-        <input type="email" class="form-inp" placeholder="your@email.com">
+      <div class="research-grid reveal">
+        <div class="paper-card p1">
+          <div class="paper-type thesis">
+            <span class="paper-icon">📘</span>Thesis / Dissertation
+          </div>
+          <h3>
+            AI-Powered Real-Time Detection of Human-Layer Cybersecurity Threats
+            on Social Media
+          </h3>
+          <div class="paper-authors">
+            Rathnayaka, V. · De Alwis, H. · Fernando, R. · Herath, H.M.G.D.K —
+            2025
+          </div>
+          <p class="paper-abstract">
+            This dissertation presents a comprehensive modular AI framework for
+            detecting and mitigating human-layer cybersecurity threats in
+            real-time browser environments. The system integrates four
+            specialized deep learning modules — scam/phishing detection,
+            misinformation classification, hate speech analysis, and PII/OpSec
+            protection — into a unified browser extension architecture powered
+            by transformer-based models.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">NLP</span
+              ><span class="paper-tag">Cybersecurity</span
+              ><span class="paper-tag">BERT</span>
+            </div>
+            <a href="#" class="paper-btn">↓ PDF</a>
+          </div>
+        </div>
+        <div class="paper-card p2">
+          <div class="paper-type paper">
+            <span class="paper-icon">📄</span>Research Paper
+          </div>
+          <h3>
+            Dual-Path Scam and Phishing Detection Using URL Heuristics and
+            DistilBERT Text Classification
+          </h3>
+          <div class="paper-authors">
+            Rathnayaka, V. — Module 01 Technical Paper · 2025
+          </div>
+          <p class="paper-abstract">
+            A hybrid approach combining URL-based heuristic analysis with
+            DistilBERT natural language processing for detecting phishing and
+            scam content across social media platforms. The dual-path
+            architecture achieves superior detection rates by fusing
+            link-inspection signals with contextual text understanding.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">DistilBERT</span
+              ><span class="paper-tag">Phishing</span>
+            </div>
+            <a href="#" class="paper-btn">↓ PDF</a>
+          </div>
+        </div>
+        <div class="paper-card p3">
+          <div class="paper-type paper">
+            <span class="paper-icon">📄</span>Research Paper
+          </div>
+          <h3>
+            Transformer-Based Misinformation Detection with Adaptive User
+            Feedback on Social Platforms
+          </h3>
+          <div class="paper-authors">
+            De Alwis, H. — Module 02 Technical Paper · 2025
+          </div>
+          <p class="paper-abstract">
+            This paper introduces an evidence-backed misinformation detection
+            system using BERT fine-tuned on the LIAR and CoAID datasets. A novel
+            contribution is the adaptive feedback mechanism that adjusts
+            explanations based on inferred user digital literacy level,
+            improving comprehension and behavioral change.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">BERT</span
+              ><span class="paper-tag">Misinformation</span>
+            </div>
+            <a href="#" class="paper-btn">↓ PDF</a>
+          </div>
+        </div>
+        <div class="paper-card p4">
+          <div class="paper-type report">
+            <span class="paper-icon">📋</span>Technical Report
+          </div>
+          <h3>Add Your Paper or Report</h3>
+          <div class="paper-authors">Author Name · Year</div>
+          <p class="paper-abstract">
+            Upload your research paper, technical report, or academic
+            publication here. Supports PDF, DOC, and link-based access. Add
+            abstract, keywords, and author information for complete academic
+            citation.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">+ Add Tags</span>
+            </div>
+            <a href="#" class="paper-btn">+ Upload</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-g">
-      <label>Message</label>
-      <textarea class="form-inp" placeholder="Tell us how we can help..."></textarea>
-    </div>
-    <button class="form-submit">SEND MESSAGE →</button>
-    <p style="text-align:center;margin-top:1.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(196,181,253,0.3);letter-spacing:1px;">theguardianproject@email.com</p>
-  </div>
-</section>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">THE GUARDIAN</div>
-  <ul class="footer-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#modules">Modules</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#diagram">Diagram</a></li>
-    <li><a href="#videos">Videos</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="footer-copy">© 2026 THE GUARDIAN PROJECT</div>
-</footer>
+    <!-- THESIS -->
+    <section id="thesis">
+      <div class="thesis-inner">
+        <div style="text-align: center; margin-bottom: 4rem" class="reveal">
+          <div class="s-label" style="justify-content: center">Full Thesis</div>
+          <h2 class="s-title">Main Dissertation</h2>
+          <p class="s-desc" style="margin: 0 auto">
+            The complete academic thesis documenting the full system design,
+            methodology, experiments, and results.
+          </p>
+        </div>
+        <div class="thesis-layout reveal">
+          <div class="thesis-book">
+            <div class="thesis-book-top">
+              <div class="thesis-badge">MSc THESIS · 2025</div>
+              <h2>
+                AI-Powered Cybersecurity Shield: Multi-Module Real-Time Threat
+                Detection for Social Media
+              </h2>
+            </div>
+            <div class="thesis-book-bottom">
+              <p
+                style="
+                  font-family: &quot;Space Mono&quot;, monospace;
+                  font-size: 0.65rem;
+                  color: rgba(196, 181, 253, 0.4);
+                  letter-spacing: 1px;
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Sri Lanka Institute of Information Technology
+              </p>
+              <div class="thesis-year">© 2025 — All Rights Reserved</div>
+            </div>
+          </div>
+          <div class="thesis-details">
+            <div class="thesis-meta-item">
+              <div class="thesis-meta-label">Title</div>
+              <div class="thesis-meta-value">
+                AI-Powered Real-Time Cybersecurity Threat Detection on Social
+                Media
+              </div>
+            </div>
+            <div class="thesis-meta-item">
+              <div class="thesis-meta-label">Authors</div>
+              <div class="thesis-meta-value">
+                Rathnayaka V. · De Alwis H. · Fernando R. · Herath H.M.G.D.K
+              </div>
+            </div>
+            <div class="thesis-meta-item">
+              <div class="thesis-meta-label">Abstract</div>
+              <div class="thesis-meta-sub">
+                This thesis presents The Guardian — a browser extension
+                integrating four AI modules (scam/phishing detection,
+                misinformation classification, hate speech detection, and
+                PII/OpSec protection) into a unified real-time cybersecurity
+                system. Using transformer-based NLP models deployed via a
+                FastAPI backend, the system achieves high accuracy detection
+                with zero user data storage. The work contributes novel hybrid
+                detection approaches and adaptive user education features.
+              </div>
+            </div>
+            <div class="thesis-meta-item">
+              <div class="thesis-meta-label">Keywords</div>
+              <div
+                style="
+                  display: flex;
+                  gap: 6px;
+                  flex-wrap: wrap;
+                  margin-top: 0.5rem;
+                "
+              >
+                <span class="paper-tag">Cybersecurity</span
+                ><span class="paper-tag">NLP</span
+                ><span class="paper-tag">BERT</span
+                ><span class="paper-tag">Browser Extension</span
+                ><span class="paper-tag">Misinformation</span
+                ><span class="paper-tag">Phishing</span
+                ><span class="paper-tag">PII</span>
+              </div>
+            </div>
+            <a href="#" class="thesis-download-btn">
+              ↓ Download Full Thesis (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script>
-// ─── CURSOR ───
-const dot = document.getElementById('cur-dot');
-const trail = document.getElementById('cur-trail');
-let tx = 0, ty = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-  tx = e.clientX; ty = e.clientY;
-  dot.style.left = tx + 'px'; dot.style.top = ty + 'px';
-});
-(function animTrail() {
-  rx += (tx - rx) * 0.14;
-  ry += (ty - ry) * 0.14;
-  trail.style.left = rx + 'px'; trail.style.top = ry + 'px';
-  requestAnimationFrame(animTrail);
-})();
+    <!-- SYSTEM DIAGRAM -->
+    <section id="diagram">
+      <div class="diagram-header reveal">
+        <div class="s-label">Architecture</div>
+        <h2 class="s-title">System Diagram</h2>
+        <p class="s-desc" style="margin: 0 auto">
+          The complete technical architecture and data flow of The Guardian
+          system.
+        </p>
+      </div>
+      <div class="arch-svg-wrap">
+        <img
+          src="images/system.jpeg"
+          alt="The Guardian system diagram"
+          class="arch-diagram-img"
+        />
+      </div>
+    </section>
 
-// ─── SCROLL REVEAL ───
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), 0);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => obs.observe(el));
+    <!-- COMMERCIALIZATION VIDEOS -->
+    <section id="videos">
+      <div class="videos-inner">
+        <div class="videos-header reveal">
+          <div class="s-label">Commercialization</div>
+          <h2 class="s-title">Demo & Pitch Videos</h2>
+          <p class="s-desc">
+            Watch product demonstrations, commercialization pitches, and
+            technical walkthroughs of The Guardian.
+          </p>
+        </div>
+        <div class="videos-grid reveal">
+          <div class="video-card" onclick="openVideo(this, 'demo')">
+            <div class="video-thumb">
+              <div
+                class="video-thumb-bg"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, 0.4),
+                    rgba(35, 33, 36, 0.9)
+                  );
+                "
+              ></div>
+              <div class="video-play-btn">
+                <svg viewBox="0 0 18 18">
+                  <polygon points="4,2 16,9 4,16" fill="#232124" />
+                </svg>
+              </div>
+              <div class="video-thumb-label">5:24</div>
+            </div>
+            <div class="video-info">
+              <div class="video-type">Product Demo</div>
+              <h3>The Guardian — Live Demonstration</h3>
+              <p>
+                Full walkthrough of the browser extension detecting real-world
+                threats across social media platforms.
+              </p>
+            </div>
+          </div>
+          <div class="video-card" onclick="openVideo(this, 'pitch')">
+            <div class="video-thumb">
+              <div
+                class="video-thumb-bg"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(236, 72, 153, 0.3),
+                    rgba(35, 33, 36, 0.9)
+                  );
+                "
+              ></div>
+              <div class="video-play-btn">
+                <svg viewBox="0 0 18 18">
+                  <polygon points="4,2 16,9 4,16" fill="#232124" />
+                </svg>
+              </div>
+              <div class="video-thumb-label">3:12</div>
+            </div>
+            <div class="video-info">
+              <div class="video-type">Commercialization Pitch</div>
+              <h3>Market Opportunity & Business Model</h3>
+              <p>
+                Investor pitch covering the market need, monetization strategy,
+                and scalability roadmap.
+              </p>
+            </div>
+          </div>
+        </div>
 
-// ─── NAV SHADOW ───
-window.addEventListener('scroll', () => {
-  document.getElementById('mainNav').style.boxShadow =
-    window.scrollY > 60 ? '0 4px 40px rgba(139,92,246,0.1)' : 'none';
-});
+        <!-- Video embed placeholder -->
+        <div id="videoEmbed" style="display: none; margin-top: 2rem">
+          <div
+            style="
+              background: var(--purple);
+              border-radius: var(--r3);
+              overflow: hidden;
+            "
+          >
+            <div
+              style="
+                padding: 1rem 1.5rem;
+                background: rgba(0, 0, 0, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <span
+                style="
+                  font-family: &quot;Space Mono&quot;, monospace;
+                  font-size: 0.65rem;
+                  color: rgba(196, 181, 253, 0.4);
+                  letter-spacing: 2px;
+                "
+                >NOW PLAYING</span
+              >
+              <button
+                onclick="
+                  document.getElementById('videoEmbed').style.display = 'none'
+                "
+                style="
+                  background: none;
+                  border: none;
+                  color: rgba(255, 255, 255, 0.4);
+                  cursor: pointer;
+                  font-size: 1.2rem;
+                "
+              >
+                ✕
+              </button>
+            </div>
+            <div
+              style="
+                aspect-ratio: 16/9;
+                background: rgba(0, 0, 0, 0.4);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <div style="text-align: center">
+                <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3">
+                  🎬
+                </div>
+                <p
+                  style="
+                    font-family: &quot;Space Mono&quot;, monospace;
+                    font-size: 0.72rem;
+                    color: rgba(196, 181, 253, 0.3);
+                    letter-spacing: 1px;
+                  "
+                >
+                  EMBED YOUR VIDEO URL HERE
+                </p>
+                <p
+                  style="
+                    font-family: &quot;Space Mono&quot;, monospace;
+                    font-size: 0.6rem;
+                    color: rgba(196, 181, 253, 0.2);
+                    margin-top: 0.5rem;
+                  "
+                >
+                  Replace the iframe src with your YouTube/Vimeo link
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-// ─── DEMO ───
-function runAnalysis() {
-  const input = document.getElementById('demoInput').value.trim();
-  if (!input) {
-    document.getElementById('demoInput').style.borderColor = 'rgba(244,63,94,0.4)';
-    setTimeout(() => document.getElementById('demoInput').style.borderColor = '', 1000);
-    return;
-  }
-  const loadEl = document.getElementById('demoLoad');
-  const resEl = document.getElementById('demoRes');
-  resEl.classList.remove('show');
-  loadEl.classList.add('show');
+    <!-- TECH STACK -->
+    <section id="tech">
+      <div class="tech-header reveal">
+        <div class="s-label">Technology</div>
+        <h2 class="s-title">Built With</h2>
+      </div>
+      <div class="tech-pills reveal">
+        <div class="tech-pill">🤗 HuggingFace Transformers</div>
+        <div class="tech-pill">🔥 PyTorch</div>
+        <div class="tech-pill">⚡ FastAPI</div>
+        <div class="tech-pill">🧠 DistilBERT</div>
+        <div class="tech-pill">🧠 BERT</div>
+        <div class="tech-pill">🌐 JavaScript Extension</div>
+        <div class="tech-pill">🐍 Python Backend</div>
+        <div class="tech-pill">📊 LIAR Dataset</div>
+        <div class="tech-pill">🏥 CoAID Dataset</div>
+        <div class="tech-pill">🎣 PhishTank</div>
+        <div class="tech-pill">📱 SMS Spam Dataset</div>
+        <div class="tech-pill">🔍 Named Entity Recognition</div>
+        <div class="tech-pill">🧬 Fine-Tuned Transformers</div>
+        <div class="tech-pill">🔐 HTTPS / TLS</div>
+      </div>
+    </section>
 
-  // Restart loading bar
-  const fill = document.getElementById('loadFill');
-  fill.style.animation = 'none';
-  void fill.offsetWidth;
-  fill.style.animation = 'loadAnim 1.8s ease forwards';
+    <!-- TEAM -->
+    <section id="team">
+      <div class="team-inner">
+        <div class="team-header reveal">
+          <div class="s-label">The Team</div>
+          <h2 class="s-title">Minds Behind The Guardian</h2>
+          <p class="s-desc">
+            Four specialists, one unified mission — building a safer digital
+            future.
+          </p>
+        </div>
+        <div class="team-grid reveal">
+          <div class="team-card">
+            <div class="team-av">
+              <img src="images/Vishwa.jpeg" alt="Vishwa Rathnayaka" />
+            </div>
+            <h3>Vishwa Rathnayaka</h3>
+            <span class="team-role">Scam & Phishing Module Lead</span>
+            <div class="team-socials">
+              <a href="mailto:vjr200124@gmail.com" class="team-social">✉</a>
+              <a
+                href="https://www.linkedin.com/in/vishwa-rathnayaka-8327aa1a4/"
+                class="team-social"
+                target="_blank"
+                >in</a
+              >
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-av">
+              <img src="images/Hiruni.jpeg" alt="Hiruni De Alwis" />
+            </div>
+            <h3>Hiruni De Alwis</h3>
+            <span class="team-role">Misinformation Module Lead</span>
+            <div class="team-socials">
+              <a
+                href="mailto:hirunisathsaranidealwis@gmail.com"
+                class="team-social"
+                >✉</a
+              >
+              <a
+                href="http://linkedin.com/in/hirunidealwis"
+                class="team-social"
+                target="_blank"
+                >in</a
+              >
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-av">
+              <img src="images/Randinu.jpeg" alt="Randinu Fernando" />
+            </div>
+            <h3>Randinu Fernando</h3>
+            <span class="team-role">Hate Speech Module Lead</span>
+            <div class="team-socials">
+              <a href="mailto:randinu.fdo@gmail.com" class="team-social">✉</a>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-av">GH</div>
+            <h3>Herath H.M.G.D.K</h3>
+            <span class="team-role">PII & OpSec Module Lead</span>
+            <div class="team-socials">
+              <a href="#" class="team-social">✉</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  // Scan dots
-  let d = 0;
-  const dotsEl = document.getElementById('scanDots');
-  const dotInterval = setInterval(() => {
-    dotsEl.textContent = '.'.repeat(d % 4);
-    d++;
-  }, 300);
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-header reveal">
+        <div class="s-label">Get In Touch</div>
+        <h2 class="s-title">Let's Connect</h2>
+        <p class="s-desc" style="margin: 0 auto">
+          Interested in collaboration, feedback, or learning more about The
+          Guardian?
+        </p>
+      </div>
+      <div class="contact-card reveal">
+        <div class="form-row">
+          <div class="form-g">
+            <label>Name</label>
+            <input type="text" class="form-inp" placeholder="Your full name" />
+          </div>
+          <div class="form-g">
+            <label>Email</label>
+            <input type="email" class="form-inp" placeholder="your@email.com" />
+          </div>
+        </div>
+        <div class="form-g">
+          <label>Message</label>
+          <textarea
+            class="form-inp"
+            placeholder="Tell us how we can help..."
+          ></textarea>
+        </div>
+        <button class="form-submit">SEND MESSAGE →</button>
+        <p
+          style="
+            text-align: center;
+            margin-top: 1.5rem;
+            font-family: &quot;Space Mono&quot;, monospace;
+            font-size: 0.65rem;
+            color: rgba(196, 181, 253, 0.3);
+            letter-spacing: 1px;
+          "
+        >
+          theguardianproject@email.com
+        </p>
+      </div>
+    </section>
 
-  setTimeout(() => {
-    clearInterval(dotInterval);
-    loadEl.classList.remove('show');
-    resEl.classList.add('show');
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-brand">THE GUARDIAN</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#modules">Modules</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#diagram">Diagram</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="footer-copy">© 2026 THE GUARDIAN PROJECT</div>
+    </footer>
 
-    const lc = input.toLowerCase();
-    const results = [
-      buildResult('SCAM_PHISH',
-        /urgent|click here|bank|account|locked|verify|win|free|claim|prize|congratulations|password|login|suspended|limited time/.test(lc)
-          ? { level: 'high', title: 'Scam / Phishing Detected', reason: 'Urgency + phishing language pattern', conf: rand(88,97) }
-          : { level: 'low', title: 'No Phishing Detected', reason: 'No scam patterns found', conf: rand(94,99) }
-      ),
-      buildResult('MISINFO',
-        /fake|hoax|lies|conspiracy|they don.t want|wake up|truth|hidden|secret|coverup|mainstream|they.re hiding|not telling you/.test(lc)
-          ? { level: 'medium', title: 'Potential Misinformation', reason: 'Conspiracy-type language patterns', conf: rand(75,88) }
-          : { level: 'low', title: 'No Misinformation Signals', reason: 'Content appears factual in tone', conf: rand(90,98) }
-      ),
-      buildResult('HATE_SPEECH',
-        /hate|kill|stupid|idiot|disgusting|terrible person|worthless|trash|garbage|loser|moron|filthy/.test(lc)
-          ? { level: 'high', title: 'Toxic / Hate Speech Detected', reason: 'Derogatory + offensive language found', conf: rand(85,95) }
-          : { level: 'low', title: 'No Hate Speech Detected', reason: 'Content within acceptable tone', conf: rand(95,99) }
-      ),
-      buildResult('PII_OPSEC',
-        /\d{9,}|@gmail|@yahoo|phone|address|passport|nic|email|my number|i live|i am going to|travelling to|flying to/.test(lc)
-          ? { level: 'medium', title: 'PII / OpSec Risk Detected', reason: 'Sensitive personal data patterns found', conf: rand(78,90) }
-          : { level: 'low', title: 'No PII Detected', reason: 'No personal information exposed', conf: rand(95,99) }
-      ),
-    ];
-
-    document.getElementById('resContainer').innerHTML = results.join('');
-    setTimeout(() => {
-      document.querySelectorAll('.conf-fill').forEach(el => {
-        const w = el.dataset.w; el.style.width = '0%';
-        setTimeout(() => el.style.width = w + '%', 50);
+    <script>
+      // ─── CURSOR ───
+      const dot = document.getElementById("cur-dot");
+      const trail = document.getElementById("cur-trail");
+      let tx = 0,
+        ty = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", (e) => {
+        tx = e.clientX;
+        ty = e.clientY;
+        dot.style.left = tx + "px";
+        dot.style.top = ty + "px";
       });
-    }, 100);
-  }, 1900);
-}
+      (function animTrail() {
+        rx += (tx - rx) * 0.14;
+        ry += (ty - ry) * 0.14;
+        trail.style.left = rx + "px";
+        trail.style.top = ry + "px";
+        requestAnimationFrame(animTrail);
+      })();
 
-function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
-function initReactBits() {
-  const host = document.getElementById('reactBits');
-  if (!host) return;
-  host.innerHTML = '';
+      // ─── SCROLL REVEAL ───
+      const revealEls = document.querySelectorAll(".reveal");
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+              setTimeout(() => e.target.classList.add("visible"), 0);
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      revealEls.forEach((el) => obs.observe(el));
 
-  const bitCount = window.innerWidth < 768 ? 20 : 36;
-  for (let i = 0; i < bitCount; i++) {
-    const bit = document.createElement('span');
-    bit.className = 'react-bit';
-    bit.style.setProperty('--bit-left', `${Math.random() * 100}%`);
-    bit.style.setProperty('--bit-top', `${70 + Math.random() * 35}%`);
-    bit.style.setProperty('--bit-size', `${4 + Math.random() * 10}px`);
-    bit.style.setProperty('--bit-opacity', `${0.22 + Math.random() * 0.45}`);
-    bit.style.setProperty('--bit-rot', `${Math.floor(Math.random() * 360)}deg`);
-    bit.style.setProperty('--bit-dur', `${11 + Math.random() * 12}s`);
-    bit.style.setProperty('--bit-delay', `${-Math.random() * 12}s`);
-    host.appendChild(bit);
-  }
-}
-function buildResult(mod, r) {
-  const badge = r.level === 'high' ? `<span class="rbadge high">⚠ HIGH RISK</span>` : r.level === 'medium' ? `<span class="rbadge medium">⚡ MEDIUM</span>` : `<span class="rbadge safe">✓ SAFE</span>`;
-  return `<div class="result-row risk-${r.level}">
+      // ─── NAV SHADOW ───
+      window.addEventListener("scroll", () => {
+        document.getElementById("mainNav").style.boxShadow =
+          window.scrollY > 60 ? "0 4px 40px rgba(139,92,246,0.1)" : "none";
+      });
+
+      // ─── DEMO ───
+      function runAnalysis() {
+        const input = document.getElementById("demoInput").value.trim();
+        if (!input) {
+          document.getElementById("demoInput").style.borderColor =
+            "rgba(244,63,94,0.4)";
+          setTimeout(
+            () => (document.getElementById("demoInput").style.borderColor = ""),
+            1000,
+          );
+          return;
+        }
+        const loadEl = document.getElementById("demoLoad");
+        const resEl = document.getElementById("demoRes");
+        resEl.classList.remove("show");
+        loadEl.classList.add("show");
+
+        // Restart loading bar
+        const fill = document.getElementById("loadFill");
+        fill.style.animation = "none";
+        void fill.offsetWidth;
+        fill.style.animation = "loadAnim 1.8s ease forwards";
+
+        // Scan dots
+        let d = 0;
+        const dotsEl = document.getElementById("scanDots");
+        const dotInterval = setInterval(() => {
+          dotsEl.textContent = ".".repeat(d % 4);
+          d++;
+        }, 300);
+
+        setTimeout(() => {
+          clearInterval(dotInterval);
+          loadEl.classList.remove("show");
+          resEl.classList.add("show");
+
+          const lc = input.toLowerCase();
+          const results = [
+            buildResult(
+              "SCAM_PHISH",
+              /urgent|click here|bank|account|locked|verify|win|free|claim|prize|congratulations|password|login|suspended|limited time/.test(
+                lc,
+              )
+                ? {
+                    level: "high",
+                    title: "Scam / Phishing Detected",
+                    reason: "Urgency + phishing language pattern",
+                    conf: rand(88, 97),
+                  }
+                : {
+                    level: "low",
+                    title: "No Phishing Detected",
+                    reason: "No scam patterns found",
+                    conf: rand(94, 99),
+                  },
+            ),
+            buildResult(
+              "MISINFO",
+              /fake|hoax|lies|conspiracy|they don.t want|wake up|truth|hidden|secret|coverup|mainstream|they.re hiding|not telling you/.test(
+                lc,
+              )
+                ? {
+                    level: "medium",
+                    title: "Potential Misinformation",
+                    reason: "Conspiracy-type language patterns",
+                    conf: rand(75, 88),
+                  }
+                : {
+                    level: "low",
+                    title: "No Misinformation Signals",
+                    reason: "Content appears factual in tone",
+                    conf: rand(90, 98),
+                  },
+            ),
+            buildResult(
+              "HATE_SPEECH",
+              /hate|kill|stupid|idiot|disgusting|terrible person|worthless|trash|garbage|loser|moron|filthy/.test(
+                lc,
+              )
+                ? {
+                    level: "high",
+                    title: "Toxic / Hate Speech Detected",
+                    reason: "Derogatory + offensive language found",
+                    conf: rand(85, 95),
+                  }
+                : {
+                    level: "low",
+                    title: "No Hate Speech Detected",
+                    reason: "Content within acceptable tone",
+                    conf: rand(95, 99),
+                  },
+            ),
+            buildResult(
+              "PII_OPSEC",
+              /\d{9,}|@gmail|@yahoo|phone|address|passport|nic|email|my number|i live|i am going to|travelling to|flying to/.test(
+                lc,
+              )
+                ? {
+                    level: "medium",
+                    title: "PII / OpSec Risk Detected",
+                    reason: "Sensitive personal data patterns found",
+                    conf: rand(78, 90),
+                  }
+                : {
+                    level: "low",
+                    title: "No PII Detected",
+                    reason: "No personal information exposed",
+                    conf: rand(95, 99),
+                  },
+            ),
+          ];
+
+          document.getElementById("resContainer").innerHTML = results.join("");
+          setTimeout(() => {
+            document.querySelectorAll(".conf-fill").forEach((el) => {
+              const w = el.dataset.w;
+              el.style.width = "0%";
+              setTimeout(() => (el.style.width = w + "%"), 50);
+            });
+          }, 100);
+        }, 1900);
+      }
+
+      function rand(a, b) {
+        return Math.floor(Math.random() * (b - a + 1)) + a;
+      }
+      function initReactBits() {
+        const host = document.getElementById("reactBits");
+        if (!host) return;
+        host.innerHTML = "";
+
+        const bitCount = window.innerWidth < 768 ? 20 : 36;
+        for (let i = 0; i < bitCount; i++) {
+          const bit = document.createElement("span");
+          bit.className = "react-bit";
+          bit.style.setProperty("--bit-left", `${Math.random() * 100}%`);
+          bit.style.setProperty("--bit-top", `${70 + Math.random() * 35}%`);
+          bit.style.setProperty("--bit-size", `${4 + Math.random() * 10}px`);
+          bit.style.setProperty(
+            "--bit-opacity",
+            `${0.22 + Math.random() * 0.45}`,
+          );
+          bit.style.setProperty(
+            "--bit-rot",
+            `${Math.floor(Math.random() * 360)}deg`,
+          );
+          bit.style.setProperty("--bit-dur", `${11 + Math.random() * 12}s`);
+          bit.style.setProperty("--bit-delay", `${-Math.random() * 12}s`);
+          host.appendChild(bit);
+        }
+      }
+      function buildResult(mod, r) {
+        const badge =
+          r.level === "high"
+            ? `<span class="rbadge high">⚠ HIGH RISK</span>`
+            : r.level === "medium"
+              ? `<span class="rbadge medium">⚡ MEDIUM</span>`
+              : `<span class="rbadge safe">✓ SAFE</span>`;
+        return `<div class="result-row risk-${r.level}">
     <div class="result-mod">${mod}</div>
     <div class="result-body">
       <div class="result-badges">${badge}<span class="result-title">${r.title}</span></div>
@@ -1973,26 +3810,37 @@ function buildResult(mod, r) {
       <div class="conf-label">Confidence: ${r.conf}%</div>
     </div>
   </div>`;
-}
+      }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initReactBits();
-  window.addEventListener('resize', initReactBits);
+      document.addEventListener("DOMContentLoaded", () => {
+        initReactBits();
+        window.addEventListener("resize", initReactBits);
 
-  // Apply heading/text animations globally without changing markup manually
-  document.querySelectorAll('h1, h2, h3').forEach(el => el.classList.add('heading-anim'));
-  document.querySelectorAll('p, li, .team-role, .result-reason, .conf-label').forEach(el => el.classList.add('text-anim'));
+        // Apply heading/text animations globally without changing markup manually
+        document
+          .querySelectorAll("h1, h2, h3")
+          .forEach((el) => el.classList.add("heading-anim"));
+        document
+          .querySelectorAll("p, li, .team-role, .result-reason, .conf-label")
+          .forEach((el) => el.classList.add("text-anim"));
 
-  document.getElementById('demoInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); runAnalysis(); }
-  });
-});
+        document
+          .getElementById("demoInput")
+          .addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              runAnalysis();
+            }
+          });
+      });
 
-// ─── VIDEO ───
-function openVideo(card, type) {
-  document.getElementById('videoEmbed').style.display = 'block';
-  document.getElementById('videoEmbed').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-</script>
-</body>
+      // ─── VIDEO ───
+      function openVideo(card, type) {
+        document.getElementById("videoEmbed").style.display = "block";
+        document
+          .getElementById("videoEmbed")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    </script>
+  </body>
 </html>
