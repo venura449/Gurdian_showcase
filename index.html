@@ -898,7 +898,7 @@
         align-items: center;
         gap: 1rem;
         padding: 0.9rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: none;
         transition: all 0.2s;
         cursor: default;
       }
@@ -938,54 +938,6 @@
         height: 16px;
         background: rgba(139, 92, 246, 0.3);
         margin-left: 18px;
-      }
-
-      /* Float cards */
-      .float-card {
-        position: absolute;
-        background: #f7f2ff;
-        border-radius: var(--r2);
-        padding: 1rem 1.4rem;
-        box-shadow: 0 20px 60px rgba(35, 33, 36, 0.12);
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.68rem;
-        color: var(--text2);
-        letter-spacing: 0.5px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        animation: cardFloat 4s ease-in-out infinite;
-        border: 1px solid rgba(139, 92, 246, 0.1);
-      }
-      .float-card.fc1 {
-        bottom: -1rem;
-        right: -2rem;
-        animation-delay: 0s;
-      }
-      .float-card.fc2 {
-        top: -1rem;
-        left: -2rem;
-        animation-delay: 2s;
-      }
-      @keyframes cardFloat {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-8px);
-        }
-      }
-      .fc-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-      }
-      .fc-dot.green {
-        background: #4ade80;
-      }
-      .fc-dot.purple {
-        background: var(--accent);
       }
 
       /* ─── PROBLEMS ─── */
@@ -3095,12 +3047,6 @@
               </div>
             </div>
           </div>
-          <div class="float-card fc1">
-            <span class="fc-dot green"></span>All modules active
-          </div>
-          <div class="float-card fc2">
-            <span class="fc-dot purple"></span>0 data stored
-          </div>
         </div>
       </div>
     </section>
@@ -3333,24 +3279,26 @@
       <div class="research-grid reveal">
         <div class="paper-card p1">
           <div class="paper-type thesis">
-            <span class="paper-icon">📘</span>Final Report
+            <span class="paper-icon">📘</span>Research Paper
           </div>
           <h3>
-            AI-Powered Real-Time Detection of Human-Layer Cybersecurity Threats
-            on Social Media
+            The Guardian: Enhancing User-Centric Cybersecurity through Real-Time
+            NLP-Based Threat Analysis
           </h3>
           <div class="paper-authors">
             Rathnayaka, V. · De Alwis, H. · Fernando, R. · Herath, H.M.G.D.K —
             2025
           </div>
           <p class="paper-abstract">
-            This final report presents a comprehensive modular AI framework for
-            detecting and mitigating human-layer cybersecurity threats in
-            real-time browser environments. The system integrates four
-            specialized deep learning modules — scam/phishing detection,
-            misinformation classification, hate speech analysis, and PII/OpSec
-            protection — into a unified browser extension architecture powered
-            by transformer-based models.
+            “The Guardian” is a modular AI-powered browser extension that
+            provides real-time detection of human-layer cybersecurity threats on
+            social media, including misinformation, hate speech, scams, and PII
+            exposure. It uses advanced NLP models such as BERT and DistilBERT
+            to analyze text and deliver non-intrusive, explanatory feedback
+            that guides users without censoring content. The system’s
+            privacy-focused and scalable architecture enables proactive,
+            user-centric protection, helping individuals make informed
+            decisions and improve their resilience against online threats.
           </p>
           <div class="paper-meta">
             <div class="paper-tags">
@@ -3358,12 +3306,18 @@
               ><span class="paper-tag">Cybersecurity</span
               ><span class="paper-tag">BERT</span>
             </div>
-            <a href="#" class="paper-btn">↓ PDF</a>
+            <a
+              href="Final_Guardian_IEEE_Conference__Paper_Draft.pdf"
+              class="paper-btn"
+              download
+            >
+              ↓ PDF
+            </a>
           </div>
         </div>
         <div class="paper-card p2">
           <div class="paper-type paper">
-            <span class="paper-icon">📄</span>Research Paper
+            <span class="paper-icon">📄</span>Final Report
           </div>
           <h3>
             Dual-Path Scam and Phishing Detection Using URL Heuristics and
@@ -3477,8 +3431,12 @@
                 ><span class="paper-tag">PII</span>
               </div>
             </div>
-            <a href="#" class="thesis-download-btn">
-              Coming Soon — Full Thesis PDF Download
+            <a
+              href="Final_Guardian_IEEE_Conference__Paper_Draft.pdf"
+              class="thesis-download-btn"
+              download
+            >
+              Download Full Thesis PDF
             </a>
           </div>
         </div>
