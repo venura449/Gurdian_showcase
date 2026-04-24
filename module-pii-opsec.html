@@ -263,6 +263,14 @@
         color: var(--accent);
         background: rgba(139, 92, 246, 0.08);
       }
+      .doc-tab.is-disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        pointer-events: none;
+        color: var(--text2);
+        background: rgba(35, 33, 36, 0.04);
+        border-style: dashed;
+      }
       .viewer-note {
         padding: 1rem 1.05rem;
         border-radius: 18px;
@@ -568,15 +576,11 @@
               href="docs/PII%20%26%20Opsec%20Module/Project%20Proposal%20(Final)_IT22361486%20(1).pdf"
               download
             >
-              Proposal PDF
+              Project Proposal
             </a>
-            <a
-              class="doc-tab"
-              href="docs/PII%20%26%20Opsec%20Module/EXP_024_Evaluation_Summary%20(2).xlsx"
-              download
-            >
-              Evaluation Sheet
-            </a>
+            <span class="doc-tab is-disabled" aria-disabled="true">
+              Research Paper - Coming Soon
+            </span>
           </div>
         </section>
       </div>

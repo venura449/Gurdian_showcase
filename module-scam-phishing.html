@@ -263,6 +263,14 @@
         color: var(--accent);
         background: rgba(244, 63, 94, 0.08);
       }
+      .doc-tab.is-disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        pointer-events: none;
+        color: var(--text2);
+        background: rgba(35, 33, 36, 0.04);
+        border-style: dashed;
+      }
       .viewer-note {
         padding: 1rem 1.05rem;
         border-radius: 18px;
@@ -568,15 +576,11 @@
               href="docs/Scam%20%26%20Phishing%20Detection%20Module/RP_Proposal-(Final)_IT22916112%20(2).pdf"
               download
             >
-              Proposal PDF
+              Project Proposal
             </a>
-            <a
-              class="doc-tab"
-              href="docs/Scam%20%26%20Phishing%20Detection%20Module/The%20Guardian%20%E2%80%93%20Scam%20%26%20Phishing%20Detection%20Module-%20Evaluation%20report.pdf"
-              download
-            >
-              Evaluation Report
-            </a>
+            <span class="doc-tab is-disabled" aria-disabled="true">
+              Research Paper - Coming Soon
+            </span>
           </div>
         </section>
       </div>
