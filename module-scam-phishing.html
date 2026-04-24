@@ -22,7 +22,9 @@
         --dark: #232124;
         --r: 24px;
       }
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
       body {
         margin: 0;
         font-family: Inter, sans-serif;
@@ -32,58 +34,345 @@
           radial-gradient(circle at bottom left, rgba(251, 146, 60, 0.12), transparent 24%),
           var(--bg);
       }
-      a { color: inherit; }
-      .wrap { max-width: 1180px; margin: 0 auto; padding: 1.2rem 5% 4rem; }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 1.2rem 5% 4rem;
+      }
       .topbar {
-        display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-        padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 999px;
-        background: rgba(255,255,255,0.7); backdrop-filter: blur(18px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1.1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(18px);
       }
-      .brand { font-family: "Playfair Display", serif; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
-      .back { font-family: "JetBrains Mono", monospace; font-size: 0.72rem; text-decoration: none; color: var(--text2); }
-      .hero { padding: 4.5rem 0 2rem; }
+      .brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .back {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        text-decoration: none;
+        color: var(--text2);
+      }
+      .hero {
+        padding: 4.5rem 0 2rem;
+      }
       .eyebrow {
-        display: inline-flex; padding: 0.4rem 0.85rem; border-radius: 999px;
-        border: 1px solid var(--line); background: rgba(255,255,255,0.7);
-        font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase;
+        display: inline-flex;
+        padding: 0.4rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.7);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
       }
-      h1 { font-family: "Playfair Display", serif; font-size: clamp(2.5rem, 7vw, 4.8rem); line-height: 0.98; margin: 1rem 0 1rem; }
-      .sub { max-width: 760px; font-size: 1.05rem; line-height: 1.8; color: var(--text2); margin: 0 0 1.5rem; }
-      .chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 7vw, 4.8rem);
+        line-height: 0.98;
+        margin: 1rem 0 1rem;
+      }
+      .sub {
+        max-width: 760px;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text2);
+        margin: 0 0 1.5rem;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
       .chip {
-        padding: 0.55rem 0.95rem; border-radius: 999px; background: rgba(255,255,255,0.8);
-        border: 1px solid var(--line); font-family: "JetBrains Mono", monospace; font-size: 0.68rem;
+        padding: 0.55rem 0.95rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--line);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
       }
-      .grid { display: grid; gap: 1.2rem; grid-template-columns: 1.2fr 0.8fr; }
+      .grid {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: 1.2fr 0.8fr;
+      }
       .panel {
-        background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
-        padding: 1.5rem; backdrop-filter: blur(18px); box-shadow: 0 24px 60px rgba(35,33,36,0.08);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        padding: 1.5rem;
+        backdrop-filter: blur(18px);
+        box-shadow: 0 24px 60px rgba(35, 33, 36, 0.08);
       }
-      .panel h2 { font-family: "Playfair Display", serif; margin: 0 0 0.75rem; font-size: 1.4rem; }
-      .panel p { color: var(--text2); line-height: 1.75; margin: 0; }
-      ul { margin: 1rem 0 0; padding-left: 1.2rem; color: var(--text2); line-height: 1.7; }
+      .panel h2 {
+        font-family: "Playfair Display", serif;
+        margin: 0 0 0.75rem;
+        font-size: 1.4rem;
+      }
+      .panel p {
+        color: var(--text2);
+        line-height: 1.75;
+        margin: 0;
+      }
+      ul {
+        margin: 1rem 0 0;
+        padding-left: 1.2rem;
+        color: var(--text2);
+        line-height: 1.7;
+      }
       .video {
-        aspect-ratio: 16 / 9; border-radius: 20px; background:
-          linear-gradient(135deg, rgba(35,33,36,0.96), rgba(35,33,36,0.84)),
-          radial-gradient(circle at center, rgba(244,63,94,0.15), transparent 60%);
-        border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; text-align: center;
+        aspect-ratio: 16 / 9;
+        border-radius: 20px;
+        background:
+          linear-gradient(135deg, rgba(35, 33, 36, 0.96), rgba(35, 33, 36, 0.84)),
+          radial-gradient(circle at center, rgba(244, 63, 94, 0.15), transparent 60%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: grid;
+        place-items: center;
+        text-align: center;
       }
-      .video strong { display: block; font-family: "JetBrains Mono", monospace; letter-spacing: 1.5px; color: #fff; margin-bottom: 0.4rem; }
-      .video span { color: rgba(255,255,255,0.6); max-width: 320px; }
+      .video strong {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 1.5px;
+        color: #fff;
+        margin-bottom: 0.4rem;
+      }
+      .video span {
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 320px;
+      }
       .report-box {
-        display: grid; gap: 0.85rem; padding: 1rem; border-radius: 18px;
-        background: rgba(35,33,36,0.96); color: white;
+        display: grid;
+        gap: 0.85rem;
+        padding: 1rem;
+        border-radius: 18px;
+        background: rgba(35, 33, 36, 0.96);
+        color: white;
       }
-      .report-row { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.88rem; color: rgba(255,255,255,0.78); }
-      .report-row strong { color: white; }
-      .btn {
-        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-        padding: 0.95rem 1.2rem; border-radius: 999px; border: 0; text-decoration: none;
-        background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white;
-        font-family: "JetBrains Mono", monospace; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+      .report-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.78);
       }
-      footer { padding: 2rem 0 0; color: var(--text2); font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; }
-      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .topbar { border-radius: 24px; } }
+      .report-row strong {
+        color: white;
+      }
+      .viewer-shell {
+        display: grid;
+        gap: 1rem;
+      }
+      .viewer-book {
+        display: grid;
+        grid-template-columns: 26px minmax(0, 1fr);
+        gap: 0;
+        border-radius: 28px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(35, 33, 36, 0.05), rgba(35, 33, 36, 0.01));
+        border: 1px solid rgba(35, 33, 36, 0.08);
+        box-shadow: 0 32px 80px rgba(35, 33, 36, 0.12);
+      }
+      .viewer-spine {
+        background:
+          linear-gradient(180deg, rgba(244, 63, 94, 0.9), rgba(251, 146, 60, 0.9)),
+          #f43f5e;
+      }
+      .viewer-frame {
+        background:
+          radial-gradient(circle at top right, rgba(244, 63, 94, 0.08), transparent 20%),
+          #fff;
+      }
+      .viewer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.1rem;
+        border-bottom: 1px solid rgba(35, 33, 36, 0.08);
+        background: linear-gradient(180deg, rgba(247, 243, 255, 0.96), rgba(255, 255, 255, 0.96));
+      }
+      .viewer-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+      .viewer-open {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--accent);
+      }
+      .viewer-frame iframe {
+        width: 100%;
+        height: min(78vh, 880px);
+        border: 0;
+        display: block;
+        background: #fff;
+      }
+      .doc-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .doc-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        appearance: none;
+        border: 1px solid rgba(35, 33, 36, 0.12);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 0.8rem 1rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      .doc-tab:hover,
+      .doc-tab.is-active {
+        transform: translateY(-1px);
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(244, 63, 94, 0.08);
+      }
+      .viewer-note {
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        background: rgba(244, 63, 94, 0.08);
+        border: 1px dashed rgba(244, 63, 94, 0.24);
+        color: var(--text2);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+      .section-stack {
+        display: grid;
+        gap: 1.2rem;
+        margin-top: 1.2rem;
+      }
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .mini-card {
+        background: rgba(244, 63, 94, 0.04);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 1.25rem;
+      }
+      .mini-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        margin: 0 0 0.55rem;
+        color: var(--text);
+      }
+      .mini-card p {
+        color: var(--text2);
+        line-height: 1.75;
+        margin: 0;
+      }
+      .bullet-list {
+        list-style: none;
+        margin: 0.9rem 0 0;
+        padding: 0;
+        display: grid;
+        gap: 0.7rem;
+      }
+      .bullet-list li {
+        position: relative;
+        padding-left: 1.15rem;
+        color: var(--text2);
+        line-height: 1.6;
+      }
+      .bullet-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.58rem;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .arch-wrap {
+        display: grid;
+        gap: 1rem;
+      }
+      .arch-image {
+        width: 100%;
+        display: block;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        box-shadow: 0 24px 60px rgba(35, 33, 36, 0.1);
+        background: #fff;
+      }
+      .arch-caption {
+        color: var(--text2);
+        line-height: 1.75;
+        margin: 0;
+      }
+      .eval-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      footer {
+        padding: 2rem 0 0;
+        color: var(--text2);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .topbar {
+          border-radius: 24px;
+        }
+        .viewer-book {
+          grid-template-columns: 1fr;
+        }
+        .viewer-spine {
+          height: 10px;
+        }
+        .viewer-frame iframe {
+          height: 72vh;
+        }
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
@@ -96,9 +385,8 @@
         <div class="eyebrow">Module 01</div>
         <h1>Scam & Phishing Detection</h1>
         <p class="sub">
-          Dual-path detection engine for suspicious links and deceptive text. This
-          module combines URL heuristics, blacklist checks, and DistilBERT-based
-          language understanding to surface fraud signals before the user clicks.
+          Real-time detection of scam and phishing threats by combining URL
+          structure analysis with contextual understanding of surrounding text.
         </p>
         <div class="chips">
           <span class="chip">DistilBERT</span>
@@ -111,46 +399,195 @@
         <article class="panel">
           <h2>Description</h2>
           <p>
-            This module inspects links, sender intent, and urgent phrasing to
-            identify scam attempts, impersonation patterns, and phishing language.
-            It is designed to work as a fast, explainable safety layer for social
-            media content.
+            This module provides real-time detection of scam and phishing
+            threats in user-facing web content by combining structural URL
+            analysis with contextual understanding of text. By analyzing both
+            the structure of links and the intent conveyed through surrounding
+            content, the system detects explicit phishing attempts and subtle
+            socially engineered scams.
           </p>
           <ul>
-            <li>Detects urgency, reward bait, and account-lock threats</li>
-            <li>Combines text signals with URL and domain checks</li>
-            <li>Shows a safe preview before any risky action</li>
+            <li>Combines URL analysis with contextual text understanding</li>
+            <li>Detects explicit phishing and subtle scam language</li>
+            <li>Provides real-time, non-intrusive risk feedback</li>
           </ul>
         </article>
         <article class="panel">
-          <h2>Quick Facts</h2>
+          <h2>Key Capabilities</h2>
           <div class="report-box">
-            <div class="report-row"><strong>Owner</strong><span>Vishwa Rathnayaka</span></div>
-            <div class="report-row"><strong>Status</strong><span>Demo build</span></div>
-            <div class="report-row"><strong>Risk Types</strong><span>Scam, phishing, impersonation</span></div>
+            <div class="report-row">
+              <strong>Detection</strong>
+              <span>Links + context-based scam content</span>
+            </div>
+            <div class="report-row">
+              <strong>Fusion</strong>
+              <span>Maximum-risk strategy</span>
+            </div>
+            <div class="report-row">
+              <strong>Mode</strong>
+              <span>Immediate browser feedback</span>
+            </div>
           </div>
+          <ul class="bullet-list">
+            <li>Detects phishing links and context-based scam content</li>
+            <li>Identifies social engineering patterns like urgency</li>
+            <li>Supports safe preview for suspicious links</li>
+          </ul>
         </article>
       </div>
-      <section class="panel" style="margin-top: 1.2rem;">
-        <h2>Demo Video</h2>
-        <div class="video">
-          <div>
-            <strong>VIDEO PLACEHOLDER</strong>
-            <span>Insert a YouTube or Vimeo embed here for the scam and phishing demo.</span>
+      <div class="section-stack">
+        <section class="panel">
+          <h2>Problem Context</h2>
+          <p>
+            Social media and web platforms have become primary channels for the
+            spread of phishing and scam-related content. Attackers increasingly
+            combine malicious URLs with persuasive messaging to deceive users
+            into revealing sensitive information or engaging with harmful
+            content.
+          </p>
+          <ul class="bullet-list">
+            <li>Modern scams use urgency, impersonation, and misleading narratives</li>
+            <li>Traditional detection often looks at only URL or text signals</li>
+            <li>Real-time protection is needed during ordinary browsing</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Our Approach</h2>
+          <div class="content-grid">
+            <div class="mini-card">
+              <h3>Path A: Heuristic URL Analysis</h3>
+              <p>
+                Rule-based analysis identifies suspicious URL characteristics
+                such as obfuscation, shortening services, and abnormal domain
+                structures.
+              </p>
+              <ul class="bullet-list">
+                <li>Suspicious keywords like login and verify</li>
+                <li>IP-based URLs</li>
+                <li>Excessive length and obfuscation</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Path B: Contextual Scam Detection</h3>
+              <p>
+                A fine-tuned DistilBERT model analyzes surrounding text to
+                detect urgency, impersonation attempts, and social engineering
+                language patterns.
+              </p>
+              <ul class="bullet-list">
+                <li>Urgency and pressure tactics</li>
+                <li>Financial incentives or rewards</li>
+                <li>Context-driven scam intent</li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
-      <section class="panel" style="margin-top: 1.2rem;">
-        <h2>Report</h2>
-        <p>
-          Add the final report PDF, screenshots, benchmark results, or a download
-          link here.
-        </p>
-        <div style="margin-top: 1rem;">
-          <a class="btn" href="#">Open Report Placeholder</a>
-        </div>
-      </section>
-      <footer>Scam & Phishing Detection • The Guardian</footer>
+        </section>
+        <section class="panel">
+          <h2>System Architecture</h2>
+          <div class="arch-wrap">
+            <img
+              src="docs/Scam%20%26%20Phishing%20Detection%20Module/archi.png"
+              alt="The Guardian scam and phishing module system diagram"
+              class="arch-image"
+            />
+            <p class="arch-caption">
+              The browser extension extracts URLs and surrounding text, sends
+              them to the backend API, and combines heuristic URL analysis with
+              AI-based text classification through a fusion engine to produce a
+              final risk score.
+            </p>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Demo Video</h2>
+          <div class="video">
+            <div>
+              <strong>VIDEO PLACEHOLDER</strong>
+              <span>Insert a YouTube or Vimeo embed here for the scam and phishing demo.</span>
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Evaluation &amp; Results</h2>
+          <p>
+            The module was evaluated using a labeled dataset of scam and
+            non-scam content to assess its effectiveness in real-world
+            scenarios.
+          </p>
+          <ul class="bullet-list">
+            <li>Detection performance on scam and phishing examples</li>
+            <li>Robustness against obfuscated and context-driven attacks</li>
+            <li>Practicality of real-time browser feedback</li>
+          </ul>
+          <div class="report-box" style="margin-top: 1rem;">
+            <div class="report-row">
+              <strong>Finding</strong>
+              <span>Hybrid design improves robustness</span>
+            </div>
+            <div class="report-row">
+              <strong>Strength</strong>
+              <span>Preserves high-risk signals from both paths</span>
+            </div>
+            <div class="report-row">
+              <strong>Result</strong>
+              <span>Practical real-time scam feedback</span>
+            </div>
+          </div>
+          <div class="eval-actions">
+            <a
+              class="doc-tab"
+              href="docs/Scam%20%26%20Phishing%20Detection%20Module/RP_Proposal-(Final)_IT22916112%20(2).pdf"
+              download
+            >
+              Proposal PDF
+            </a>
+            <a
+              class="doc-tab"
+              href="docs/Scam%20%26%20Phishing%20Detection%20Module/The%20Guardian%20%E2%80%93%20Scam%20%26%20Phishing%20Detection%20Module-%20Evaluation%20report.pdf"
+              download
+            >
+              Evaluation Report
+            </a>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Research Contribution</h2>
+          <p>
+            This module contributes to human-layer cybersecurity by combining
+            structural and contextual scam detection into a single practical
+            browser workflow.
+          </p>
+          <ul class="bullet-list">
+            <li>Hybrid detection framework for explicit and contextual threats</li>
+            <li>Interpretable attacker-aware risk reasoning</li>
+            <li>Real-time browser-based safety guidance</li>
+            <li>Bridges technical detection with user-facing protection</li>
+          </ul>
+        </section>
+        <section class="panel" style="margin-top: 0;">
+          <h2>Module Documents</h2>
+          <p style="margin-bottom: 1rem;">
+            Download the scam and phishing module files directly from here.
+          </p>
+          <div class="doc-tabs">
+            <a
+              class="doc-tab"
+              href="docs/Scam%20%26%20Phishing%20Detection%20Module/RP_Proposal-(Final)_IT22916112%20(2).pdf"
+              download
+            >
+              Proposal PDF
+            </a>
+            <a
+              class="doc-tab"
+              href="docs/Scam%20%26%20Phishing%20Detection%20Module/The%20Guardian%20%E2%80%93%20Scam%20%26%20Phishing%20Detection%20Module-%20Evaluation%20report.pdf"
+              download
+            >
+              Evaluation Report
+            </a>
+          </div>
+        </section>
+      </div>
+      <footer>Scam & Phishing Detection - The Guardian</footer>
     </div>
   </body>
 </html>

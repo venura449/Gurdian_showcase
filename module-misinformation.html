@@ -11,27 +11,581 @@
       rel="stylesheet"
     />
     <style>
-      :root { --bg:#f7f3ff; --panel:rgba(255,255,255,.82); --text:#1a1720; --text2:#6b6475; --line:rgba(139,92,246,.14); --accent:#f59e0b; --accent2:#fbbf24; --dark:#232124; --r:24px; }
-      *{box-sizing:border-box} body{margin:0;font-family:Inter,sans-serif;color:var(--text);background:radial-gradient(circle at top right,rgba(245,158,11,.12),transparent 25%),radial-gradient(circle at bottom left,rgba(251,191,36,.12),transparent 24%),var(--bg)} a{color:inherit}
-      .wrap{max-width:1180px;margin:0 auto;padding:1.2rem 5% 4rem}.topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(18px)}.brand{font-family:"Playfair Display",serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none}.back{font-family:"JetBrains Mono",monospace;font-size:.72rem;text-decoration:none;color:var(--text2)}.hero{padding:4.5rem 0 2rem}.eyebrow{display:inline-flex;padding:.4rem .85rem;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.7);font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase}h1{font-family:"Playfair Display",serif;font-size:clamp(2.5rem,7vw,4.8rem);line-height:.98;margin:1rem 0 1rem}.sub{max-width:760px;font-size:1.05rem;line-height:1.8;color:var(--text2);margin:0 0 1.5rem}.chips{display:flex;flex-wrap:wrap;gap:.75rem}.chip{padding:.55rem .95rem;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:.68rem}.grid{display:grid;gap:1.2rem;grid-template-columns:1.2fr .8fr}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.5rem;backdrop-filter:blur(18px);box-shadow:0 24px 60px rgba(35,33,36,.08)}.panel h2{font-family:"Playfair Display",serif;margin:0 0 .75rem;font-size:1.4rem}.panel p{color:var(--text2);line-height:1.75;margin:0}ul{margin:1rem 0 0;padding-left:1.2rem;color:var(--text2);line-height:1.7}.video{aspect-ratio:16/9;border-radius:20px;background:linear-gradient(135deg,rgba(35,33,36,.96),rgba(35,33,36,.84)),radial-gradient(circle at center,rgba(245,158,11,.15),transparent 60%);border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;text-align:center}.video strong{display:block;font-family:"JetBrains Mono",monospace;letter-spacing:1.5px;color:#fff;margin-bottom:.4rem}.video span{color:rgba(255,255,255,.6);max-width:320px}.report-box{display:grid;gap:.85rem;padding:1rem;border-radius:18px;background:rgba(35,33,36,.96);color:white}.report-row{display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:rgba(255,255,255,.78)}.report-row strong{color:white}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem 1.2rem;border-radius:999px;border:0;text-decoration:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:1px;text-transform:uppercase}footer{padding:2rem 0 0;color:var(--text2);font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:1px;text-transform:uppercase}@media (max-width:900px){.grid{grid-template-columns:1fr}.topbar{border-radius:24px}}
+      :root {
+        --bg: #f7f3ff;
+        --panel: rgba(255, 255, 255, 0.82);
+        --text: #1a1720;
+        --text2: #6b6475;
+        --line: rgba(139, 92, 246, 0.14);
+        --accent: #f59e0b;
+        --accent2: #fbbf24;
+        --dark: #232124;
+        --r: 24px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(245, 158, 11, 0.12), transparent 25%),
+          radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.12), transparent 24%),
+          var(--bg);
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 1.2rem 5% 4rem;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1.1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(18px);
+      }
+      .brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .back {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        text-decoration: none;
+        color: var(--text2);
+      }
+      .hero {
+        padding: 4.5rem 0 2rem;
+      }
+      .eyebrow {
+        display: inline-flex;
+        padding: 0.4rem 0.85rem;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.7);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 7vw, 4.8rem);
+        line-height: 0.98;
+        margin: 1rem 0 1rem;
+      }
+      .sub {
+        max-width: 760px;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--text2);
+        margin: 0 0 1.5rem;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .chip {
+        padding: 0.55rem 0.95rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--line);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+      }
+      .grid {
+        display: grid;
+        gap: 1.2rem;
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--r);
+        padding: 1.5rem;
+        backdrop-filter: blur(18px);
+        box-shadow: 0 24px 60px rgba(35, 33, 36, 0.08);
+      }
+      .panel h2 {
+        font-family: "Playfair Display", serif;
+        margin: 0 0 0.75rem;
+        font-size: 1.4rem;
+      }
+      .panel p {
+        color: var(--text2);
+        line-height: 1.75;
+        margin: 0;
+      }
+      ul {
+        margin: 1rem 0 0;
+        padding-left: 1.2rem;
+        color: var(--text2);
+        line-height: 1.7;
+      }
+      .video {
+        aspect-ratio: 16 / 9;
+        border-radius: 20px;
+        background:
+          linear-gradient(135deg, rgba(35, 33, 36, 0.96), rgba(35, 33, 36, 0.84)),
+          radial-gradient(circle at center, rgba(245, 158, 11, 0.15), transparent 60%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+      .video strong {
+        display: block;
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 1.5px;
+        color: #fff;
+        margin-bottom: 0.4rem;
+      }
+      .video span {
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 320px;
+      }
+      .report-box {
+        display: grid;
+        gap: 0.85rem;
+        padding: 1rem;
+        border-radius: 18px;
+        background: rgba(35, 33, 36, 0.96);
+        color: white;
+      }
+      .report-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.78);
+      }
+      .report-row strong {
+        color: white;
+      }
+      .viewer-shell {
+        display: grid;
+        gap: 1rem;
+      }
+      .viewer-book {
+        display: grid;
+        grid-template-columns: 26px minmax(0, 1fr);
+        gap: 0;
+        border-radius: 28px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(35, 33, 36, 0.05), rgba(35, 33, 36, 0.01));
+        border: 1px solid rgba(35, 33, 36, 0.08);
+        box-shadow: 0 32px 80px rgba(35, 33, 36, 0.12);
+      }
+      .viewer-spine {
+        background:
+          linear-gradient(180deg, rgba(245, 158, 11, 0.9), rgba(251, 191, 36, 0.9)),
+          #f59e0b;
+      }
+      .viewer-frame {
+        background:
+          radial-gradient(circle at top right, rgba(245, 158, 11, 0.08), transparent 20%),
+          #fff;
+      }
+      .viewer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.1rem;
+        border-bottom: 1px solid rgba(35, 33, 36, 0.08);
+        background: linear-gradient(180deg, rgba(247, 243, 255, 0.96), rgba(255, 255, 255, 0.96));
+      }
+      .viewer-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+      .viewer-open {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--accent);
+      }
+      .viewer-frame iframe {
+        width: 100%;
+        height: min(78vh, 880px);
+        border: 0;
+        display: block;
+        background: #fff;
+      }
+      .doc-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .doc-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        appearance: none;
+        border: 1px solid rgba(35, 33, 36, 0.12);
+        background: rgba(255, 255, 255, 0.78);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 0.8rem 1rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+      .doc-tab:hover,
+      .doc-tab.is-active {
+        transform: translateY(-1px);
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(245, 158, 11, 0.08);
+      }
+      .viewer-note {
+        padding: 1rem 1.05rem;
+        border-radius: 18px;
+        background: rgba(245, 158, 11, 0.08);
+        border: 1px dashed rgba(245, 158, 11, 0.24);
+        color: var(--text2);
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+      .section-stack {
+        display: grid;
+        gap: 1.2rem;
+        margin-top: 1.2rem;
+      }
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .mini-card {
+        background: rgba(245, 158, 11, 0.04);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 1.25rem;
+      }
+      .mini-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        margin: 0 0 0.55rem;
+        color: var(--text);
+      }
+      .mini-card p {
+        color: var(--text2);
+        line-height: 1.75;
+        margin: 0;
+      }
+      .bullet-list {
+        list-style: none;
+        margin: 0.9rem 0 0;
+        padding: 0;
+        display: grid;
+        gap: 0.7rem;
+      }
+      .bullet-list li {
+        position: relative;
+        padding-left: 1.15rem;
+        color: var(--text2);
+        line-height: 1.6;
+      }
+      .bullet-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.58rem;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .arch-wrap {
+        display: grid;
+        gap: 1rem;
+      }
+      .arch-image {
+        width: 100%;
+        display: block;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        box-shadow: 0 24px 60px rgba(35, 33, 36, 0.1);
+        background: #fff;
+      }
+      .arch-caption {
+        color: var(--text2);
+        line-height: 1.75;
+        margin: 0;
+      }
+      .eval-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      footer {
+        padding: 2rem 0 0;
+        color: var(--text2);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .topbar {
+          border-radius: 24px;
+        }
+        .viewer-book {
+          grid-template-columns: 1fr;
+        }
+        .viewer-spine {
+          height: 10px;
+        }
+        .viewer-frame iframe {
+          height: 72vh;
+        }
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="wrap">
-      <div class="topbar"><a class="brand" href="index.html">The Guardian</a><a class="back" href="index.html#modules">Back to Modules</a></div>
+      <div class="topbar">
+        <a class="brand" href="index.html">The Guardian</a>
+        <a class="back" href="index.html#modules">Back to Modules</a>
+      </div>
       <section class="hero">
         <div class="eyebrow">Module 02</div>
         <h1>Misinformation Detection</h1>
-        <p class="sub">Transformer-based NLP analysis for misleading and manipulative content. This page is a dedicated placeholder area for the module overview, demo video, and final report assets.</p>
-        <div class="chips"><span class="chip">BERT</span><span class="chip">LIAR Dataset</span><span class="chip">CoAID</span><span class="chip">Evidence-Based</span></div>
+        <p class="sub">
+          A real-time intelligent misinformation detection system that helps
+          users distinguish reliable content from misleading or false digital
+          information.
+        </p>
+        <div class="chips">
+          <span class="chip">BERT</span>
+          <span class="chip">LIAR Dataset</span>
+          <span class="chip">CoAID</span>
+          <span class="chip">Evidence-Based</span>
+        </div>
       </section>
       <div class="grid">
-        <article class="panel"><h2>Description</h2><p>This module spots emotionally loaded claims, false certainty, and persuasive manipulation patterns. It can be expanded with source highlighting and explanation traces.</p><ul><li>Detects low-credibility language patterns</li><li>Supports evidence-based explanations</li><li>Adapts output for different reading levels</li></ul></article>
-        <article class="panel"><h2>Quick Facts</h2><div class="report-box"><div class="report-row"><strong>Owner</strong><span>Hiruni De Alwis</span></div><div class="report-row"><strong>Status</strong><span>Demo build</span></div><div class="report-row"><strong>Risk Types</strong><span>Hoaxes, misleading claims, manipulation</span></div></div></article>
+        <article class="panel">
+          <h2>Description</h2>
+          <p>
+            The Misinformation Detection Module is designed to address the
+            growing challenge of misleading and false information in digital
+            environments. By combining advanced machine learning with
+            evidence-based reasoning, the system empowers users to make
+            informed and confident decisions online.
+          </p>
+          <ul>
+            <li>Detects misleading claims and false narratives</li>
+            <li>Explains why content may be unreliable</li>
+            <li>Supports evidence-based decision making</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>Key Capabilities</h2>
+          <div class="report-box">
+            <div class="report-row">
+              <strong>Detection</strong>
+              <span>Misinformation or factual</span>
+            </div>
+            <div class="report-row">
+              <strong>Model</strong>
+              <span>Fine-tuned DistilBERT</span>
+            </div>
+            <div class="report-row">
+              <strong>Support</strong>
+              <span>Evidence and confidence score</span>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Real-time misinformation detection</li>
+            <li>High-accuracy transformer classification</li>
+            <li>Risk-based response generation</li>
+          </ul>
+        </article>
       </div>
-      <section class="panel" style="margin-top:1.2rem;"><h2>Demo Video</h2><div class="video"><div><strong>VIDEO PLACEHOLDER</strong><span>Insert a demo video showing misinformation classification and the explanation UI.</span></div></div></section>
-      <section class="panel" style="margin-top:1.2rem;"><h2>Report</h2><p>Use this section for the project report, evaluation screenshots, dataset notes, and any experiment write-up.</p><div style="margin-top:1rem;"><a class="btn" href="#">Open Report Placeholder</a></div></section>
-      <footer>Misinformation Detection • The Guardian</footer>
+      <div class="section-stack">
+        <section class="panel">
+          <h2>Problem Context</h2>
+          <p>
+            Misinformation has become a critical issue in today’s digital
+            ecosystem. Users are frequently exposed to viral false claims, fake
+            news, emotionally manipulative narratives, and content designed to
+            create urgency or panic. Traditional solutions rely heavily on
+            manual fact-checking, which is time-consuming, not scalable, and
+            often unavailable when users need it most.
+          </p>
+          <ul class="bullet-list">
+            <li>False claims spread faster than verification can keep up</li>
+            <li>Users need instant and understandable verification</li>
+            <li>Manual review alone is too slow for live browsing</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h2>Our Approach</h2>
+          <div class="content-grid">
+            <div class="mini-card">
+              <h3>Path A: AI-Based Detection</h3>
+              <p>
+                A fine-tuned Transformer model, DistilBERT, classifies content
+                as misinformation or factual and generates a confidence score.
+              </p>
+              <ul class="bullet-list">
+                <li>False urgency</li>
+                <li>Emotional manipulation</li>
+                <li>Unsupported claims</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Path B: Evidence-Based Verification</h3>
+              <p>
+                The supporting layer provides fact-check references and dataset
+                similarity matching so the result is transparent and easier to
+                trust.
+              </p>
+              <ul class="bullet-list">
+                <li>Fact-check APIs</li>
+                <li>Dataset similarity matching</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>System Architecture</h2>
+          <div class="arch-wrap">
+            <img
+              src="docs/Misinformation%20Detection%20Module/archi.png"
+              alt="The Guardian misinformation module system diagram"
+              class="arch-image"
+            />
+            <p class="arch-caption">
+              The architecture follows an end-to-end pipeline where selected
+              text is analyzed, classified, scored, and then supported with
+              evidence retrieval before results appear in the browser
+              extension UI.
+            </p>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Demo Video</h2>
+          <div class="video">
+            <div>
+              <strong>VIDEO PLACEHOLDER</strong>
+              <span>Insert a demo video showing misinformation classification and the explanation UI.</span>
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Evaluation &amp; Results</h2>
+          <p>
+            The module was evaluated on classification quality, support from
+            evidence retrieval, and the clarity of its risk-aware response
+            design.
+          </p>
+          <ul class="bullet-list">
+            <li>Detection accuracy across manipulated and factual content</li>
+            <li>Explainability through supporting evidence</li>
+            <li>Risk-aware feedback based on user susceptibility levels</li>
+          </ul>
+          <div class="report-box" style="margin-top: 1rem;">
+            <div class="report-row">
+              <strong>Finding</strong>
+              <span>Dual-path design improves trust</span>
+            </div>
+            <div class="report-row">
+              <strong>Strength</strong>
+              <span>Fast real-time browser usage</span>
+            </div>
+            <div class="report-row">
+              <strong>Focus</strong>
+              <span>Transparent and understandable results</span>
+            </div>
+          </div>
+          <div class="eval-actions">
+            <a
+              class="doc-tab"
+              href="docs/Misinformation%20Detection%20Module/THE%20GUARDIAN%20%E2%80%93%20MISINFORMATION%20DETECTION%20MODULE.pdf"
+              download
+            >
+              Module Paper
+            </a>
+            <a
+              class="doc-tab"
+              href="docs/Misinformation%20Detection%20Module/Project%20Proposal%20(Final)_IT22317926%20(1).pdf"
+              download
+            >
+              Project Proposal
+            </a>
+          </div>
+        </section>
+        <section class="panel">
+          <h2>Research Contribution</h2>
+          <p>
+            This module introduces several key contributions to misinformation
+            detection in real browsing environments.
+          </p>
+          <ul class="bullet-list">
+            <li>Hybrid AI classification with evidence-based verification</li>
+            <li>Dual-path detection plus explanation to improve trust</li>
+            <li>Risk-aware response generation based on user behavior</li>
+            <li>Real-time browser-based implementation for practical usability</li>
+          </ul>
+        </section>
+        <section class="panel" style="margin-top: 0;">
+          <h2>Module Documents</h2>
+          <p style="margin-bottom: 1rem;">
+            Download the misinformation module files directly from here.
+          </p>
+          <div class="doc-tabs">
+            <a
+              class="doc-tab"
+              href="docs/Misinformation%20Detection%20Module/THE%20GUARDIAN%20%E2%80%93%20MISINFORMATION%20DETECTION%20MODULE.pdf"
+              download
+            >
+              Module Paper
+            </a>
+            <a
+              class="doc-tab"
+              href="docs/Misinformation%20Detection%20Module/Project%20Proposal%20(Final)_IT22317926%20(1).pdf"
+              download
+            >
+              Project Proposal
+            </a>
+          </div>
+        </section>
+      </div>
+      <footer>Misinformation Detection - The Guardian</footer>
     </div>
   </body>
 </html>
