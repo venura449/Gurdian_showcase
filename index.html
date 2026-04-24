@@ -3474,7 +3474,7 @@
           </p>
         </div>
         <div class="videos-grid reveal">
-          <div class="video-card" onclick="openVideo(this, 'demo')">
+          <div class="video-card">
             <div class="video-thumb">
               <div
                 class="video-thumb-bg"
@@ -3561,7 +3561,8 @@
               >
               <button
                 onclick="
-                  document.getElementById('videoEmbed').style.display = 'none'
+                  document.getElementById('videoEmbed').style.display = 'none';
+                  document.getElementById('videoFrame').src = '';
                 "
                 style="
                   background: none;
@@ -3583,31 +3584,14 @@
                 justify-content: center;
               "
             >
-              <div style="text-align: center">
-                <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3">
-                  🎬
-                </div>
-                <p
-                  style="
-                    font-family: &quot;Space Mono&quot;, monospace;
-                    font-size: 0.72rem;
-                    color: rgba(196, 181, 253, 0.3);
-                    letter-spacing: 1px;
-                  "
-                >
-                  EMBED YOUR VIDEO URL HERE
-                </p>
-                <p
-                  style="
-                    font-family: &quot;Space Mono&quot;, monospace;
-                    font-size: 0.6rem;
-                    color: rgba(196, 181, 253, 0.2);
-                    margin-top: 0.5rem;
-                  "
-                >
-                  Replace the iframe src with your YouTube/Vimeo link
-                </p>
-              </div>
+              <iframe
+                id="videoFrame"
+                title="The Guardian Commercialization Video"
+                src=""
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+                style="width: 100%; height: 100%; border: 0"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -4087,6 +4071,8 @@
 
       // ─── VIDEO ───
       function openVideo(card, type) {
+        document.getElementById("videoFrame").src =
+          "https://drive.google.com/file/d/1UmyP6xeydUQN2Yc6norWFYVwmHXXZMUX/preview";
         document.getElementById("videoEmbed").style.display = "block";
         document
           .getElementById("videoEmbed")
