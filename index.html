@@ -1674,6 +1674,16 @@
         color: var(--text2);
         line-height: 1.65;
       }
+      .research-domain-desc ul {
+        margin: 0.45rem 0 0;
+        padding-left: 1.1rem;
+      }
+      .research-domain-desc li {
+        margin-bottom: 0.35rem;
+      }
+      .research-domain-item.wide {
+        grid-column: span 3;
+      }
       /* Documents hub */
       #documents {
         padding: 8rem 5%;
@@ -2305,6 +2315,39 @@
         color: var(--accent);
         letter-spacing: 0.8px;
       }
+      #timeline {
+        padding: 3rem 5% 7rem;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .timeline-header {
+        margin-bottom: 2rem;
+      }
+      .timeline-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .timeline-item {
+        background: #fff;
+        border: 1px solid rgba(139, 92, 246, 0.14);
+        border-radius: 1rem;
+        padding: 1rem 1.1rem;
+        box-shadow: 0 14px 30px rgba(139, 92, 246, 0.06);
+      }
+      .timeline-date {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.4rem;
+      }
+      .timeline-title {
+        font-size: 0.87rem;
+        color: var(--text);
+        line-height: 1.45;
+      }
 
       /* ─── TEAM ─── */
       #team {
@@ -2884,6 +2927,9 @@
         .research-domain-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .research-domain-item.wide {
+          grid-column: span 2;
+        }
         .documents-grid {
           grid-template-columns: 1fr;
         }
@@ -2892,6 +2938,9 @@
         }
         .presentations-grid {
           grid-template-columns: 1fr;
+        }
+        .timeline-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
       @media (max-width: 640px) {
@@ -2931,7 +2980,13 @@
         .research-domain-grid {
           grid-template-columns: 1fr;
         }
+        .research-domain-item.wide {
+          grid-column: span 1;
+        }
         .lead-card-inner {
+          grid-template-columns: 1fr;
+        }
+        .timeline-grid {
           grid-template-columns: 1fr;
         }
         .lead-photo {
@@ -3472,56 +3527,103 @@
       </div>
       <div class="research-domain-wrap reveal">
         <div class="research-domain-head">
-          <h3 class="research-domain-title">Research Domain (Placeholder)</h3>
+          <h3 class="research-domain-title">Research Domain</h3>
         </div>
         <div class="research-domain-grid">
           <div class="research-domain-item">
             <div class="research-domain-label">Research Domain</div>
             <div class="research-domain-name">Literature Survey</div>
-            <p class="research-domain-desc">
-              Placeholder content for literature survey. Replace this text manually
-              with your actual summary.
-            </p>
+            <div class="research-domain-desc">
+              Recent research highlights a growing shift in cybersecurity toward
+              addressing human-layer risks on social media, where users are exposed
+              to misinformation, hate speech, scams, and privacy threats. While
+              advanced NLP models such as transformer-based systems have improved
+              detection of harmful content, most existing solutions are reactive,
+              single-purpose, and lack contextual understanding.
+            </div>
           </div>
           <div class="research-domain-item">
             <div class="research-domain-label">Research Domain</div>
             <div class="research-domain-name">Research Gap</div>
-            <p class="research-domain-desc">
-              Placeholder content for research gap. Replace this text manually with
-              findings that highlight unresolved issues.
-            </p>
+            <div class="research-domain-desc">
+              Existing AI solutions for misinformation, hate speech, scams, and PII
+              exposure are fragmented and mostly single-purpose. They struggle with
+              combined, context-dependent social media risks and often miss OpSec
+              signals such as routine disclosure and future travel vulnerability.
+              Real-time explainability and actionable user guidance are also
+              commonly missing.
+            </div>
           </div>
           <div class="research-domain-item">
             <div class="research-domain-label">Research Domain</div>
             <div class="research-domain-name">Research Problem</div>
-            <p class="research-domain-desc">
-              Placeholder content for research problem. Replace this text manually
-              with the exact problem statement.
-            </p>
+            <div class="research-domain-desc">
+              How can a proactive, real-time, and user-centric system be designed
+              to accurately detect and integrate multiple forms of harmful
+              content, including misinformation, hate speech, scams, and
+              contextual privacy/OpSec risks, while providing explainable feedback
+              and safe alternatives before content is shared?
+            </div>
           </div>
           <div class="research-domain-item">
             <div class="research-domain-label">Research Domain</div>
             <div class="research-domain-name">Research Objectives</div>
-            <p class="research-domain-desc">
-              Placeholder content for research objectives. Replace this text manually
-              with your key project goals.
-            </p>
+            <div class="research-domain-desc">
+              <ul>
+                <li>Design a unified detection system across four threat types.</li>
+                <li>Use hybrid rule-based + ML detection strategies.</li>
+                <li>Infer contextual privacy/OpSec risks beyond explicit PII.</li>
+                <li>Generate explainable feedback for better user understanding.</li>
+                <li>Provide safe rewrite suggestions while preserving user intent.</li>
+                <li>Implement as a real-time browser extension solution.</li>
+                <li>Evaluate accuracy, usability, and real-time feasibility.</li>
+              </ul>
+            </div>
           </div>
           <div class="research-domain-item">
             <div class="research-domain-label">Research Domain</div>
             <div class="research-domain-name">Methodology</div>
-            <p class="research-domain-desc">
-              Placeholder content for methodology. Replace this text manually with
-              your approach and methods.
-            </p>
+            <div class="research-domain-desc">
+              <ul>
+                <li>Design modular architecture with integrated detection modules.</li>
+                <li>Prepare PANORAMA data and custom OpSec scenarios.</li>
+                <li>Implement PII detection using Regex + NER.</li>
+                <li>Build OpSec detection with rules + contextual inference.</li>
+                <li>Train ML models for misinformation, hate speech, and scams.</li>
+                <li>Apply unified risk scoring across module outputs.</li>
+                <li>Generate explanations and safe rewrite suggestions.</li>
+                <li>Integrate frontend extension with backend REST API.</li>
+                <li>Evaluate using precision, recall, accuracy, and usability.</li>
+              </ul>
+            </div>
           </div>
           <div class="research-domain-item">
             <div class="research-domain-label">Research Domain</div>
             <div class="research-domain-name">Architecture Design</div>
-            <p class="research-domain-desc">
-              Placeholder content for architecture design. Replace this text manually
-              with your system design overview.
-            </p>
+            <div class="research-domain-desc">
+              System architecture has been completed as a modular, real-time
+              pipeline connecting browser extension input, FastAPI services,
+              multi-model NLP analysis, risk scoring, and user guidance output.
+            </div>
+          </div>
+          <div class="research-domain-item wide">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Technologies Used</div>
+            <div class="research-domain-desc">
+              <ul>
+                <li>Programming Language: Python</li>
+                <li>Backend Framework: FastAPI</li>
+                <li>Frontend: HTML, CSS, JavaScript (Browser Extension)</li>
+                <li>Machine Learning: PyTorch / Hugging Face Transformers</li>
+                <li>NLP Libraries: spaCy, NLTK</li>
+                <li>Models: BERT, DistilBERT, RoBERTa</li>
+                <li>Data Processing: Pandas, NumPy</li>
+                <li>API Communication: REST APIs (JSON)</li>
+                <li>Version Control: Git and GitHub</li>
+                <li>Development Tools: VS Code</li>
+                <li>Deployment/Testing: Uvicorn (Local Server)</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -3782,20 +3884,22 @@
         <h2 class="s-title">Built With</h2>
       </div>
       <div class="tech-pills reveal">
-        <div class="tech-pill">🤗 HuggingFace Transformers</div>
-        <div class="tech-pill">🔥 PyTorch</div>
+        <div class="tech-pill">🐍 Python</div>
         <div class="tech-pill">⚡ FastAPI</div>
-        <div class="tech-pill">🧠 DistilBERT</div>
+        <div class="tech-pill">🌐 HTML, CSS, JavaScript Extension</div>
+        <div class="tech-pill">🔥 PyTorch</div>
+        <div class="tech-pill">🤗 Hugging Face Transformers</div>
         <div class="tech-pill">🧠 BERT</div>
-        <div class="tech-pill">🌐 JavaScript Extension</div>
-        <div class="tech-pill">🐍 Python Backend</div>
-        <div class="tech-pill">📊 LIAR Dataset</div>
-        <div class="tech-pill">🏥 CoAID Dataset</div>
-        <div class="tech-pill">🎣 PhishTank</div>
-        <div class="tech-pill">📱 SMS Spam Dataset</div>
-        <div class="tech-pill">🔍 Named Entity Recognition</div>
-        <div class="tech-pill">🧬 Fine-Tuned Transformers</div>
-        <div class="tech-pill">🔐 HTTPS / TLS</div>
+        <div class="tech-pill">🧠 DistilBERT</div>
+        <div class="tech-pill">🧠 RoBERTa</div>
+        <div class="tech-pill">🔍 spaCy</div>
+        <div class="tech-pill">📝 NLTK</div>
+        <div class="tech-pill">📊 Pandas</div>
+        <div class="tech-pill">➗ NumPy</div>
+        <div class="tech-pill">🔗 REST APIs (JSON)</div>
+        <div class="tech-pill">🗂 Git and GitHub</div>
+        <div class="tech-pill">💻 VS Code</div>
+        <div class="tech-pill">🚀 Uvicorn Local Server</div>
       </div>
     </section>
 
@@ -3870,6 +3974,69 @@
           </p>
           <div class="presentation-open">Open Document →</div>
         </a>
+      </div>
+    </section>
+    <section id="timeline">
+      <div class="timeline-header reveal">
+        <div class="s-label">Project Progress</div>
+        <h2 class="s-title">Research Timeline</h2>
+        <p class="s-desc">
+          Major milestones from project initiation to publication evidence submission.
+        </p>
+      </div>
+      <div class="timeline-grid reveal">
+        <div class="timeline-item">
+          <div class="timeline-date">May 2025</div>
+          <div class="timeline-title">Brainstorming Workshop</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">May 2025</div>
+          <div class="timeline-title">Registration of Group</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">June 2025</div>
+          <div class="timeline-title">Submission of TAF and Project Charter Development</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">July 2025</div>
+          <div class="timeline-title">Submission of Proposal Reports</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">September 2025</div>
+          <div class="timeline-title">Proposal Presentation</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Sept - Dec 2025</div>
+          <div class="timeline-title">Individual Component Research and Implementation</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">January 2026</div>
+          <div class="timeline-title">Progress Presentation 01</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Feb - April 2026</div>
+          <div class="timeline-title">Research Paper Writing and Documentation</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">March 2026</div>
+          <div class="timeline-title">Progress Presentation 02</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">April 2026</div>
+          <div class="timeline-title">Draft Final Report</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">May 2026</div>
+          <div class="timeline-title">Paper Submission</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">May 2026</div>
+          <div class="timeline-title">Submission of Final Thesis Reports and Final Presentation / Viva</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">June 2026</div>
+          <div class="timeline-title">Research Paper Publication Evidence Submission</div>
+        </div>
       </div>
     </section>
 
