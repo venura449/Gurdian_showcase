@@ -1613,6 +1613,14 @@
       .paper-btn:hover {
         background: var(--accent);
       }
+      #research-domain {
+        padding: 6rem 5%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      #research-domain .research-domain-wrap {
+        margin-top: 0;
+      }
       .research-domain-wrap {
         margin-top: 2rem;
         padding: 1.8rem;
@@ -2434,6 +2442,168 @@
           opacity: 1;
         }
       }
+      #pricing {
+        padding: 7rem 5%;
+        background: #f8f7fd;
+      }
+      .pricing-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .pricing-header {
+        text-align: center;
+        margin-bottom: 1.8rem;
+      }
+      .pricing-header .s-label {
+        justify-content: center;
+      }
+      .pricing-header .s-label::after {
+        display: none;
+      }
+      .pricing-sub {
+        max-width: 780px;
+        margin: 0.6rem auto 0;
+        color: var(--text2);
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+      .pricing-features {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.55rem;
+        margin-bottom: 1.1rem;
+      }
+      .pricing-feature {
+        background: #fff;
+        border: 1px solid rgba(35, 33, 36, 0.08);
+        border-radius: 0.85rem;
+        padding: 0.65rem 0.7rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.58rem;
+        color: var(--text2);
+        text-align: center;
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .price-card {
+        background: #fff;
+        border: 1px solid rgba(139, 92, 246, 0.14);
+        border-radius: 1rem;
+        padding: 1.2rem 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        box-shadow: 0 14px 30px rgba(139, 92, 246, 0.06);
+        position: relative;
+      }
+      .price-card.popular {
+        border-color: rgba(139, 92, 246, 0.42);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.18);
+      }
+      .popular-badge {
+        position: absolute;
+        top: -0.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, var(--accent), var(--pink));
+        color: #fff;
+        border-radius: 100px;
+        padding: 0.2rem 0.7rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.56rem;
+        letter-spacing: 0.8px;
+      }
+      .price-plan {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+      }
+      .price-note {
+        font-size: 0.74rem;
+        color: var(--text3);
+        margin-bottom: 0.7rem;
+        min-height: 2.1rem;
+      }
+      .price-value {
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
+        margin-bottom: 0.8rem;
+      }
+      .price-value .symbol {
+        font-size: 1.15rem;
+        font-weight: 600;
+      }
+      .price-value .amount {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .price-value .per {
+        font-size: 0.72rem;
+        color: var(--text3);
+      }
+      .price-includes {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 0.45rem;
+      }
+      .price-list {
+        margin: 0;
+        padding: 0 0 0 1rem;
+        font-size: 0.78rem;
+        color: var(--text2);
+        line-height: 1.55;
+        display: grid;
+        gap: 0.3rem;
+        flex: 1;
+      }
+      .price-btn {
+        margin-top: 1rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.6rem;
+        padding: 0.58rem 0.8rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.66rem;
+        letter-spacing: 0.7px;
+        text-decoration: none;
+        color: #fff;
+      }
+      .pc-free .price-plan,
+      .pc-free .price-includes {
+        color: #6b7280;
+      }
+      .pc-free .price-btn {
+        background: #9ca3af;
+      }
+      .pc-personal .price-plan,
+      .pc-personal .price-includes {
+        color: #2563eb;
+      }
+      .pc-personal .price-btn {
+        background: linear-gradient(90deg, #2563eb, #3b82f6);
+      }
+      .pc-pro .price-plan,
+      .pc-pro .price-includes {
+        color: #7c3aed;
+      }
+      .pc-pro .price-btn {
+        background: linear-gradient(90deg, #7c3aed, #d946ef);
+      }
+      .pc-enterprise .price-plan,
+      .pc-enterprise .price-includes {
+        color: #ea580c;
+      }
+      .pc-enterprise .price-btn {
+        background: linear-gradient(90deg, #ea580c, #f97316);
+      }
 
       /* ─── TEAM ─── */
       #team {
@@ -2920,12 +3090,14 @@
         #modules,
         #howitworks,
         #demo,
+        #research-domain,
         #research,
         #documents,
         #thesis,
         #diagram,
         #videos,
         #tech,
+        #pricing,
         #team,
         #contact {
           padding-top: 5.5rem !important;
@@ -3025,6 +3197,12 @@
         .presentations-grid {
           grid-template-columns: 1fr;
         }
+        .pricing-features {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .pricing-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .timeline-track {
           max-width: 100%;
         }
@@ -3070,6 +3248,12 @@
           grid-column: span 1;
         }
         .lead-card-inner {
+          grid-template-columns: 1fr;
+        }
+        .pricing-features {
+          grid-template-columns: 1fr 1fr;
+        }
+        .pricing-grid {
           grid-template-columns: 1fr;
         }
         .timeline-track {
@@ -3211,6 +3395,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#modules">Modules</a></li>
         <li><a href="#research">Research</a></li>
+        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#diagram">Diagram</a></li>
         <li><a href="#videos">Demo</a></li>
         <li><a href="#team">Team</a></li>
@@ -3364,6 +3549,116 @@
                   ><span>Non-intrusive tooltip warning</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research-domain">
+      <div class="research-header reveal">
+        <div class="s-label">Academic Research</div>
+        <h2 class="s-title">Research Domain</h2>
+        <p class="s-desc">
+          Foundational analysis, objectives, methodology, and system design of
+          The Guardian research.
+        </p>
+      </div>
+      <div class="research-domain-wrap reveal">
+        <div class="research-domain-grid">
+          <div class="research-domain-item">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Literature Survey</div>
+            <div class="research-domain-desc">
+              Recent research highlights a growing shift in cybersecurity toward
+              addressing human-layer risks on social media, where users are exposed
+              to misinformation, hate speech, scams, and privacy threats. While
+              advanced NLP models such as transformer-based systems have improved
+              detection of harmful content, most existing solutions are reactive,
+              single-purpose, and lack contextual understanding.
+            </div>
+          </div>
+          <div class="research-domain-item">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Research Gap</div>
+            <div class="research-domain-desc">
+              Existing AI solutions for misinformation, hate speech, scams, and PII
+              exposure are fragmented and mostly single-purpose. They struggle with
+              combined, context-dependent social media risks and often miss OpSec
+              signals such as routine disclosure and future travel vulnerability.
+              Real-time explainability and actionable user guidance are also
+              commonly missing.
+            </div>
+          </div>
+          <div class="research-domain-item">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Research Problem</div>
+            <div class="research-domain-desc">
+              How can a proactive, real-time, and user-centric system be designed
+              to accurately detect and integrate multiple forms of harmful
+              content, including misinformation, hate speech, scams, and
+              contextual privacy/OpSec risks, while providing explainable feedback
+              and safe alternatives before content is shared?
+            </div>
+          </div>
+          <div class="research-domain-item">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Research Objectives</div>
+            <div class="research-domain-desc">
+              <ul>
+                <li>Design a unified detection system across four threat types.</li>
+                <li>Use hybrid rule-based + ML detection strategies.</li>
+                <li>Infer contextual privacy/OpSec risks beyond explicit PII.</li>
+                <li>Generate explainable feedback for better user understanding.</li>
+                <li>Provide safe rewrite suggestions while preserving user intent.</li>
+                <li>Implement as a real-time browser extension solution.</li>
+                <li>Evaluate accuracy, usability, and real-time feasibility.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="research-domain-item">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Methodology</div>
+            <div class="research-domain-desc">
+              <ul>
+                <li>Design modular architecture with integrated detection modules.</li>
+                <li>Prepare PANORAMA data and custom OpSec scenarios.</li>
+                <li>Implement PII detection using Regex + NER.</li>
+                <li>Build OpSec detection with rules + contextual inference.</li>
+                <li>Train ML models for misinformation, hate speech, and scams.</li>
+                <li>Apply unified risk scoring across module outputs.</li>
+                <li>Generate explanations and safe rewrite suggestions.</li>
+                <li>Integrate frontend extension with backend REST API.</li>
+                <li>Evaluate using precision, recall, accuracy, and usability.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="research-domain-item">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Architecture Design</div>
+            <div class="research-domain-desc">
+              System architecture has been completed as a modular, real-time
+              pipeline connecting browser extension input, FastAPI services,
+              multi-model NLP analysis, risk scoring, and user guidance output.
+            </div>
+          </div>
+          <div class="research-domain-item wide">
+            <div class="research-domain-label">Research Domain</div>
+            <div class="research-domain-name">Technologies Used</div>
+            <div class="research-domain-desc">
+              <ul>
+                <li>Programming Language: Python</li>
+                <li>Backend Framework: FastAPI</li>
+                <li>Frontend: HTML, CSS, JavaScript (Browser Extension)</li>
+                <li>Machine Learning: PyTorch / Hugging Face Transformers</li>
+                <li>NLP Libraries: spaCy, NLTK</li>
+                <li>Models: BERT, DistilBERT, RoBERTa</li>
+                <li>Data Processing: Pandas, NumPy</li>
+                <li>API Communication: REST APIs (JSON)</li>
+                <li>Version Control: Git and GitHub</li>
+                <li>Development Tools: VS Code</li>
+                <li>Deployment/Testing: Uvicorn (Local Server)</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -3635,108 +3930,6 @@
           </div>
         </div>
       </div>
-      <div class="research-domain-wrap reveal">
-        <div class="research-domain-head">
-          <h3 class="research-domain-title">Research Domain</h3>
-        </div>
-        <div class="research-domain-grid">
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Literature Survey</div>
-            <div class="research-domain-desc">
-              Recent research highlights a growing shift in cybersecurity toward
-              addressing human-layer risks on social media, where users are exposed
-              to misinformation, hate speech, scams, and privacy threats. While
-              advanced NLP models such as transformer-based systems have improved
-              detection of harmful content, most existing solutions are reactive,
-              single-purpose, and lack contextual understanding.
-            </div>
-          </div>
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Research Gap</div>
-            <div class="research-domain-desc">
-              Existing AI solutions for misinformation, hate speech, scams, and PII
-              exposure are fragmented and mostly single-purpose. They struggle with
-              combined, context-dependent social media risks and often miss OpSec
-              signals such as routine disclosure and future travel vulnerability.
-              Real-time explainability and actionable user guidance are also
-              commonly missing.
-            </div>
-          </div>
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Research Problem</div>
-            <div class="research-domain-desc">
-              How can a proactive, real-time, and user-centric system be designed
-              to accurately detect and integrate multiple forms of harmful
-              content, including misinformation, hate speech, scams, and
-              contextual privacy/OpSec risks, while providing explainable feedback
-              and safe alternatives before content is shared?
-            </div>
-          </div>
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Research Objectives</div>
-            <div class="research-domain-desc">
-              <ul>
-                <li>Design a unified detection system across four threat types.</li>
-                <li>Use hybrid rule-based + ML detection strategies.</li>
-                <li>Infer contextual privacy/OpSec risks beyond explicit PII.</li>
-                <li>Generate explainable feedback for better user understanding.</li>
-                <li>Provide safe rewrite suggestions while preserving user intent.</li>
-                <li>Implement as a real-time browser extension solution.</li>
-                <li>Evaluate accuracy, usability, and real-time feasibility.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Methodology</div>
-            <div class="research-domain-desc">
-              <ul>
-                <li>Design modular architecture with integrated detection modules.</li>
-                <li>Prepare PANORAMA data and custom OpSec scenarios.</li>
-                <li>Implement PII detection using Regex + NER.</li>
-                <li>Build OpSec detection with rules + contextual inference.</li>
-                <li>Train ML models for misinformation, hate speech, and scams.</li>
-                <li>Apply unified risk scoring across module outputs.</li>
-                <li>Generate explanations and safe rewrite suggestions.</li>
-                <li>Integrate frontend extension with backend REST API.</li>
-                <li>Evaluate using precision, recall, accuracy, and usability.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Architecture Design</div>
-            <div class="research-domain-desc">
-              System architecture has been completed as a modular, real-time
-              pipeline connecting browser extension input, FastAPI services,
-              multi-model NLP analysis, risk scoring, and user guidance output.
-            </div>
-          </div>
-          <div class="research-domain-item wide">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Technologies Used</div>
-            <div class="research-domain-desc">
-              <ul>
-                <li>Programming Language: Python</li>
-                <li>Backend Framework: FastAPI</li>
-                <li>Frontend: HTML, CSS, JavaScript (Browser Extension)</li>
-                <li>Machine Learning: PyTorch / Hugging Face Transformers</li>
-                <li>NLP Libraries: spaCy, NLTK</li>
-                <li>Models: BERT, DistilBERT, RoBERTa</li>
-                <li>Data Processing: Pandas, NumPy</li>
-                <li>API Communication: REST APIs (JSON)</li>
-                <li>Version Control: Git and GitHub</li>
-                <li>Development Tools: VS Code</li>
-                <li>Deployment/Testing: Uvicorn (Local Server)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- THESIS -->
@@ -3848,6 +4041,80 @@
           alt="The Guardian system diagram"
           class="arch-diagram-img"
         />
+      </div>
+    </section>
+
+    <!-- PRESENTATIONS -->
+    <section id="presentations">
+      <div class="presentations-header reveal">
+        <div class="s-label">Academic Milestones</div>
+        <h2 class="s-title">Presentations</h2>
+        <p class="s-desc">
+          Project proposal and progress presentations documenting The Guardian
+          development journey.
+        </p>
+      </div>
+      <div class="presentations-grid reveal">
+        <a
+          class="presentation-card"
+          href="https://drive.google.com/file/d/1TJkXBxeHPCWpoGoN-kmWlfShHEobr13s/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="presentation-thumb">
+            <img
+              src="https://drive.google.com/thumbnail?id=1TJkXBxeHPCWpoGoN-kmWlfShHEobr13s&sz=w1000"
+              alt="Project Proposal first slide preview"
+            />
+          </div>
+          <div class="presentation-type">Presentation 01</div>
+          <h3>Project Proposal</h3>
+          <p>
+            Initial proposal presentation covering project scope, problem
+            statement, and expected outcomes.
+          </p>
+          <div class="presentation-open">Open Document →</div>
+        </a>
+        <a
+          class="presentation-card"
+          href="https://drive.google.com/file/d/11FglSd_jtKE6X1p51JY5XyfaxpP6d05R/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="presentation-thumb">
+            <img
+              src="https://drive.google.com/thumbnail?id=11FglSd_jtKE6X1p51JY5XyfaxpP6d05R&sz=w1000"
+              alt="Progress Presentation 1 first slide preview"
+            />
+          </div>
+          <div class="presentation-type">Presentation 02</div>
+          <h3>Progress Presentation 1</h3>
+          <p>
+            First progress review presentation with implementation updates and
+            key completed deliverables.
+          </p>
+          <div class="presentation-open">Open Document →</div>
+        </a>
+        <a
+          class="presentation-card"
+          href="https://drive.google.com/file/d/1B3lEB_LaX5sNSaRTF_taDmZCWbgc_h-6/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="presentation-thumb">
+            <img
+              src="https://drive.google.com/thumbnail?id=1B3lEB_LaX5sNSaRTF_taDmZCWbgc_h-6&sz=w1000"
+              alt="Progress Presentation 2 first slide preview"
+            />
+          </div>
+          <div class="presentation-type">Presentation 03</div>
+          <h3>Progress Presentation 2</h3>
+          <p>
+            Second progress presentation highlighting advanced system design,
+            refinements, and evaluation direction.
+          </p>
+          <div class="presentation-open">Open Document →</div>
+        </a>
       </div>
     </section>
 
@@ -4013,79 +4280,6 @@
       </div>
     </section>
 
-    <!-- PRESENTATIONS -->
-    <section id="presentations">
-      <div class="presentations-header reveal">
-        <div class="s-label">Academic Milestones</div>
-        <h2 class="s-title">Presentations</h2>
-        <p class="s-desc">
-          Project proposal and progress presentations documenting The Guardian
-          development journey.
-        </p>
-      </div>
-      <div class="presentations-grid reveal">
-        <a
-          class="presentation-card"
-          href="https://drive.google.com/file/d/1TJkXBxeHPCWpoGoN-kmWlfShHEobr13s/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="presentation-thumb">
-            <img
-              src="https://drive.google.com/thumbnail?id=1TJkXBxeHPCWpoGoN-kmWlfShHEobr13s&sz=w1000"
-              alt="Project Proposal first slide preview"
-            />
-          </div>
-          <div class="presentation-type">Presentation 01</div>
-          <h3>Project Proposal</h3>
-          <p>
-            Initial proposal presentation covering project scope, problem
-            statement, and expected outcomes.
-          </p>
-          <div class="presentation-open">Open Document →</div>
-        </a>
-        <a
-          class="presentation-card"
-          href="https://drive.google.com/file/d/11FglSd_jtKE6X1p51JY5XyfaxpP6d05R/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="presentation-thumb">
-            <img
-              src="https://drive.google.com/thumbnail?id=11FglSd_jtKE6X1p51JY5XyfaxpP6d05R&sz=w1000"
-              alt="Progress Presentation 1 first slide preview"
-            />
-          </div>
-          <div class="presentation-type">Presentation 02</div>
-          <h3>Progress Presentation 1</h3>
-          <p>
-            First progress review presentation with implementation updates and
-            key completed deliverables.
-          </p>
-          <div class="presentation-open">Open Document →</div>
-        </a>
-        <a
-          class="presentation-card"
-          href="https://drive.google.com/file/d/1B3lEB_LaX5sNSaRTF_taDmZCWbgc_h-6/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="presentation-thumb">
-            <img
-              src="https://drive.google.com/thumbnail?id=1B3lEB_LaX5sNSaRTF_taDmZCWbgc_h-6&sz=w1000"
-              alt="Progress Presentation 2 first slide preview"
-            />
-          </div>
-          <div class="presentation-type">Presentation 03</div>
-          <h3>Progress Presentation 2</h3>
-          <p>
-            Second progress presentation highlighting advanced system design,
-            refinements, and evaluation direction.
-          </p>
-          <div class="presentation-open">Open Document →</div>
-        </a>
-      </div>
-    </section>
     <section id="timeline">
       <div class="timeline-header reveal">
         <div class="s-label">Project Progress</div>
@@ -4198,6 +4392,107 @@
             <div class="timeline-title">Research Paper Publication Evidence Submission</div>
           </div>
           <div class="timeline-arrow">&#8595;</div>
+        </div>
+      </div>
+    </section>
+    <section id="pricing">
+      <div class="pricing-inner">
+        <div class="pricing-header reveal">
+          <div class="s-label">Pricing Plans</div>
+          <h2 class="s-title">Choose the Right Protection for You</h2>
+          <p class="pricing-sub">
+            The Guardian protects you in real time from human-layer threats across social media.
+            Select a plan that fits your needs and stay safe, stay private.
+          </p>
+        </div>
+        <div class="pricing-features reveal">
+          <div class="pricing-feature">PII Detection</div>
+          <div class="pricing-feature">OpSec Risk Analysis</div>
+          <div class="pricing-feature">Misinformation Detection</div>
+          <div class="pricing-feature">Hate Speech Detection</div>
+          <div class="pricing-feature">Scam &amp; Phishing Block</div>
+          <div class="pricing-feature">Explainable AI Rewrites</div>
+        </div>
+        <div class="pricing-grid reveal">
+          <article class="price-card pc-free">
+            <div class="price-plan">Free</div>
+            <div class="price-note">Basic protection for everyday browsing</div>
+            <div class="price-value">
+              <span class="symbol">$</span><span class="amount">0</span><span class="per">/month</span>
+            </div>
+            <div class="price-includes">Includes</div>
+            <ul class="price-list">
+              <li>Basic PII detection</li>
+              <li>Limited OpSec warnings</li>
+              <li>Basic hate speech detection</li>
+              <li>Limited misinformation alerts</li>
+              <li>Manual scan only</li>
+              <li>No scam and phishing protection</li>
+              <li>No rewrite suggestions</li>
+            </ul>
+            <a class="price-btn" href="#contact">Get Started Free</a>
+          </article>
+
+          <article class="price-card pc-personal">
+            <div class="price-plan">Personal</div>
+            <div class="price-note">Real-time protection for individuals</div>
+            <div class="price-value">
+              <span class="symbol">$</span><span class="amount">4.99</span><span class="per">/month</span>
+            </div>
+            <div class="price-includes">Includes everything in Free, plus</div>
+            <ul class="price-list">
+              <li>Full PII detection</li>
+              <li>Full OpSec risk detection</li>
+              <li>Hate speech detection (real-time)</li>
+              <li>Misinformation alerts (AI model)</li>
+              <li>Scam and phishing detection</li>
+              <li>Real-time browser protection</li>
+              <li>Basic safe rewrite suggestions</li>
+            </ul>
+            <a class="price-btn" href="#contact">Choose Personal</a>
+          </article>
+
+          <article class="price-card pc-pro popular">
+            <div class="popular-badge">Most Popular</div>
+            <div class="price-plan">Pro</div>
+            <div class="price-note">Advanced protection with smart AI</div>
+            <div class="price-value">
+              <span class="symbol">$</span><span class="amount">9.99</span><span class="per">/month</span>
+            </div>
+            <div class="price-includes">Includes everything in Personal, plus</div>
+            <ul class="price-list">
+              <li>Advanced PII and contextual detection</li>
+              <li>Full OpSec inference engine</li>
+              <li>Advanced misinformation detection</li>
+              <li>Advanced hate speech detection</li>
+              <li>Advanced scam and phishing detection</li>
+              <li>Smart safe rewrite (intent-preserving)</li>
+              <li>Explainable AI insights</li>
+              <li>Personalized risk scoring</li>
+              <li>Priority processing</li>
+            </ul>
+            <a class="price-btn" href="#contact">Choose Pro</a>
+          </article>
+
+          <article class="price-card pc-enterprise">
+            <div class="price-plan">Enterprise</div>
+            <div class="price-note">Maximum security for teams and organizations</div>
+            <div class="price-value">
+              <span class="symbol">$</span><span class="amount">19.99+</span><span class="per">/month</span>
+            </div>
+            <div class="price-includes">Includes everything in Pro, plus</div>
+            <ul class="price-list">
+              <li>AI modules with maximum performance</li>
+              <li>API access for integration</li>
+              <li>Team dashboards and management</li>
+              <li>Bulk content scanning</li>
+              <li>Custom risk policies</li>
+              <li>Advanced analytics and reporting</li>
+              <li>SLA and priority support</li>
+              <li>On-premise deployment option</li>
+            </ul>
+            <a class="price-btn" href="#contact">Contact Sales</a>
+          </article>
         </div>
       </div>
     </section>
@@ -4409,6 +4704,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#modules">Modules</a></li>
         <li><a href="#research">Research</a></li>
+        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#diagram">Diagram</a></li>
         <li><a href="#videos">Videos</a></li>
       </ul>
