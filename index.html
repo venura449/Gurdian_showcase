@@ -1613,6 +1613,51 @@
       .paper-btn:hover {
         background: var(--accent);
       }
+      .research-upload-wrap {
+        margin-top: 1.2rem;
+        background: #fff;
+        border: 1px solid rgba(139, 92, 246, 0.14);
+        border-radius: var(--r3);
+        padding: 1.3rem;
+        box-shadow: 0 14px 32px rgba(139, 92, 246, 0.08);
+      }
+      .research-upload-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        color: var(--text);
+        margin-bottom: 0.7rem;
+      }
+      .research-upload-row {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr) auto;
+        gap: 0.7rem;
+        align-items: center;
+      }
+      .research-upload-wrap select,
+      .research-upload-wrap input[type="file"] {
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        border-radius: 0.6rem;
+        padding: 0.6rem 0.7rem;
+        font-size: 0.78rem;
+        background: #fff;
+        color: var(--text2);
+      }
+      .research-upload-btn {
+        border: none;
+        border-radius: 0.6rem;
+        padding: 0.62rem 1rem;
+        background: linear-gradient(90deg, var(--accent), var(--pink));
+        color: #fff;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.64rem;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+      }
+      .research-upload-status {
+        margin-top: 0.55rem;
+        font-size: 0.76rem;
+        color: var(--text3);
+      }
       #research-domain {
         padding: 6rem 5%;
         max-width: 1300px;
@@ -3185,6 +3230,9 @@
         .research-domain-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .research-upload-row {
+          grid-template-columns: 1fr;
+        }
         .research-domain-item.wide {
           grid-column: span 2;
         }
@@ -3243,6 +3291,9 @@
         }
         .research-domain-grid {
           grid-template-columns: 1fr;
+        }
+        .research-upload-wrap {
+          padding: 1rem;
         }
         .research-domain-item.wide {
           grid-column: span 1;
@@ -3892,42 +3943,128 @@
       </div>
       <div class="research-grid reveal">
         <div class="paper-card p1">
-          <div class="paper-type thesis">
-            <span class="paper-icon">📘</span>Research Paper
+          <div class="paper-type paper">
+            <span class="paper-icon">📄</span>TAF
           </div>
-          <h3>
-            The Guardian: Enhancing User-Centric Cybersecurity through Real-Time
-            NLP-Based Threat Analysis
-          </h3>
+          <h3>Topic Assessment Form (TAF)</h3>
           <div class="paper-authors">
-            Rathnayaka, V. · De Alwis, H. · Fernando, R. · Herath, H.M.G.D.K —
-            2025
+            The Guardian Team · 2025
           </div>
           <p class="paper-abstract">
-            “The Guardian” is a modular AI-powered browser extension that
-            provides real-time detection of human-layer cybersecurity threats on
-            social media, including misinformation, hate speech, scams, and PII
-            exposure. It uses advanced NLP models such as BERT and DistilBERT
-            to analyze text and deliver non-intrusive, explanatory feedback
-            that guides users without censoring content. The system’s
-            privacy-focused and scalable architecture enables proactive,
-            user-centric protection, helping individuals make informed
-            decisions and improve their resilience against online threats.
+            Initial topic approval document outlining the research area,
+            significance, and scope for The Guardian project.
           </p>
           <div class="paper-meta">
             <div class="paper-tags">
-              <span class="paper-tag">NLP</span
-              ><span class="paper-tag">Cybersecurity</span
-              ><span class="paper-tag">BERT</span>
+              <span class="paper-tag">Academic</span
+              ><span class="paper-tag">Planning</span>
             </div>
             <a
-              href="Final_Guardian_IEEE_Conference__Paper_Draft.pdf"
+              href="#"
+              id="doc-link-taf"
               class="paper-btn"
-              download
+              target="_blank"
+              rel="noopener noreferrer"
             >
               ↓ PDF
             </a>
           </div>
+        </div>
+        <div class="paper-card p2">
+          <div class="paper-type paper">
+            <span class="paper-icon">🧩</span>Project Proposal
+          </div>
+          <h3>Project Proposal Document</h3>
+          <div class="paper-authors">The Guardian Team · 2025</div>
+          <p class="paper-abstract">
+            Proposal report describing background, research problem, objectives,
+            planned methodology, and expected contribution.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">Proposal</span
+              ><span class="paper-tag">Research Plan</span>
+            </div>
+            <a
+              href="#"
+              id="doc-link-proposal"
+              class="paper-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↓ PDF
+            </a>
+          </div>
+        </div>
+        <div class="paper-card p3">
+          <div class="paper-type report">
+            <span class="paper-icon">✅</span>Checklist
+          </div>
+          <h3>Submission Checklist</h3>
+          <div class="paper-authors">The Guardian Team · 2025/2026</div>
+          <p class="paper-abstract">
+            Structured checklist used for review tracking, milestone submission
+            readiness, and document completion status.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">Tracking</span
+              ><span class="paper-tag">Quality Control</span>
+            </div>
+            <a
+              href="#"
+              id="doc-link-checklist"
+              class="paper-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↓ PDF
+            </a>
+          </div>
+        </div>
+        <div class="paper-card p4">
+          <div class="paper-type thesis">
+            <span class="paper-icon">📘</span>Thesis
+          </div>
+          <h3>Main Thesis Submission</h3>
+          <div class="paper-authors">The Guardian Team · 2026</div>
+          <p class="paper-abstract">
+            Final dissertation with full architecture, datasets, experiments,
+            results, and conclusions for the complete system.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">Final Report</span
+              ><span class="paper-tag">Dissertation</span>
+            </div>
+            <a
+              href="#"
+              id="doc-link-thesis"
+              class="paper-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↓ PDF
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="research-upload-wrap reveal">
+        <div class="research-upload-title">Upload Research Documents</div>
+        <div class="research-upload-row">
+          <select id="researchDocType">
+            <option value="taf">TAF</option>
+            <option value="proposal">Project Proposal</option>
+            <option value="checklist">Checklist</option>
+            <option value="thesis">Thesis</option>
+          </select>
+          <input id="researchDocFile" type="file" accept=".pdf,.doc,.docx" />
+          <button type="button" class="research-upload-btn" onclick="uploadResearchDocument()">
+            Upload Document
+          </button>
+        </div>
+        <div id="researchUploadStatus" class="research-upload-status">
+          Select a document type and file to upload.
         </div>
       </div>
     </section>
@@ -4922,8 +5059,62 @@
     </div>
   </div>`;
       }
+      function setResearchDocLink(docType, url) {
+        const map = {
+          taf: "doc-link-taf",
+          proposal: "doc-link-proposal",
+          checklist: "doc-link-checklist",
+          thesis: "doc-link-thesis",
+        };
+        const id = map[docType];
+        if (!id || !url) return;
+        const link = document.getElementById(id);
+        if (!link) return;
+        link.href = url;
+      }
+      function loadResearchDocLinks() {
+        try {
+          const saved = JSON.parse(localStorage.getItem("guardianResearchDocs") || "{}");
+          Object.keys(saved).forEach((k) => setResearchDocLink(k, saved[k]));
+        } catch (_) {}
+      }
+      async function uploadResearchDocument() {
+        const typeEl = document.getElementById("researchDocType");
+        const fileEl = document.getElementById("researchDocFile");
+        const statusEl = document.getElementById("researchUploadStatus");
+        if (!typeEl || !fileEl || !statusEl) return;
+        const file = fileEl.files && fileEl.files[0];
+        if (!file) {
+          statusEl.textContent = "Please select a file before uploading.";
+          return;
+        }
+        statusEl.textContent = "Uploading document...";
+        const formData = new FormData();
+        formData.append("documentType", typeEl.value);
+        formData.append("file", file);
+        try {
+          const res = await fetch("/upload-document", {
+            method: "POST",
+            body: formData,
+          });
+          if (!res.ok) throw new Error("Upload failed");
+          const data = await res.json();
+          const fileUrl = data.fileUrl || data.url;
+          if (!fileUrl) throw new Error("Missing file URL");
+          setResearchDocLink(typeEl.value, fileUrl);
+          const saved = JSON.parse(localStorage.getItem("guardianResearchDocs") || "{}");
+          saved[typeEl.value] = fileUrl;
+          localStorage.setItem("guardianResearchDocs", JSON.stringify(saved));
+          statusEl.textContent = "Upload complete. Document link updated.";
+          fileEl.value = "";
+        } catch (e) {
+          statusEl.textContent =
+            "Upload endpoint not available. Add backend POST /upload-document to save files on server.";
+        }
+      }
       document.addEventListener("DOMContentLoaded", () => {
         initReactBits();
+        loadResearchDocLinks();
         window.addEventListener("resize", initReactBits);
 
         // Apply heading/text animations globally without changing markup manually
