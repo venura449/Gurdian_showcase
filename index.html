@@ -1523,6 +1523,9 @@
       .paper-card.p4::before {
         background: linear-gradient(90deg, #10b981, #3b82f6);
       }
+      .paper-card.p5::before {
+        background: linear-gradient(90deg, #a855f7, #6366f1);
+      }
       .paper-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 30px 60px rgba(139, 92, 246, 0.1);
@@ -3611,8 +3614,8 @@
         <div class="s-label">Academic Research</div>
         <h2 class="s-title">Research Domain</h2>
         <p class="s-desc">
-          Foundational analysis, objectives, methodology, and system design of
-          The Guardian research.
+          Foundational analysis, objectives, and methodology behind The Guardian
+          research.
         </p>
       </div>
       <div class="research-domain-wrap reveal">
@@ -3681,34 +3684,6 @@
                 <li>Generate explanations and safe rewrite suggestions.</li>
                 <li>Integrate frontend extension with backend REST API.</li>
                 <li>Evaluate using precision, recall, accuracy, and usability.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="research-domain-item">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Architecture Design</div>
-            <div class="research-domain-desc">
-              System architecture has been completed as a modular, real-time
-              pipeline connecting browser extension input, FastAPI services,
-              multi-model NLP analysis, risk scoring, and user guidance output.
-            </div>
-          </div>
-          <div class="research-domain-item wide">
-            <div class="research-domain-label">Research Domain</div>
-            <div class="research-domain-name">Technologies Used</div>
-            <div class="research-domain-desc">
-              <ul>
-                <li>Programming Language: Python</li>
-                <li>Backend Framework: FastAPI</li>
-                <li>Frontend: HTML, CSS, JavaScript (Browser Extension)</li>
-                <li>Machine Learning: PyTorch / Hugging Face Transformers</li>
-                <li>NLP Libraries: spaCy, NLTK</li>
-                <li>Models: BERT, DistilBERT, RoBERTa</li>
-                <li>Data Processing: Pandas, NumPy</li>
-                <li>API Communication: REST APIs (JSON)</li>
-                <li>Version Control: Git and GitHub</li>
-                <li>Development Tools: VS Code</li>
-                <li>Deployment/Testing: Uvicorn (Local Server)</li>
               </ul>
             </div>
           </div>
@@ -4048,6 +4023,46 @@
             </a>
           </div>
         </div>
+        <div class="paper-card p5">
+          <div class="paper-type thesis">
+            <span class="paper-icon">📘</span>Research Paper
+          </div>
+          <h3>
+            The Guardian: Enhancing User-Centric Cybersecurity through Real-Time
+            NLP-Based Threat Analysis
+          </h3>
+          <div class="paper-authors">
+            Rathnayaka, V. · De Alwis, H. · Fernando, R. · Herath, H.M.G.D.K —
+            2025
+          </div>
+          <p class="paper-abstract">
+            “The Guardian” is a modular AI-powered browser extension that provides
+            real-time detection of human-layer cybersecurity threats on social
+            media, including misinformation, hate speech, scams, and PII exposure.
+            It uses advanced NLP models such as BERT and DistilBERT to analyze text
+            and deliver non-intrusive, explanatory feedback that guides users without
+            censoring content. The system’s privacy-focused and scalable architecture
+            enables proactive, user-centric protection, helping individuals make
+            informed decisions and improve their resilience against online threats.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">NLP</span
+              ><span class="paper-tag">Cybersecurity</span
+              ><span class="paper-tag">BERT</span>
+            </div>
+            <a
+              href="Final_Guardian_IEEE_Conference__Paper_Draft.pdf"
+              id="doc-link-research-paper"
+              class="paper-btn"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↓ PDF
+            </a>
+          </div>
+        </div>
       </div>
       <div class="research-upload-wrap reveal">
         <div class="research-upload-title">Upload Research Documents</div>
@@ -4057,6 +4072,7 @@
             <option value="proposal">Project Proposal</option>
             <option value="checklist">Checklist</option>
             <option value="thesis">Thesis</option>
+            <option value="researchPaper">Research Paper</option>
           </select>
           <input id="researchDocFile" type="file" accept=".pdf,.doc,.docx" />
           <button type="button" class="research-upload-btn" onclick="uploadResearchDocument()">
@@ -5065,6 +5081,7 @@
           proposal: "doc-link-proposal",
           checklist: "doc-link-checklist",
           thesis: "doc-link-thesis",
+          researchPaper: "doc-link-research-paper",
         };
         const id = map[docType];
         if (!id || !url) return;
