@@ -1526,6 +1526,9 @@
       .paper-card.p5::before {
         background: linear-gradient(90deg, #a855f7, #6366f1);
       }
+      .paper-card.p6::before {
+        background: linear-gradient(90deg, #14b8a6, #f59e0b);
+      }
       .paper-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 30px 60px rgba(139, 92, 246, 0.1);
@@ -1876,140 +1879,6 @@
       .paper-placeholder .ph-icon {
         font-size: 2rem;
         opacity: 0.4;
-      }
-
-      /* ─── THESIS ─── */
-      #thesis {
-        padding: 6rem 5%;
-        background: var(--off);
-      }
-      .thesis-inner {
-        max-width: 1300px;
-        margin: 0 auto;
-      }
-      .thesis-layout {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 5rem;
-        align-items: start;
-      }
-      .thesis-book {
-        background: var(--purple);
-        border-radius: var(--r3);
-        padding: 3rem 2.5rem;
-        color: white;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        aspect-ratio: 3/4;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        box-shadow: 20px 20px 60px rgba(35, 33, 36, 0.3);
-      }
-      .thesis-book::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 8px;
-        background: linear-gradient(180deg, var(--accent), var(--pink));
-        border-radius: var(--r3) 0 0 var(--r3);
-      }
-      .thesis-book::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at 50% 50%,
-          rgba(139, 92, 246, 0.15),
-          transparent 70%
-        );
-      }
-      .thesis-book-top {
-        position: relative;
-        z-index: 1;
-      }
-      .thesis-badge {
-        display: inline-block;
-        background: rgba(139, 92, 246, 0.3);
-        padding: 0.3rem 1rem;
-        border-radius: 100px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.6rem;
-        color: var(--accent3);
-        letter-spacing: 2px;
-        margin-bottom: 2rem;
-      }
-      .thesis-book h2 {
-        font-family: "Playfair Display", serif;
-        font-size: 1.1rem;
-        font-weight: 800;
-        line-height: 1.3;
-        letter-spacing: -0.5px;
-      }
-      .thesis-book-bottom {
-        position: relative;
-        z-index: 1;
-      }
-      .thesis-year {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.65rem;
-        color: rgba(196, 181, 253, 0.5);
-        letter-spacing: 2px;
-      }
-      .thesis-details {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
-      .thesis-meta-item {
-        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-        padding-bottom: 1.5rem;
-      }
-      .thesis-meta-item:last-child {
-        border-bottom: none;
-      }
-      .thesis-meta-label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--accent);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 0.5rem;
-      }
-      .thesis-meta-value {
-        font-family: "Playfair Display", serif;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text);
-      }
-      .thesis-meta-sub {
-        font-size: 0.85rem;
-        color: var(--text2);
-        line-height: 1.6;
-        margin-top: 0.3rem;
-      }
-      .thesis-download-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--purple);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 100px;
-        font-family: "Playfair Display", serif;
-        font-weight: 700;
-        font-size: 0.82rem;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.25s;
-        margin-top: 1rem;
-      }
-      .thesis-download-btn:hover {
-        background: var(--accent);
-        transform: translateY(-2px);
       }
 
       /* ─── SYSTEM DIAGRAM ─── */
@@ -3102,9 +2971,6 @@
         .videos-grid {
           grid-template-columns: repeat(2, 1fr);
         }
-        .thesis-layout {
-          gap: 2.5rem;
-        }
         .about-layout {
           gap: 3rem;
         }
@@ -3141,7 +3007,6 @@
         #research-domain,
         #research,
         #documents,
-        #thesis,
         #diagram,
         #videos,
         #tech,
@@ -3215,14 +3080,6 @@
         }
         .about-layout {
           grid-template-columns: 1fr;
-        }
-        .thesis-layout {
-          grid-template-columns: 1fr;
-        }
-        .thesis-book {
-          aspect-ratio: 3 / 4;
-          width: min(100%, 420px);
-          margin: 0 auto;
         }
         .research-grid {
           grid-template-columns: 1fr;
@@ -3341,11 +3198,6 @@
           width: 88px;
           height: 88px;
         }
-        .thesis-book {
-          width: min(100%, 360px);
-          aspect-ratio: 3 / 4;
-          padding: 2.25rem 1.5rem;
-        }
 
         .hero-title {
           letter-spacing: -1.4px;
@@ -3449,9 +3301,9 @@
         <li><a href="#about">About</a></li>
         <li><a href="#modules">Modules</a></li>
         <li><a href="#research">Research</a></li>
-        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#diagram">Diagram</a></li>
         <li><a href="#videos">Demo</a></li>
+        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#team">Team</a></li>
       </ul>
     </nav>
@@ -3947,21 +3799,22 @@
         </div>
         <div class="paper-card p2">
           <div class="paper-type paper">
-            <span class="paper-icon">🧩</span>Project Proposal
+            <span class="paper-icon">📽️</span>Proposal Presentation
           </div>
-          <h3>Project Proposal Document</h3>
+          <h3>Proposal Presentation</h3>
           <div class="paper-authors">The Guardian Team · 2025</div>
           <p class="paper-abstract">
-            Proposal report describing background, research problem, objectives,
-            planned methodology, and expected contribution.
+            Slide deck used for the proposal presentation: background, research
+            problem, objectives, planned methodology, timeline, and expected
+            contribution.
           </p>
           <div class="paper-meta">
             <div class="paper-tags">
-              <span class="paper-tag">Proposal</span
-              ><span class="paper-tag">Research Plan</span>
+              <span class="paper-tag">Presentation</span
+              ><span class="paper-tag">Proposal</span>
             </div>
             <a
-              href="#"
+              href="https://mysliit-my.sharepoint.com/:b:/g/personal/it22317926_my_sliit_lk/IQDhlmcmLtIcR6acqWWO6DSlAdEh8ODWxBRfhcapDzZzfqY?e=pIbnf4"
               id="doc-link-proposal"
               class="paper-btn"
               target="_blank"
@@ -3989,6 +3842,32 @@
             <a
               href="#"
               id="doc-link-checklist"
+              class="paper-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ↓ PDF
+            </a>
+          </div>
+        </div>
+        <div class="paper-card p6">
+          <div class="paper-type report">
+            <span class="paper-icon">✅</span>Checklist 2
+          </div>
+          <h3>Submission Checklist 2</h3>
+          <div class="paper-authors">The Guardian Team · 2025/2026</div>
+          <p class="paper-abstract">
+            Secondary checklist for extended review criteria, final packaging
+            checks, and additional milestone verification before submission.
+          </p>
+          <div class="paper-meta">
+            <div class="paper-tags">
+              <span class="paper-tag">Tracking</span
+              ><span class="paper-tag">Quality Control</span>
+            </div>
+            <a
+              href="#"
+              id="doc-link-checklist-2"
               class="paper-btn"
               target="_blank"
               rel="noopener noreferrer"
@@ -4069,8 +3948,9 @@
         <div class="research-upload-row">
           <select id="researchDocType">
             <option value="taf">TAF</option>
-            <option value="proposal">Project Proposal</option>
+            <option value="proposal">Proposal Presentation</option>
             <option value="checklist">Checklist</option>
+            <option value="checklist2">Checklist 2</option>
             <option value="thesis">Thesis</option>
             <option value="researchPaper">Research Paper</option>
           </select>
@@ -4081,99 +3961,6 @@
         </div>
         <div id="researchUploadStatus" class="research-upload-status">
           Select a document type and file to upload.
-        </div>
-      </div>
-    </section>
-
-    <!-- THESIS -->
-    <section id="thesis">
-      <div class="thesis-inner">
-        <div style="text-align: center; margin-bottom: 4rem" class="reveal">
-          <div class="s-label" style="justify-content: center">Full Thesis</div>
-          <h2 class="s-title">Main Dissertation</h2>
-          <p class="s-desc" style="margin: 0 auto">
-            The complete academic thesis documenting the full system design,
-            methodology, experiments, and results.
-          </p>
-        </div>
-        <div class="thesis-layout reveal">
-          <div class="thesis-book">
-            <div class="thesis-book-top">
-              <div class="thesis-badge">THESIS · 2025</div>
-              <h2>
-                AI-Powered Cybersecurity Shield: Multi-Module Real-Time Threat
-                Detection for Social Media
-              </h2>
-            </div>
-            <div class="thesis-book-bottom">
-              <p
-                style="
-                  font-family: &quot;Space Mono&quot;, monospace;
-                  font-size: 0.65rem;
-                  color: rgba(196, 181, 253, 0.4);
-                  letter-spacing: 1px;
-                  margin-bottom: 0.5rem;
-                "
-              >
-                Sri Lanka Institute of Information Technology
-              </p>
-              <div class="thesis-year">© 2025 — All Rights Reserved</div>
-            </div>
-          </div>
-          <div class="thesis-details">
-            <div class="thesis-meta-item">
-              <div class="thesis-meta-label">Title</div>
-              <div class="thesis-meta-value">
-                AI-Powered Real-Time Cybersecurity Threat Detection on Social
-                Media
-              </div>
-            </div>
-            <div class="thesis-meta-item">
-              <div class="thesis-meta-label">Authors</div>
-              <div class="thesis-meta-value">
-                Vishwa J. R. · De Alwis H.P.G.H.S. · Fernando M. R. I. · Herath H.M.G.D.K.
-              </div>
-            </div>
-            <div class="thesis-meta-item">
-              <div class="thesis-meta-label">Abstract</div>
-              <div class="thesis-meta-sub">
-                This thesis presents The Guardian — a browser extension
-                integrating four AI modules (scam/phishing detection,
-                misinformation classification, hate speech detection, and
-                PII/OpSec protection) into a unified real-time cybersecurity
-                system. Using transformer-based NLP models deployed via a
-                FastAPI backend, the system achieves high accuracy detection
-                with zero user data storage. The work contributes novel hybrid
-                detection approaches and adaptive user education features.
-              </div>
-            </div>
-            <div class="thesis-meta-item">
-              <div class="thesis-meta-label">Keywords</div>
-              <div
-                style="
-                  display: flex;
-                  gap: 6px;
-                  flex-wrap: wrap;
-                  margin-top: 0.5rem;
-                "
-              >
-                <span class="paper-tag">Cybersecurity</span
-                ><span class="paper-tag">NLP</span
-                ><span class="paper-tag">BERT</span
-                ><span class="paper-tag">Browser Extension</span
-                ><span class="paper-tag">Misinformation</span
-                ><span class="paper-tag">Phishing</span
-                ><span class="paper-tag">PII</span>
-              </div>
-            </div>
-            <a
-              href="Final_Guardian_IEEE_Conference__Paper_Draft.pdf"
-              class="thesis-download-btn"
-              download
-            >
-              Download Full Thesis PDF
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -4210,18 +3997,27 @@
       <div class="presentations-grid reveal">
         <a
           class="presentation-card"
-          href="https://drive.google.com/file/d/1TJkXBxeHPCWpoGoN-kmWlfShHEobr13s/view?usp=sharing"
+          href="https://mysliit-my.sharepoint.com/:b:/g/personal/it22317926_my_sliit_lk/IQDhlmcmLtIcR6acqWWO6DSlAdEh8ODWxBRfhcapDzZzfqY?e=pIbnf4"
           target="_blank"
           rel="noopener noreferrer"
         >
           <div class="presentation-thumb">
-            <img
-              src="https://drive.google.com/thumbnail?id=1TJkXBxeHPCWpoGoN-kmWlfShHEobr13s&sz=w1000"
-              alt="Project Proposal first slide preview"
-            />
+            <div
+              class="presentation-thumb-fallback"
+              style="
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                  135deg,
+                  rgba(139, 92, 246, 0.45),
+                  rgba(59, 130, 246, 0.35),
+                  rgba(35, 33, 36, 0.85)
+                );
+              "
+            ></div>
           </div>
           <div class="presentation-type">Presentation 01</div>
-          <h3>Project Proposal</h3>
+          <h3>Proposal Presentation</h3>
           <p>
             Initial proposal presentation covering project scope, problem
             statement, and expected outcomes.
@@ -5080,6 +4876,7 @@
           taf: "doc-link-taf",
           proposal: "doc-link-proposal",
           checklist: "doc-link-checklist",
+          checklist2: "doc-link-checklist-2",
           thesis: "doc-link-thesis",
           researchPaper: "doc-link-research-paper",
         };
