@@ -1619,51 +1619,6 @@
       .paper-btn:hover {
         background: var(--accent);
       }
-      .research-upload-wrap {
-        margin-top: 1.2rem;
-        background: #fff;
-        border: 1px solid rgba(139, 92, 246, 0.14);
-        border-radius: var(--r3);
-        padding: 1.3rem;
-        box-shadow: 0 14px 32px rgba(139, 92, 246, 0.08);
-      }
-      .research-upload-title {
-        font-family: "Playfair Display", serif;
-        font-size: 1rem;
-        color: var(--text);
-        margin-bottom: 0.7rem;
-      }
-      .research-upload-row {
-        display: grid;
-        grid-template-columns: 190px minmax(0, 1fr) auto;
-        gap: 0.7rem;
-        align-items: center;
-      }
-      .research-upload-wrap select,
-      .research-upload-wrap input[type="file"] {
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        border-radius: 0.6rem;
-        padding: 0.6rem 0.7rem;
-        font-size: 0.78rem;
-        background: #fff;
-        color: var(--text2);
-      }
-      .research-upload-btn {
-        border: none;
-        border-radius: 0.6rem;
-        padding: 0.62rem 1rem;
-        background: linear-gradient(90deg, var(--accent), var(--pink));
-        color: #fff;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.64rem;
-        letter-spacing: 0.8px;
-        cursor: pointer;
-      }
-      .research-upload-status {
-        margin-top: 0.55rem;
-        font-size: 0.76rem;
-        color: var(--text3);
-      }
       #research-domain {
         padding: 6rem 5%;
         max-width: 1300px;
@@ -3844,13 +3799,14 @@
               ><span class="paper-tag">Planning</span>
             </div>
             <a
-              href="#"
+              href="docs/final/Topic%20Assessment%20Form%20%28TAF%29.pdf"
               id="doc-link-taf"
               class="paper-btn"
+              download
               target="_blank"
               rel="noopener noreferrer"
             >
-              ↓ PDF
+              ↓ Download
             </a>
           </div>
         </div>
@@ -3871,13 +3827,14 @@
               <span class="paper-tag">Proposal</span>
             </div>
             <a
-              href="https://mysliit-my.sharepoint.com/:b:/g/personal/it22317926_my_sliit_lk/IQCb7YDcPLGPSoP_cMJr_GWpAa0Pb0sK31HOI4wgtVVOt48?e=teg7zA"
+              href="docs/final/Project%20Proposal.pdf"
               id="doc-link-proposal"
               class="paper-btn"
+              download
               target="_blank"
               rel="noopener noreferrer"
             >
-              ↓ PDF
+              ↓ Download
             </a>
           </div>
         </div>
@@ -3897,13 +3854,14 @@
               ><span class="paper-tag">Quality Control</span>
             </div>
             <a
-              href="#"
+              href="docs/final/Submission%20Checklist.pdf"
               id="doc-link-checklist"
               class="paper-btn"
+              download
               target="_blank"
               rel="noopener noreferrer"
             >
-              ↓ PDF
+              ↓ Download
             </a>
           </div>
         </div>
@@ -3923,13 +3881,14 @@
               ><span class="paper-tag">Quality Control</span>
             </div>
             <a
-              href="#"
+              href="docs/final/Submission%20Checklist%202.pdf"
               id="doc-link-checklist-2"
               class="paper-btn"
+              download
               target="_blank"
               rel="noopener noreferrer"
             >
-              ↓ PDF
+              ↓ Download
             </a>
           </div>
         </div>
@@ -3949,13 +3908,14 @@
               ><span class="paper-tag">Dissertation</span>
             </div>
             <a
-              href="#"
+              href="docs/final/Main%20Thesis%20Submission.pdf"
               id="doc-link-thesis"
               class="paper-btn"
+              download
               target="_blank"
               rel="noopener noreferrer"
             >
-              ↓ PDF
+              ↓ Download
             </a>
           </div>
         </div>
@@ -4000,26 +3960,6 @@
           </div>
         </div>
       </div>
-      <div class="research-upload-wrap reveal">
-        <div class="research-upload-title">Upload Research Documents</div>
-        <div class="research-upload-row">
-          <select id="researchDocType">
-            <option value="taf">TAF</option>
-            <option value="proposal">Proposal Presentation</option>
-            <option value="checklist">Checklist</option>
-            <option value="checklist2">Checklist 2</option>
-            <option value="thesis">Thesis</option>
-            <option value="researchPaper">Research Paper</option>
-          </select>
-          <input id="researchDocFile" type="file" accept=".pdf,.doc,.docx" />
-          <button type="button" class="research-upload-btn" onclick="uploadResearchDocument()">
-            Upload Document
-          </button>
-        </div>
-        <div id="researchUploadStatus" class="research-upload-status">
-          Select a document type and file to upload.
-        </div>
-      </div>
     </section>
 
      <!-- PRESENTATIONS -->
@@ -4035,7 +3975,7 @@
       <div class="presentations-grid reveal">
         <a
           class="presentation-card"
-          href="https://mysliit-my.sharepoint.com/:b:/g/personal/it22317926_my_sliit_lk/IQCb7YDcPLGPSoP_cMJr_GWpAa0Pb0sK31HOI4wgtVVOt48?e=teg7zA"
+          href="docs/final/Project%20Proposal.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -4051,8 +3991,16 @@
                   rgba(59, 130, 246, 0.35),
                   rgba(35, 33, 36, 0.85)
                 );
+                display: grid;
+                place-items: center;
+                color: rgba(255, 255, 255, 0.92);
+                font-family: 'JetBrains Mono', monospace;
+                letter-spacing: 1px;
+                font-size: 0.9rem;
               "
-            ></div>
+            >
+              PDF
+            </div>
           </div>
           <div class="presentation-type">Presentation 01</div>
           <h3>Proposal Presentation</h3>
@@ -4099,6 +4047,43 @@
           <p>
             Second progress presentation highlighting advanced system design,
             refinements, and evaluation direction.
+          </p>
+          <div class="presentation-open">Open Document →</div>
+        </a>
+        <a
+          class="presentation-card"
+          href="https://mysliit-my.sharepoint.com/:p:/g/personal/it22361486_my_sliit_lk/IQAiRy-3GJ6sTrFl1D9qFyFYAfZ86VK_iTrlF-u_0Dp6C3Y?e=RseRE1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="presentation-thumb">
+            <div
+              class="presentation-thumb-fallback"
+              style="
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                  135deg,
+                  rgba(16, 185, 129, 0.35),
+                  rgba(139, 92, 246, 0.35),
+                  rgba(35, 33, 36, 0.85)
+                );
+                display: grid;
+                place-items: center;
+                color: rgba(255, 255, 255, 0.92);
+                font-family: 'JetBrains Mono', monospace;
+                letter-spacing: 1px;
+                font-size: 0.9rem;
+              "
+            >
+              PPT
+            </div>
+          </div>
+          <div class="presentation-type">Presentation 04</div>
+          <h3>Final Presentation</h3>
+          <p>
+            Final project presentation summarizing the full system, evaluation
+            results, and conclusions.
           </p>
           <div class="presentation-open">Open Document →</div>
         </a>
@@ -4944,50 +4929,12 @@
         const link = document.getElementById(id);
         if (!link) return;
         link.href = url;
-      }
-      function loadResearchDocLinks() {
-        try {
-          const saved = JSON.parse(localStorage.getItem("guardianResearchDocs") || "{}");
-          Object.keys(saved).forEach((k) => setResearchDocLink(k, saved[k]));
-        } catch (_) {}
-      }
-      async function uploadResearchDocument() {
-        const typeEl = document.getElementById("researchDocType");
-        const fileEl = document.getElementById("researchDocFile");
-        const statusEl = document.getElementById("researchUploadStatus");
-        if (!typeEl || !fileEl || !statusEl) return;
-        const file = fileEl.files && fileEl.files[0];
-        if (!file) {
-          statusEl.textContent = "Please select a file before uploading.";
-          return;
-        }
-        statusEl.textContent = "Uploading document...";
-        const formData = new FormData();
-        formData.append("documentType", typeEl.value);
-        formData.append("file", file);
-        try {
-          const res = await fetch("/upload-document", {
-            method: "POST",
-            body: formData,
-          });
-          if (!res.ok) throw new Error("Upload failed");
-          const data = await res.json();
-          const fileUrl = data.fileUrl || data.url;
-          if (!fileUrl) throw new Error("Missing file URL");
-          setResearchDocLink(typeEl.value, fileUrl);
-          const saved = JSON.parse(localStorage.getItem("guardianResearchDocs") || "{}");
-          saved[typeEl.value] = fileUrl;
-          localStorage.setItem("guardianResearchDocs", JSON.stringify(saved));
-          statusEl.textContent = "Upload complete. Document link updated.";
-          fileEl.value = "";
-        } catch (e) {
-          statusEl.textContent =
-            "Upload endpoint not available. Add backend POST /upload-document to save files on server.";
-        }
+        // Ensure a consistent "download button" behavior for local files.
+        // Note: browser security rules may ignore download for cross-origin URLs.
+        link.setAttribute("download", "");
       }
       document.addEventListener("DOMContentLoaded", () => {
         initReactBits();
-        loadResearchDocLinks();
         window.addEventListener("resize", initReactBits);
 
         // Apply heading/text animations globally without changing markup manually
